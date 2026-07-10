@@ -10,7 +10,7 @@ import { SkillsSection } from "./components/SkillsSection";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen pb-20">
+    <div className="relative min-h-screen bg-panel pb-20 text-ink transition-colors dark:bg-[#101014] dark:text-[#f5f5f7]">
       <NavBar />
       <main>
         <Hero>

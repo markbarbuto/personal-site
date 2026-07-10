@@ -1,4 +1,5 @@
-import { KeyboardEvent as ReactKeyboardEvent, MouseEvent, useEffect, useMemo, useState } from "react";
+import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { projects } from "../data/projects";
 import type { Project } from "../types/content";
 import { ProjectDetail } from "./ProjectDetail";
@@ -50,7 +51,7 @@ export function ProjectsSection() {
         {filteredProjects.length > 3 && (
           <button
             type="button"
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-[9px] text-sm font-semibold text-appleBlue"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-[9px] text-sm font-semibold text-appleBlue transition-colors dark:border-white/10 dark:bg-[#1f1f27]"
             onClick={() => setShowAll((current) => !current)}
           >
             {showAll ? "Show less" : `View all projects (${filteredProjects.length})`}
@@ -83,7 +84,7 @@ export function ProjectsSection() {
             />
           ))}
           {filteredProjects.length === 0 && (
-            <div className="px-5 py-10 text-center text-[15px] text-[#a1a1a6]">
+            <div className="px-5 py-10 text-center text-[15px] text-[#a1a1a6] dark:text-[#858592]">
               No projects with that tag yet.
             </div>
           )}
@@ -106,8 +107,8 @@ type ProjectCardProps = {
 function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCardProps) {
   return (
     <article
-      className="project-card glossy-tile flex min-h-[200px] flex-col items-stretch gap-6 rounded-[22px] border border-black/5 p-[30px] text-left transition sm:flex-row sm:items-center"
-      style={{ backgroundColor: `color-mix(in srgb, ${tint} 10%, white)` }}
+      className="project-card project-card-tinted glossy-tile flex min-h-[200px] flex-col items-stretch gap-6 rounded-[22px] border border-black/5 p-[30px] text-left text-ink transition sm:flex-row sm:items-center dark:border-white/10 dark:text-[#f5f5f7]"
+      style={{ "--project-tint": tint } as CSSProperties}
       onClick={onOpen}
       onKeyDown={onKeyDown}
       role="button"
@@ -115,11 +116,11 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
       aria-label={`Open project details for ${project.name}`}
     >
       <div className="flex min-w-0 flex-1 flex-col">
-        <span className="text-[11.5px] font-semibold uppercase tracking-[0.06em] text-[#a1a1a6]">
+        <span className="text-[11.5px] font-semibold uppercase tracking-[0.06em] text-[#a1a1a6] dark:text-[#858592]">
           {project.kind}
         </span>
         <h3 className="mt-1 text-[21px] font-bold tracking-[-0.015em]">{project.name}</h3>
-        <p className="mt-[7px] line-clamp-2 text-[15px] leading-normal text-muted">
+        <p className="mt-[7px] line-clamp-2 text-[15px] leading-normal text-muted dark:text-[#b7b7c2]">
           {project.description}
         </p>
         <div className="mt-[13px] flex flex-wrap gap-[7px]">
@@ -127,7 +128,7 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
             <button
               key={tag}
               type="button"
-              className="rounded-lg border-0 bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue"
+              className="rounded-lg border-0 bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue dark:bg-appleBlue/15"
               aria-label={`Filter projects by ${tag} tag from ${project.name}`}
               onClick={(event) => onTagClick(event, tag)}
             >
@@ -161,7 +162,7 @@ function TagButton({ label, active, onClick }: TagButtonProps) {
       className={`rounded-full px-3.5 py-[7px] text-[13px] transition ${
         active
           ? "border border-appleBlue bg-appleBlue font-semibold text-white"
-          : "border border-black/10 bg-white font-medium text-ink"
+          : "border border-black/10 bg-white font-medium text-ink dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
       }`}
       onClick={onClick}
       aria-label={label === "All" ? "Show all projects" : `Filter projects by ${label.slice(1)} tag`}

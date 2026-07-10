@@ -12,7 +12,7 @@ export function PromptChips({ onSelect }: PromptChipsProps) {
           <button
             key={prompt.prompt}
             type="button"
-            className="prompt-chip fun-item glossy-tile flex-none whitespace-nowrap rounded-full border border-black/5 bg-panel px-4 py-2 text-[13.5px] font-medium text-ink transition"
+            className="prompt-chip fun-item glossy-tile flex-none whitespace-nowrap rounded-full border border-black/5 bg-panel px-4 py-2 text-[13.5px] font-medium text-ink transition dark:border-white/10 dark:bg-[#23232b] dark:text-white"
             onClick={() => onSelect(prompt.prompt)}
           >
             {prompt.label}

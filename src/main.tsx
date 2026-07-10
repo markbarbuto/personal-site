@@ -9,6 +9,11 @@ if (!root) {
   throw new Error("Root element #root was not found.");
 }
 
+document.documentElement.classList.toggle(
+  "dark",
+  window.localStorage.getItem("portfolio-theme") === "dark",
+);
+
 createRoot(root).render(
   <StrictMode>
     <App />

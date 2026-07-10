@@ -18,7 +18,7 @@ export function Hero({ children }: HeroProps) {
       id="me"
       className="flex flex-col items-center px-6 pb-10 pt-[100px] text-center sm:pt-[100px]"
     >
-      <div className="flex h-[116px] w-[116px] items-center justify-center overflow-hidden rounded-full border-[5px] border-white bg-white shadow-[0_12px_30px_rgba(0,0,0,0.16)]">
+      <div className="flex h-[116px] w-[116px] items-center justify-center overflow-hidden rounded-full border-[5px] border-white bg-white shadow-[0_12px_30px_rgba(0,0,0,0.16)] dark:border-white/15 dark:bg-[#2a2a32] dark:shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
         <img
           src={profile.avatarUrl}
           alt={profile.name}
@@ -26,7 +26,7 @@ export function Hero({ children }: HeroProps) {
           draggable={false}
         />
       </div>
-      <div className="mt-6 text-[17px] font-medium text-muted">Hey, I'm</div>
+      <div className="mt-6 text-[17px] font-medium text-muted dark:text-[#b7b7c2]">Hey, I'm</div>
       <h1 className="mt-1 text-[clamp(36px,5vw,52px)] font-bold leading-none tracking-[-0.03em]">
         {profile.name}
       </h1>
@@ -38,7 +38,7 @@ export function Hero({ children }: HeroProps) {
             <a
               key={link.label}
               href={link.href}
-              className="social-btn glossy-tile flex h-11 w-11 items-center justify-center rounded-[14px] border border-black/10 bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition"
+              className="social-btn glossy-tile flex h-11 w-11 items-center justify-center rounded-[14px] border border-black/10 bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition dark:border-white/10 dark:bg-[#1f1f27] dark:text-white dark:shadow-[0_8px_24px_rgba(0,0,0,0.28)]"
               aria-label={link.label}
               title={link.label}
             >

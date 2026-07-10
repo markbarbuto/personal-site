@@ -75,7 +75,7 @@ export function AssistantModule() {
   return (
     <>
       <PromptChips onSelect={(prompt) => void submit(prompt)} />
-      <div className="mt-3 w-full max-w-[772px] overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-float">
+      <div className="mt-3 w-full max-w-[772px] overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-float transition-colors dark:border-white/10 dark:bg-[#19191f] dark:shadow-[0_18px_52px_rgba(0,0,0,0.34)]">
         {hasChat && (
           <div
             ref={chatRef}
@@ -93,7 +93,7 @@ export function AssistantModule() {
                     className={`max-w-[82%] px-[15px] py-[11px] text-[15px] leading-normal ${
                       isUser
                         ? "rounded-[20px_20px_6px_20px] bg-appleBlue text-white"
-                        : "rounded-[20px_20px_20px_6px] bg-[#f0f0f2] text-ink"
+                        : "rounded-[20px_20px_20px_6px] bg-[#f0f0f2] text-ink dark:bg-[#262630] dark:text-[#f5f5f7]"
                     }`}
                   >
                     {message.content}
@@ -103,7 +103,7 @@ export function AssistantModule() {
             })}
             {typing && (
               <div className="mb-3 flex justify-start">
-                <div className="flex gap-1 rounded-[18px] bg-[#f0f0f2] px-4 py-[13px]">
+                <div className="flex gap-1 rounded-[18px] bg-[#f0f0f2] px-4 py-[13px] dark:bg-[#262630]">
                   {[0, 0.2, 0.4].map((delay) => (
                     <span
                       key={delay}
@@ -117,7 +117,7 @@ export function AssistantModule() {
           </div>
         )}
         <form
-          className="flex items-center gap-2.5 border-t border-black/5 py-3 pl-5 pr-3"
+          className="flex items-center gap-2.5 border-t border-black/5 py-3 pl-5 pr-3 dark:border-white/10"
           onSubmit={onSubmit}
         >
           <input
@@ -125,7 +125,7 @@ export function AssistantModule() {
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={onKeyDown}
             placeholder="Ask me anything about my work…"
-            className="min-w-0 flex-1 border-none bg-transparent text-[15.5px] text-ink outline-none"
+            className="min-w-0 flex-1 border-none bg-transparent text-[15.5px] text-ink outline-none dark:text-white"
             aria-label="Ask the assistant"
           />
           <button
@@ -139,7 +139,7 @@ export function AssistantModule() {
           </button>
         </form>
       </div>
-      <div className="mt-3 text-[12.5px] text-[#a1a1a6]">
+      <div className="mt-3 text-[12.5px] text-[#a1a1a6] dark:text-[#858592]">
         This is a demo chat with sample answers — wire it to a real model later.
       </div>
     </>

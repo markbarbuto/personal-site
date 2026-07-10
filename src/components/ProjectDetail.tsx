@@ -8,18 +8,18 @@ type ProjectDetailProps = {
 
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto bg-panel fade-in" role="dialog" aria-modal="true">
-      <div className="sticky top-0 z-10 border-b border-black/5 bg-panel/80 backdrop-blur-xl">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-panel fade-in dark:bg-[#101014]" role="dialog" aria-modal="true">
+      <div className="sticky top-0 z-10 border-b border-black/5 bg-panel/80 shadow-[0_8px_24px_rgba(0,0,0,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#19191f]/95 dark:shadow-[0_12px_34px_rgba(0,0,0,0.32)]">
         <div className="mx-auto flex max-w-[900px] items-center justify-between px-6 py-3.5">
           <button
             type="button"
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white py-[9px] pl-[11px] pr-4 text-sm font-semibold text-ink"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white py-[9px] pl-[11px] pr-4 text-sm font-semibold text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7] dark:shadow-[0_8px_22px_rgba(0,0,0,0.28)]"
             onClick={onClose}
           >
             <FaArrowLeft aria-hidden="true" className="h-4 w-4" />
             All projects
           </button>
-          <div className="text-sm font-semibold text-muted">{project.name}</div>
+          <div className="text-sm font-semibold text-muted dark:text-[#f5f5f7]">{project.name}</div>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
         <div className="mt-[26px] flex flex-wrap items-end justify-between gap-5">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.06em] text-[#a1a1a6]">
+            <span className="text-xs font-semibold uppercase tracking-[0.06em] text-[#a1a1a6] dark:text-[#858592]">
               {project.kind}
             </span>
             <h1 className="mt-1.5 text-[clamp(34px,5vw,52px)] font-bold leading-none tracking-[-0.03em]">
@@ -56,14 +56,14 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
               href={project.links.source}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline"
+              className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
             >
               Source
             </a>
           </div>
         </div>
 
-        <p className="mt-[26px] max-w-[680px] text-[19px] leading-relaxed text-[#40404a]">
+        <p className="mt-[26px] max-w-[680px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
           {project.overview}
         </p>
 
@@ -88,7 +88,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
                     aria-hidden="true"
                     className="mt-1 h-5 w-5 flex-none text-appleBlue"
                   />
-                  <span className="text-[15.5px] leading-normal text-[#40404a]">{highlight}</span>
+                  <span className="text-[15.5px] leading-normal text-[#40404a] dark:text-[#c7c7d1]">{highlight}</span>
                 </div>
               ))}
             </div>
@@ -99,7 +99,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
               {project.stack.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-black/10 bg-white px-3.5 py-[7px] text-[13.5px] font-medium"
+                  className="rounded-full border border-black/10 bg-white px-3.5 py-[7px] text-[13.5px] font-medium dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
                 >
                   {item}
                 </span>
@@ -110,7 +110,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-lg bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue"
+                  className="rounded-lg bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue dark:bg-appleBlue/15"
                 >
                   #{tag}
                 </span>
