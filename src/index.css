@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+section {
+  scroll-margin-top: 104px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+input::placeholder {
+  color: #a1a1a6;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheetUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-link:hover {
+  background: rgba(0, 0, 0, 0.055);
+}
+
+.social-btn.glossy-tile:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    inset 0 -18px 30px rgba(0, 0, 0, 0.045),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.045),
+    0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.social-btn:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-social-btn {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 7px 18px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.project-card.glossy-tile:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    inset 0 -18px 30px rgba(0, 0, 0, 0.045),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.045),
+    0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.fun-item {
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+.fun-item:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.glossy-tile {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.1) 85%,
+    rgba(0, 0, 0, 0.045) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.86);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    inset 0 -18px 30px rgba(0, 0, 0, 0.045),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.045),
+    0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.fun-item.glossy-tile:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    inset 0 -18px 30px rgba(0, 0, 0, 0.045),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.045),
+    0 8px 22px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.prompt-chip-fade {
+  position: relative;
+}
+
+.prompt-chip-fade::before,
+.prompt-chip-fade::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  bottom: -12px;
+  z-index: 2;
+  width: 28px;
+  pointer-events: none;
+}
+
+.prompt-chip-fade::before {
+  left: 0;
+  background: linear-gradient(90deg, #f5f5f7 0%, rgba(245, 245, 247, 0) 100%);
+}
+
+.prompt-chip-fade::after {
+  right: 0;
+  background: linear-gradient(270deg, #f5f5f7 0%, rgba(245, 245, 247, 0) 100%);
+}
+
+.send-btn:hover {
+  background: #0077ed;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.fade-up {
+  animation: fadeUp 0.28s ease both;
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease both;
+}
+
+.sheet-up {
+  animation: sheetUp 0.3s ease both;
+}
