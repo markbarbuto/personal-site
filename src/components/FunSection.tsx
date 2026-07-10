@@ -34,9 +34,7 @@ export function FunSection() {
               <button
                 key={item.key}
                 type="button"
-                className={`fun-card-tinted fun-item glossy-tile rounded-2xl border p-[18px] text-left text-ink transition dark:text-white ${
-                  active ? "shadow-[0_8px_22px_rgba(0,0,0,0.08)]" : ""
-                }`}
+                className="fun-card-tinted fun-item glossy-tile rounded-2xl border p-[18px] text-left text-ink transition dark:text-white"
                 style={{
                   "--fun-tint": item.tint,
                   "--fun-accent": item.accent,

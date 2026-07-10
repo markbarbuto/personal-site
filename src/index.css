@@ -142,7 +142,8 @@ html.dark .nav-link:hover {
     transform 0.28s ease;
 }
 
-.fun-item:hover {
+.fun-item:hover,
+.fun-item[data-active="true"] {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
@@ -177,7 +178,8 @@ html.dark .glossy-tile {
     0 10px 28px rgba(0, 0, 0, 0.3);
 }
 
-.fun-item.glossy-tile:hover {
+.fun-item.glossy-tile:hover,
+.fun-item.glossy-tile[data-active="true"] {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.62),
     inset 0 -18px 30px rgba(0, 0, 0, 0.045),
@@ -187,6 +189,7 @@ html.dark .glossy-tile {
 }
 
 html.dark .fun-item.glossy-tile:hover,
+html.dark .fun-item.glossy-tile[data-active="true"],
 html.dark .project-card.glossy-tile:hover,
 html.dark .social-btn.glossy-tile:hover {
   box-shadow:
@@ -212,10 +215,6 @@ html.dark .project-card-tinted {
 html.dark .fun-card-tinted {
   background-color: color-mix(in srgb, var(--fun-accent) 18%, #19191f);
   border-color: rgba(255, 255, 255, 0.14);
-}
-
-.fun-card-tinted[data-active="true"] {
-  border-color: var(--fun-accent);
 }
 
 .prompt-chip-fade {
