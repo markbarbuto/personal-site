@@ -1,5 +1,6 @@
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
+import { BlueAction } from "../BlueAction";
 import { sendAssistantMessage } from "../../services/assistantClient";
 import type { AssistantMessage } from "../../types/assistant";
 import { PromptChips } from "./PromptChips";
@@ -128,15 +129,15 @@ export function AssistantModule() {
             className="min-w-0 flex-1 border-none bg-transparent text-[15.5px] text-ink outline-none dark:text-white"
             aria-label="Ask the assistant"
           />
-          <button
+          <BlueAction
             type="submit"
-            className="send-btn flex h-10 w-10 flex-none items-center justify-center rounded-full border-0 bg-appleBlue text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            iconOnly
             title="Send"
             aria-label="Send"
             disabled={typing}
           >
             <FaArrowRight aria-hidden="true" className="h-[18px] w-[18px]" />
-          </button>
+          </BlueAction>
         </form>
       </div>
       <div className="mt-3 text-[12.5px] text-[#a1a1a6] dark:text-[#858592]">

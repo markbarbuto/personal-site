@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowUpRightFromSquare, FaCheck } from "react-icons/fa6";
 import type { Project } from "../types/content";
+import { BlueAction } from "./BlueAction";
 import { GlossyChip, ProjectTagChip } from "./Chips";
 
 type ProjectDetailProps = {
@@ -62,14 +63,13 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
             <div className="mt-2 text-[17px] font-medium text-appleBlue">{project.role}</div>
           </div>
           <div className="flex flex-wrap gap-2.5">
-            <a
+            <BlueAction
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="send-btn inline-flex items-center gap-2 rounded-full bg-appleBlue px-[26px] py-[13px] text-[15px] font-semibold text-white no-underline transition-colors"
             >
               View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
-            </a>
+            </BlueAction>
             <a
               href={project.links.source}
               target="_blank"

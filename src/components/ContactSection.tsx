@@ -1,5 +1,6 @@
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { profile, socialLinks } from "../data/profile";
+import { BlueAction } from "./BlueAction";
 
 export function ContactSection() {
   const linkedIn = socialLinks.find((link) => link.label === "LinkedIn")?.href ?? "#";
@@ -10,13 +11,13 @@ export function ContactSection() {
       <div className="rounded-[22px] bg-gradient-to-br from-ink to-[#2b2b30] p-[30px] text-center shadow-[0_14px_44px_rgba(0,0,0,0.18)] dark:from-[#1c1c24] dark:to-[#111116] dark:shadow-[0_18px_52px_rgba(0,0,0,0.42)]">
         <h2 className="text-[30px] font-bold tracking-[-0.02em] text-white">Get in touch</h2>
         <p className="mx-auto mt-2.5 max-w-[460px] text-base text-white/65">{profile.contactIntro}</p>
-        <a
+        <BlueAction
           href={`mailto:${profile.email}`}
-          className="send-btn mt-6 inline-flex items-center gap-2 rounded-full bg-appleBlue px-[26px] py-[13px] text-[15px] font-semibold text-white no-underline transition-colors"
+          className="mt-6"
         >
           <FaEnvelope aria-hidden="true" className="h-4 w-4" />
           {profile.email}
-        </a>
+        </BlueAction>
         <div className="mt-[22px] flex justify-center gap-3">
           <a
             href={linkedIn}
