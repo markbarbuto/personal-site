@@ -82,6 +82,15 @@ html.dark input::placeholder {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes sheetUp {
   from {
     opacity: 0;
@@ -90,6 +99,17 @@ html.dark input::placeholder {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes sheetDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }
 
@@ -270,6 +290,14 @@ html.dark .prompt-chip-fade::after {
   animation: fadeIn 0.2s ease both;
 }
 
+.fade-out {
+  animation: fadeOut 0.2s ease both;
+}
+
 .sheet-up {
   animation: sheetUp 0.3s ease both;
+}
+
+.sheet-down {
+  animation: sheetDown 0.3s ease both;
 }
