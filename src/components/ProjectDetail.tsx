@@ -9,15 +9,17 @@ type ProjectDetailProps = {
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-panel fade-in dark:bg-[#101014]" role="dialog" aria-modal="true">
-      <div className="sheet-up mx-auto max-w-[900px] px-6 pb-[90px] pt-[18px]">
+      <div className="fixed left-[max(24px,calc((100vw-900px)/2+24px))] top-[18px] z-10 rounded-full border border-black/5 bg-white/70 p-1.5 shadow-nav backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#1c1c22]/75 dark:shadow-[0_10px_36px_rgba(0,0,0,0.42)]">
         <button
           type="button"
-          className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white py-[9px] pl-[11px] pr-4 text-sm font-semibold text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7] dark:shadow-[0_8px_22px_rgba(0,0,0,0.28)]"
+          className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink transition-colors dark:text-white"
           onClick={onClose}
         >
           <FaArrowLeft aria-hidden="true" className="h-4 w-4" />
           Back
         </button>
+      </div>
+      <div className="sheet-up mx-auto max-w-[900px] px-6 pb-[90px] pt-[86px]">
         <div
           className="flex min-h-[300px] items-end rounded-[26px] p-[34px] shadow-[0_26px_64px_rgba(0,0,0,0.16)]"
           style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
