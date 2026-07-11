@@ -1,4 +1,5 @@
 import { skillGroups } from "../data/skills";
+import { GlossyChip } from "./Chips";
 import { BrandIcon } from "./icons/BrandIcon";
 import { DeviconIcon } from "./icons/DeviconIcon";
 import { FaSkillIcon } from "./icons/FaSkillIcon";
@@ -24,21 +25,22 @@ export function SkillsSection() {
             </h3>
             <div className="flex flex-wrap gap-2.5">
               {group.skills.map((skill) => (
-                <span
+                <GlossyChip
                   key={`${group.label}-${skill.label}`}
-                  className="glossy-tile inline-flex items-center gap-[9px] rounded-full border border-black/5 bg-panel py-2 pl-[11px] pr-[15px] text-sm font-medium dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
+                  icon={
+                    skill.icon.type === "brand" ? (
+                      <BrandIcon name={skill.icon.name} color={skill.icon.color} />
+                    ) : skill.icon.type === "devicon" ? (
+                      <DeviconIcon name={skill.icon.name} />
+                    ) : skill.icon.type === "image" ? (
+                      <ImageIcon src={skill.icon.src} />
+                    ) : (
+                      <FaSkillIcon name={skill.icon.name} color={skill.icon.color} />
+                    )
+                  }
                 >
-                  {skill.icon.type === "brand" ? (
-                    <BrandIcon name={skill.icon.name} color={skill.icon.color} />
-                  ) : skill.icon.type === "devicon" ? (
-                    <DeviconIcon name={skill.icon.name} />
-                  ) : skill.icon.type === "image" ? (
-                    <ImageIcon src={skill.icon.src} />
-                  ) : (
-                    <FaSkillIcon name={skill.icon.name} color={skill.icon.color} />
-                  )}
                   {skill.label}
-                </span>
+                </GlossyChip>
               ))}
             </div>
           </div>

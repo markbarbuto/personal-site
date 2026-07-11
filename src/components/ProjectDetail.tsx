@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowUpRightFromSquare, FaCheck } from "react-icons/fa6";
 import type { Project } from "../types/content";
+import { GlossyChip, ProjectTagChip } from "./Chips";
 
 type ProjectDetailProps = {
   project: Project;
@@ -65,9 +66,9 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-[7px] rounded-full bg-appleBlue px-5 py-[11px] text-sm font-semibold text-white no-underline"
+              className="send-btn inline-flex items-center gap-2 rounded-full bg-appleBlue px-[26px] py-[13px] text-[15px] font-semibold text-white no-underline transition-colors"
             >
-              View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-[15px] w-[15px]" />
+              View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
             </a>
             <a
               href={project.links.source}
@@ -114,23 +115,15 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
             <h2 className="text-xl font-bold tracking-[-0.01em]">Built with</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {project.stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-black/10 bg-white px-3.5 py-[7px] text-[13.5px] font-medium dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
-                >
+                <GlossyChip key={item}>
                   {item}
-                </span>
+                </GlossyChip>
               ))}
             </div>
             <h2 className="mt-7 text-xl font-bold tracking-[-0.01em]">Tags</h2>
             <div className="mt-4 flex flex-wrap gap-[7px]">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-lg bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue dark:bg-appleBlue/15"
-                >
-                  #{tag}
-                </span>
+                <ProjectTagChip key={tag} tag={tag} />
               ))}
             </div>
           </div>

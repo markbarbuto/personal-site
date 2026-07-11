@@ -2,6 +2,7 @@ import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent } f
 import { useEffect, useMemo, useState } from "react";
 import { projects } from "../data/projects";
 import type { Project } from "../types/content";
+import { ProjectTagChip } from "./Chips";
 import { ProjectDetail } from "./ProjectDetail";
 import { SectionCard } from "./SectionCard";
 
@@ -125,15 +126,12 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
         </p>
         <div className="mt-[13px] flex flex-wrap gap-[7px]">
           {project.tags.map((tag) => (
-            <button
+            <ProjectTagChip
               key={tag}
-              type="button"
-              className="rounded-lg border-0 bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue dark:bg-appleBlue/15"
-              aria-label={`Filter projects by ${tag} tag from ${project.name}`}
+              tag={tag}
+              ariaLabel={`Filter projects by ${tag} tag from ${project.name}`}
               onClick={(event) => onTagClick(event, tag)}
-            >
-              #{tag}
-            </button>
+            />
           ))}
         </div>
       </div>
