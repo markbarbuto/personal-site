@@ -9,21 +9,15 @@ type ProjectDetailProps = {
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-panel fade-in dark:bg-[#101014]" role="dialog" aria-modal="true">
-      <div className="sticky top-0 z-10 border-b border-black/5 bg-panel/80 shadow-[0_8px_24px_rgba(0,0,0,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#19191f]/95 dark:shadow-[0_12px_34px_rgba(0,0,0,0.32)]">
-        <div className="mx-auto flex max-w-[900px] items-center justify-between px-6 py-3.5">
-          <button
-            type="button"
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white py-[9px] pl-[11px] pr-4 text-sm font-semibold text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7] dark:shadow-[0_8px_22px_rgba(0,0,0,0.28)]"
-            onClick={onClose}
-          >
-            <FaArrowLeft aria-hidden="true" className="h-4 w-4" />
-            All projects
-          </button>
-          <div className="text-sm font-semibold text-muted dark:text-[#f5f5f7]">{project.name}</div>
-        </div>
-      </div>
-
-      <div className="sheet-up mx-auto max-w-[900px] px-6 pb-[90px] pt-7">
+      <div className="sheet-up mx-auto max-w-[900px] px-6 pb-[90px] pt-[18px]">
+        <button
+          type="button"
+          className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white py-[9px] pl-[11px] pr-4 text-sm font-semibold text-ink shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7] dark:shadow-[0_8px_22px_rgba(0,0,0,0.28)]"
+          onClick={onClose}
+        >
+          <FaArrowLeft aria-hidden="true" className="h-4 w-4" />
+          Back
+        </button>
         <div
           className="flex min-h-[300px] items-end rounded-[26px] p-[34px] shadow-[0_26px_64px_rgba(0,0,0,0.16)]"
           style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
