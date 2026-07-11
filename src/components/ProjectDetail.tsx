@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaArrowUpRightFromSquare, FaCheck } from "react-icons/fa6";
 import type { Project } from "../types/content";
 import { BlueAction } from "./BlueAction";
@@ -11,6 +11,36 @@ type ProjectDetailProps = {
 
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const [isClosing, setIsClosing] = useState(false);
+  const [actionsBelowTitle, setActionsBelowTitle] = useState(false);
+  const titleRowRef = useRef<HTMLDivElement | null>(null);
+  const actionsRef = useRef<HTMLDivElement | null>(null);
+  const titleMeasureRef = useRef<HTMLSpanElement | null>(null);
+
+  useLayoutEffect(() => {
+    function measureTitleFit() {
+      if (!titleRowRef.current || !actionsRef.current || !titleMeasureRef.current) return;
+
+      const rowWidth = titleRowRef.current.clientWidth;
+      const actionsWidth = actionsRef.current.offsetWidth;
+      const titleWidth = titleMeasureRef.current.scrollWidth;
+      const titleActionGap = 20;
+
+      setActionsBelowTitle(titleWidth + actionsWidth + titleActionGap > rowWidth);
+    }
+
+    measureTitleFit();
+
+    const resizeObserver = new ResizeObserver(measureTitleFit);
+    [titleRowRef.current, actionsRef.current, titleMeasureRef.current].forEach((element) => {
+      if (element) resizeObserver.observe(element);
+    });
+    window.addEventListener("resize", measureTitleFit);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureTitleFit);
+    };
+  }, [project.name]);
 
   function closeWithAnimation() {
     if (isClosing) return;
@@ -18,6 +48,22 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
     setIsClosing(true);
     window.setTimeout(onClose, 300);
   }
+
+  const projectActions = (
+    <>
+      <BlueAction href={project.links.live} target="_blank" rel="noopener noreferrer">
+        View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
+      </BlueAction>
+      <a
+        href={project.links.source}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
+      >
+        Source
+      </a>
+    </>
+  );
 
   return (
     <div
@@ -52,33 +98,34 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           </span>
         </div>
 
-        <div className="mt-[26px] flex flex-wrap items-end justify-between gap-5">
+        <div className="mt-[26px]">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.06em] text-[#a1a1a6] dark:text-[#858592]">
               {project.kind}
             </span>
-            <h1 className="mt-1.5 text-[clamp(34px,5vw,52px)] font-bold leading-none tracking-[-0.03em]">
-              {project.name}
-            </h1>
+            <div
+              ref={titleRowRef}
+              className="relative mt-1.5 flex flex-wrap items-center justify-between gap-x-5 gap-y-4"
+            >
+              <span
+                ref={titleMeasureRef}
+                aria-hidden="true"
+                className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap text-[clamp(34px,5vw,52px)] font-bold leading-none tracking-[-0.03em]"
+              >
+                {project.name}
+              </span>
+              <h1 className="min-w-0 flex-1 text-[clamp(34px,5vw,52px)] font-bold leading-none tracking-[-0.03em]">
+                {project.name}
+              </h1>
+              {!actionsBelowTitle && (
+                <div ref={actionsRef} className="flex flex-wrap gap-2.5">
+                  {projectActions}
+                </div>
+              )}
+            </div>
             <div className="mt-2 text-[17px] font-medium text-appleBlue">{project.role}</div>
           </div>
-          <div className="flex flex-wrap gap-2.5">
-            <BlueAction
-              href={project.links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
-            </BlueAction>
-            <a
-              href={project.links.source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
-            >
-              Source
-            </a>
-          </div>
+          {actionsBelowTitle && <div ref={actionsRef} className="mt-4 flex flex-wrap gap-2.5">{projectActions}</div>}
         </div>
 
         <p className="mt-[26px] max-w-[680px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
