@@ -21,14 +21,21 @@ type ProjectTagChipProps = {
 };
 
 const projectTagChipClass =
-  "rounded-lg border-0 bg-appleBlue/10 px-2.5 py-1 text-[12.5px] font-semibold text-appleBlue dark:bg-appleBlue/15";
+  "px-0 py-1 text-[12.5px] font-semibold text-appleBlue";
+
+const clickableProjectTagChipClass = `${projectTagChipClass} transition-colors hover:text-[#005bb5] dark:hover:text-[#66b3ff]`;
 
 export function ProjectTagChip({ tag, ariaLabel, onClick }: ProjectTagChipProps) {
   const label = `#${tag}`;
 
   if (onClick) {
     return (
-      <button type="button" className={projectTagChipClass} aria-label={ariaLabel} onClick={onClick}>
+      <button
+        type="button"
+        className={clickableProjectTagChipClass}
+        aria-label={ariaLabel}
+        onClick={onClick}
+      >
         {label}
       </button>
     );
