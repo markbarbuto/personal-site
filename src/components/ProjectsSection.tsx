@@ -159,8 +159,8 @@ function TagButton({ label, active, onClick }: TagButtonProps) {
       type="button"
       className={`rounded-full px-3.5 py-[7px] text-[13px] transition ${
         active
-          ? "border border-appleBlue bg-appleBlue font-semibold text-white"
-          : "border border-black/10 bg-white font-medium text-ink dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
+          ? "border border-appleBlue bg-appleBlue font-semibold text-white hover:bg-[#0077ed]"
+          : "border border-black/10 bg-white font-medium text-ink hover:bg-black/[0.055] dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7] dark:hover:bg-white/10"
       }`}
       onClick={onClick}
       aria-label={label === "All" ? "Show all projects" : `Filter projects by ${label.slice(1)} tag`}
