@@ -21,8 +21,9 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "llama.cpp", "FastAPI", "RAG", "Oracle Cloud"],
     links: {
-      live: { href: "#" },
-      source: { href: "#" },
+      live: { href: "#me" },
+      source: { href: "https://github.com/markbarbuto/vitae-ai" },
+      comingSoon: true,
     },
   },
   {

@@ -87,13 +87,31 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
     window.setTimeout(onClose, 300);
   }
 
+  function navigateToPageSection(sectionId: string) {
+    if (isClosing) return;
+
+    setIsClosing(true);
+    window.setTimeout(() => {
+      onClose();
+      window.setTimeout(() => {
+        document.querySelector(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        window.history.replaceState(null, "", sectionId);
+      }, 0);
+    }, 300);
+  }
+
   const projectActions = (
     <>
-      {project.links.live && (
-        <BlueAction href={project.links.live.href} target="_blank" rel="noopener noreferrer">
-          {project.links.live.label ?? "View live"} <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
-        </BlueAction>
-      )}
+      {project.links.live &&
+        (project.links.live.href.startsWith("#") ? (
+          <BlueAction onClick={() => navigateToPageSection(project.links.live!.href)}>
+            {project.links.live.label ?? "View live"}
+          </BlueAction>
+        ) : (
+          <BlueAction href={project.links.live.href} target="_blank" rel="noopener noreferrer">
+            {project.links.live.label ?? "View live"} <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
+          </BlueAction>
+        ))}
       {project.links.source && "href" in project.links.source && (
         <a
           href={project.links.source.href}

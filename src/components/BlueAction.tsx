@@ -12,6 +12,7 @@ type BlueActionProps = {
   href?: string;
   target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
   rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
+  onAnchorClick?: AnchorHTMLAttributes<HTMLAnchorElement>["onClick"];
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   title?: string;
   ariaLabel?: string;
@@ -34,6 +35,7 @@ export function BlueAction({
   href,
   target,
   rel,
+  onAnchorClick,
   type = "button",
   title,
   ariaLabel,
@@ -44,7 +46,15 @@ export function BlueAction({
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel} title={title} aria-label={ariaLabel} className={classes}>
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        title={title}
+        aria-label={ariaLabel}
+        onClick={onAnchorClick}
+        className={classes}
+      >
         {children}
       </a>
     );

@@ -141,7 +141,7 @@ export function AssistantModule() {
         </form>
       </div>
       <div className="mt-3 text-[12.5px] text-[#a1a1a6] dark:text-[#858592]">
-        This is a demo chat with sample answers — wire it to a real model later.
+        Vitae AI - Coming soon
       </div>
     </>
   );
