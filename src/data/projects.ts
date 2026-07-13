@@ -112,8 +112,8 @@ export const projects: Project[] = [
 				alt: "Indigenous Supports from Kids Help Phone app icon",
 			},
 			detailHeader: {
-				src: "/project-assets/indigenous-supports-khp/app-overview.jpg",
-				alt: "Indigenous Supports from KHP mobile app",
+				src: "/project-assets/indigenous-supports-khp/header.png",
+				alt: "Indigenous Supports from KHP mobile app screens",
 			},
 		},
 		tags: [
@@ -153,22 +153,16 @@ export const projects: Project[] = [
 				type: "gallery",
 				images: [
 					{
-						src: "/project-assets/indigenous-supports-khp/content-library.jpg",
-						alt: "Wellness content in the Indigenous Supports from KHP app",
+						src: "/project-assets/indigenous-supports-khp/content-library-combined.jpg",
+						alt: "Home screen and wellness content in the Indigenous Supports from KHP app",
 						caption:
 							"Wellness resources remain available locally after they have been synchronized.",
 					},
 					{
-						src: "/project-assets/indigenous-supports-khp/wellness-bundle.jpg",
-						alt: "My Wellness Bundle questionnaire in the Indigenous Supports from KHP app",
+						src: "/project-assets/indigenous-supports-khp/support-tools-combined.jpg",
+						alt: "My Wellness Bundle and Direct Support screens in the Indigenous Supports from KHP app",
 						caption:
-							"My Wellness Bundle helps users create a personal wellness and safety plan.",
-					},
-					{
-						src: "/project-assets/indigenous-supports-khp/direct-support.jpg",
-						alt: "Direct support options in the Indigenous Supports from KHP app",
-						caption:
-							"Users can connect with Kids Help Phone through calling, texting, and online messaging.",
+							"My Wellness Bundle helps users create a personal wellness and safety plan, while Direct Support connects them with Kids Help Phone.",
 					},
 				],
 			},
@@ -215,10 +209,9 @@ export const projects: Project[] = [
 			},
 		],
 		highlights: [
-			"Offline-first access to more than 100 mental health and wellness articles",
+			"Offline-first access to over 100 wellness articles",
 			"My Wellness Bundle for creating a locally available personal wellness and safety plan",
 			"Calling, texting, and online messaging pathways to Kids Help Phone support",
-			"Resources Around Me search for in-person and virtual services across Canada",
 			"Incremental delta sync using created, updated, and deleted change sets",
 			"WatermelonDB and SQLite storage with local encryption of sensitive data",
 			".NET 8, Azure Functions, and SQL Server backend hosted in Azure",

@@ -366,11 +366,6 @@ function ContentImageFigure({ image, imageClassName, onOpen }: ContentImageFigur
           className={`${imageClassName} transition-shadow group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.18)]`}
         />
       </button>
-      {image.caption && (
-        <figcaption className="mt-2 text-sm leading-normal text-[#6e6e73] dark:text-[#a1a1ac]">
-          {image.caption}
-        </figcaption>
-      )}
     </figure>
   );
 }
@@ -409,11 +404,6 @@ function ImageFocusOverlay({ image, isClosing, onClose }: ImageFocusOverlayProps
           alt={image.alt}
           className="block max-h-[82vh] w-auto max-w-full rounded-[22px] object-contain shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
         />
-        {image.caption && (
-          <figcaption className="mt-3 text-center text-sm leading-normal text-white/78">
-            {image.caption}
-          </figcaption>
-        )}
       </figure>
     </div>
   );
