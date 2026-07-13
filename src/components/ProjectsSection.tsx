@@ -135,14 +135,24 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
           ))}
         </div>
       </div>
-      <div
-        className="flex h-[140px] w-full flex-none items-center justify-center self-center rounded-2xl sm:w-[140px]"
-        style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
-      >
-        <span className="text-[64px] font-extrabold tracking-[-0.03em] text-white/30">
-          {project.name.charAt(0)}
-        </span>
-      </div>
+      {project.images?.card ? (
+        <div className="flex h-[140px] w-full flex-none items-center justify-center self-center overflow-hidden rounded-2xl sm:w-[140px]">
+          <img
+            src={project.images.card.src}
+            alt={project.images.card.alt}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className="flex h-[140px] w-full flex-none items-center justify-center self-center rounded-2xl sm:w-[140px]"
+          style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
+        >
+          <span className="text-[64px] font-extrabold tracking-[-0.03em] text-white/30">
+            {project.name.charAt(0)}
+          </span>
+        </div>
+      )}
     </article>
   );
 }

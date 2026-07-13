@@ -1,6 +1,12 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaArrowUpRightFromSquare, FaCheck } from "react-icons/fa6";
-import type { Project } from "../types/content";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  FaArrowLeft,
+  FaArrowUpRightFromSquare,
+  FaCheck,
+  FaClock,
+  FaXmark,
+} from "react-icons/fa6";
+import type { Project, ProjectContentBlock } from "../types/content";
 import { BlueAction } from "./BlueAction";
 import { GlossyChip, ProjectTagChip } from "./Chips";
 
@@ -12,6 +18,8 @@ type ProjectDetailProps = {
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const [isClosing, setIsClosing] = useState(false);
   const [actionsBelowTitle, setActionsBelowTitle] = useState(false);
+  const [focusedImage, setFocusedImage] = useState<ProjectContentImage | null>(null);
+  const [isFocusedImageClosing, setIsFocusedImageClosing] = useState(false);
   const titleRowRef = useRef<HTMLDivElement | null>(null);
   const actionsRef = useRef<HTMLDivElement | null>(null);
   const titleMeasureRef = useRef<HTMLSpanElement | null>(null);
@@ -42,6 +50,36 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
     };
   }, [project.name]);
 
+  const closeFocusedImageWithAnimation = useCallback(() => {
+    if (isFocusedImageClosing) return;
+
+    setIsFocusedImageClosing(true);
+    window.setTimeout(() => {
+      setFocusedImage(null);
+      setIsFocusedImageClosing(false);
+    }, 200);
+  }, [isFocusedImageClosing]);
+
+  useEffect(() => {
+    if (!focusedImage) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      closeFocusedImageWithAnimation();
+    }
+
+    window.addEventListener("keydown", onKeyDown, { capture: true });
+    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
+  }, [focusedImage, closeFocusedImageWithAnimation]);
+
+  function openFocusedImage(image: ProjectContentImage) {
+    setIsFocusedImageClosing(false);
+    setFocusedImage(image);
+  }
+
   function closeWithAnimation() {
     if (isClosing) return;
 
@@ -51,17 +89,27 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
   const projectActions = (
     <>
-      <BlueAction href={project.links.live} target="_blank" rel="noopener noreferrer">
-        View live <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
-      </BlueAction>
-      <a
-        href={project.links.source}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
-      >
-        Source
-      </a>
+      {project.links.live && (
+        <BlueAction href={project.links.live.href} target="_blank" rel="noopener noreferrer">
+          {project.links.live.label ?? "View live"} <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
+        </BlueAction>
+      )}
+      {project.links.source && "href" in project.links.source && (
+        <a
+          href={project.links.source.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink no-underline transition-colors dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]"
+        >
+          {project.links.source.label ?? "Source"}
+        </a>
+      )}
+      {project.links.comingSoon && (
+        <span className="inline-flex items-center gap-[7px] rounded-full border border-black/10 bg-white px-5 py-[11px] text-sm font-semibold text-ink dark:border-white/10 dark:bg-[#23232b] dark:text-[#f5f5f7]">
+          <FaClock aria-hidden="true" className="h-4 w-4" />
+          Coming soon
+        </span>
+      )}
     </>
   );
 
@@ -89,14 +137,22 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           isClosing ? "sheet-down" : "sheet-up"
         }`}
       >
-        <div
-          className="flex min-h-[300px] items-end rounded-[26px] p-[34px] shadow-[0_26px_64px_rgba(0,0,0,0.16)]"
-          style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
-        >
-          <span className="text-8xl font-extrabold leading-[0.8] tracking-[-0.04em] text-white/90">
-            {project.name.charAt(0)}
-          </span>
-        </div>
+        {project.images?.detailHeader ? (
+          <img
+            src={project.images.detailHeader.src}
+            alt={project.images.detailHeader.alt}
+            className="block aspect-[3/1] w-full rounded-[26px] object-cover shadow-[0_26px_64px_rgba(0,0,0,0.16)]"
+          />
+        ) : (
+          <div
+            className="flex min-h-[300px] items-end rounded-[26px] p-[34px] shadow-[0_26px_64px_rgba(0,0,0,0.16)]"
+            style={{ background: `linear-gradient(140deg, ${project.gradient})` }}
+          >
+            <span className="text-8xl font-extrabold leading-[0.8] tracking-[-0.04em] text-white/90">
+              {project.name.charAt(0)}
+            </span>
+          </div>
+        )}
 
         <div className="mt-[26px]">
           <div>
@@ -128,20 +184,11 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           {actionsBelowTitle && <div ref={actionsRef} className="mt-4 flex flex-wrap gap-2.5">{projectActions}</div>}
         </div>
 
-        <p className="mt-[26px] max-w-[680px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
-          {project.overview}
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div
-            className="h-60 rounded-[18px]"
-            style={{ background: `linear-gradient(150deg, ${project.gradient})` }}
-          />
-          <div
-            className="h-60 rounded-[18px]"
-            style={{ background: `linear-gradient(320deg, ${project.gradient})` }}
-          />
-        </div>
+        <ProjectContent
+          content={project.content}
+          gradient={project.gradient}
+          onOpenImage={openFocusedImage}
+        />
 
         <div className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
           <div>
@@ -176,6 +223,170 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           </div>
         </div>
       </div>
+      {focusedImage && (
+        <ImageFocusOverlay
+          image={focusedImage}
+          isClosing={isFocusedImageClosing}
+          onClose={closeFocusedImageWithAnimation}
+        />
+      )}
+    </div>
+  );
+}
+
+type ProjectContentProps = {
+  content: Project["content"];
+  gradient: string;
+  onOpenImage: (image: ProjectContentImage) => void;
+};
+
+type ProjectContentImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+function ProjectContent({ content, gradient, onOpenImage }: ProjectContentProps) {
+  const blocks: ProjectContentBlock[] =
+    typeof content === "string"
+      ? [
+          { type: "paragraph", text: content },
+          {
+            type: "gallery",
+            images: [
+              { src: "", alt: "" },
+              { src: "", alt: "" },
+            ],
+          },
+        ]
+      : content;
+
+  return (
+    <div className="mt-[26px] flex flex-col gap-5">
+      {blocks.map((block, index) => {
+        if (block.type === "image") {
+          return (
+            <ContentImageFigure
+              key={`${block.src}-${index}`}
+              image={block}
+              imageClassName="block w-full rounded-[18px] object-cover shadow-[0_18px_44px_rgba(0,0,0,0.12)]"
+              onOpen={onOpenImage}
+            />
+          );
+        }
+
+        if (block.type === "gallery") {
+          if (block.images.length === 0) return null;
+
+          return (
+            <div
+              key={`gallery-${index}`}
+              className={`my-3 grid grid-cols-1 gap-4 ${
+                block.images.length > 1 ? "sm:grid-cols-2" : ""
+              }`}
+            >
+              {block.images.map((image, imageIndex) =>
+                image.src ? (
+                  <ContentImageFigure
+                    key={`${image.src}-${imageIndex}`}
+                    image={image}
+                    imageClassName="block h-60 w-full rounded-[18px] object-cover shadow-[0_18px_44px_rgba(0,0,0,0.12)]"
+                    onOpen={onOpenImage}
+                  />
+                ) : (
+                  <div
+                    key={`fallback-${imageIndex}`}
+                    className="h-60 rounded-[18px]"
+                    style={{
+                      background: `linear-gradient(${imageIndex % 2 === 0 ? "150deg" : "320deg"}, ${gradient})`,
+                    }}
+                  />
+                ),
+              )}
+            </div>
+          );
+        }
+
+        return (
+          <p key={`${block.text.slice(0, 28)}-${index}`} className="max-w-[760px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
+            {block.text}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+type ContentImageFigureProps = {
+  image: ProjectContentImage;
+  imageClassName: string;
+  onOpen: (image: ProjectContentImage) => void;
+};
+
+function ContentImageFigure({ image, imageClassName, onOpen }: ContentImageFigureProps) {
+  return (
+    <figure className="my-2">
+      <button
+        type="button"
+        className="group block w-full cursor-zoom-in rounded-[18px] text-left transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-appleBlue focus-visible:ring-offset-4 focus-visible:ring-offset-panel dark:focus-visible:ring-offset-[#101014]"
+        aria-label={`Open image: ${image.alt}`}
+        onClick={() => onOpen(image)}
+      >
+        <img
+          src={image.src}
+          alt={image.alt}
+          className={`${imageClassName} transition-shadow group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.18)]`}
+        />
+      </button>
+      {image.caption && (
+        <figcaption className="mt-2 text-sm leading-normal text-[#6e6e73] dark:text-[#a1a1ac]">
+          {image.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+type ImageFocusOverlayProps = {
+  image: ProjectContentImage;
+  isClosing: boolean;
+  onClose: () => void;
+};
+
+function ImageFocusOverlay({ image, isClosing, onClose }: ImageFocusOverlayProps) {
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 sm:p-8 ${
+        isClosing ? "fade-out" : "fade-in"
+      }`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.alt}
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        className="absolute right-4 top-4 rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-[0_12px_36px_rgba(0,0,0,0.32)] transition-colors hover:bg-white/15 sm:right-6 sm:top-6"
+        aria-label="Close image preview"
+        onClick={onClose}
+      >
+        <FaXmark aria-hidden="true" className="h-5 w-5" />
+      </button>
+      <figure
+        className="max-h-full max-w-[min(1100px,100%)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <img
+          src={image.src}
+          alt={image.alt}
+          className="block max-h-[82vh] w-auto max-w-full rounded-[22px] object-contain shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
+        />
+        {image.caption && (
+          <figcaption className="mt-3 text-center text-sm leading-normal text-white/78">
+            {image.caption}
+          </figcaption>
+        )}
+      </figure>
     </div>
   );
 }

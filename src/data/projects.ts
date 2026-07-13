@@ -11,7 +11,7 @@ export const projects: Project[] = [
     tags: ["ai", "rag", "selfhosted"],
     year: "2025",
     role: "Designer & Engineer",
-    overview:
+    content:
       "ResuMe LLM is a self-hosted assistant that lets visitors ask about my work in plain language instead of scrolling. It runs an open-weights model behind a retrieval layer over my resume, so every answer is grounded in real content — with no data leaving my own infrastructure.",
     highlights: [
       "Fully self-hosted open-weights model — no third-party APIs",
@@ -20,28 +20,84 @@ export const projects: Project[] = [
       "Runs on a single GPU with a lightweight vector store",
     ],
     stack: ["Python", "Ollama", "FastAPI", "pgvector"],
-    links: { live: "#", source: "#" },
+    links: {
+      live: { href: "#" },
+      source: { href: "#" },
+    },
   },
   {
     name: "Path to Recovery",
-    kind: "Web App",
+    kind: "Mobile App",
     description:
-      "A guided platform that helps people navigate recovery with personalized plans, check-ins, and connections to local support resources.",
-    gradient: "#0071e3, #00c6ff",
+      "A physiotherapy-adjacent mobile app for self-triage, guided assessments, and recovery routines for physical pain and discomfort.",
+    gradient: "#050505, #3a3a3c",
     tint: "#0071e3",
-    tags: ["react", "health", "typescript"],
-    year: "2024",
-    role: "Full-Stack Developer",
-    overview:
-      "Path to Recovery is a web platform designed to make the recovery journey less overwhelming. It combines personalized care plans, daily check-ins, and a searchable directory of local support services so people always know their next step.",
-    highlights: [
-      "Personalized recovery plans with milestone tracking",
-      "Daily check-ins with progress visualizations",
-      "Searchable directory of local support resources",
-      "Private and secure by design",
+    images: {
+      card: {
+        src: "/project-assets/path-to-recovery-icon.png",
+        alt: "Path to Recovery app icon",
+      },
+      detailHeader: {
+        src: "/project-assets/path-to-recovery-wordmark.png",
+        alt: "Path to Recovery header image",
+      },
+    },
+    tags: ["mobile", "react-native", "typescript", "supabase", "expo", "github-actions", "ai"],
+    year: "2026",
+    role: "Software Engineer, Designer, Co-owner",
+    content: [
+      {
+        type: "paragraph",
+        text: "Path to Recovery is a mobile app for self-triage, guided assessments, and recovery routines for physical pain and discomfort. It helps users move from an initial concern to a clearer next step, whether that is a scheduled self-guided routine or guidance to seek professional care.",
+      },
+      {
+        type: "paragraph",
+        text: "The project came from personal and peer conversations about the barriers that can make physiotherapy hard to access, including cost, anxiety, uncertainty, and delays in getting practical guidance for common injuries. The clinical datasets within the app are curated by registered physiotherapists and massage therapists, with an emphasis on translating what they actually do with patients into a clear app experience.",
+      },
+      {
+        type: "gallery",
+        images: [
+          {
+            src: "/project-assets/path-to-recovery-icon.png",
+            alt: "Path to Recovery app icon",
+          },
+          {
+            src: "/project-assets/path-to-recovery-wordmark.png",
+            alt: "Path to Recovery wordmark",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "I was the sole developer on the app and worked with subject matter experts to turn assessment flows, recovery logic, and exercise guidance into concrete product behavior. The app is built with Expo Router and a Supabase backend, including support for Google authentication, email workflows, notifications, and typed service layers.",
+      },
+      {
+        type: "paragraph",
+        text: "A major lesson from the project was learning how to use AI-assisted development tools effectively without losing ownership of the implementation. I used tools and workflows such as Codex, Claude Design, Skills, subagents, and MCP to accelerate parts of the build, while still guiding the architecture, business logic, and code decisions.",
+      },
     ],
-    stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
-    links: { live: "#", source: "#" },
+    highlights: [
+      "Personalized onboarding and guided assessments with branching questions and tailored outcomes",
+      "Self-guided recovery routines with active sessions, scheduling, and progress tracking",
+      "Clinician-informed injury and recovery exercise datasets developed with registered PTs and RMTs",
+      "Supabase backend with authentication, row-level security, RPCs, and typed service layers",
+      "Support for cross-platform, dark mode, and internationalization",
+    ],
+    stack: [
+      "Expo",
+      "React Native",
+      "TypeScript",
+      "Expo Router",
+      "Supabase",
+      "React Query",
+      "Jotai",
+      "Uniwind",
+      "i18n",
+    ],
+    links: {
+      source: { private: true },
+      comingSoon: true,
+    },
   },
   {
     name: "Indigenous Supports from KHP",
@@ -53,7 +109,7 @@ export const projects: Project[] = [
     tags: ["react", "accessibility", "community"],
     year: "2023",
     role: "Frontend Developer",
-    overview:
+    content:
       "Built in partnership with Kids Help Phone, this platform surfaces culturally-relevant mental health and community supports for Indigenous youth. The focus was on trust, accessibility, and meeting people where they are with content that reflects their communities.",
     highlights: [
       "Culturally-grounded resource directory",
@@ -62,7 +118,10 @@ export const projects: Project[] = [
       "Built in close partnership with Kids Help Phone",
     ],
     stack: ["React", "TypeScript", "Next.js", "Contentful"],
-    links: { live: "#", source: "#" },
+    links: {
+      live: { href: "#" },
+      source: { href: "#" },
+    },
   },
   {
     name: "Nimbus",
@@ -74,7 +133,7 @@ export const projects: Project[] = [
     tags: ["aws", "serverless", "node"],
     year: "2022",
     role: "Founding Engineer",
-    overview:
+    content:
       "Nimbus gives every pull request its own live URL. It watches your repo, builds an isolated environment, and tears it down when the PR merges — so reviewers test the real thing instead of reading diffs. It quietly became critical infrastructure for the team.",
     highlights: [
       "Per-PR preview environments in under 20 seconds",
@@ -83,7 +142,10 @@ export const projects: Project[] = [
       "Handled 400k+ ephemeral deploys in its first year",
     ],
     stack: ["Node.js", "AWS Lambda", "Terraform", "PostgreSQL"],
-    links: { live: "#", source: "#" },
+    links: {
+      live: { href: "#" },
+      source: { href: "#" },
+    },
   },
   {
     name: "Trailmix",
@@ -95,7 +157,7 @@ export const projects: Project[] = [
     tags: ["reactnative", "mobile", "maps"],
     year: "2021",
     role: "Mobile Lead",
-    overview:
+    content:
       "Trailmix is for the moment the signal drops. It packs offline vector maps, GPS breadcrumb tracking, and community-reported trail conditions into a single app that works deep in the backcountry. The hardest part was making maps feel instant without a network.",
     highlights: [
       "Offline vector maps with on-device routing",
@@ -104,7 +166,10 @@ export const projects: Project[] = [
       "Battery-aware tracking built for all-day hikes",
     ],
     stack: ["React Native", "Mapbox", "SQLite", "Expo"],
-    links: { live: "#", source: "#" },
+    links: {
+      live: { href: "#" },
+      source: { href: "#" },
+    },
   },
   {
     name: "Palette",
@@ -116,7 +181,7 @@ export const projects: Project[] = [
     tags: ["ai", "design", "python"],
     year: "2023",
     role: "Creator",
-    overview:
+    content:
       "Drop in a photo or logo and Palette returns a complete, WCAG-checked color system — primaries, neutrals, semantic states, the works. It pairs a fine-tuned vision model with a constraint solver so every generated pair actually passes contrast.",
     highlights: [
       "One image in, a full accessible design-token set out",
@@ -125,6 +190,9 @@ export const projects: Project[] = [
       "Fine-tuned vision model runs on a single GPU",
     ],
     stack: ["Python", "PyTorch", "FastAPI", "React"],
-    links: { live: "#", source: "#" },
+    links: {
+      live: { href: "#" },
+      source: { href: "#" },
+    },
   },
 ];

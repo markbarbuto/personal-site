@@ -26,22 +26,67 @@ export type SkillGroup = {
   skills: Skill[];
 };
 
+export type ProjectContentBlock =
+  | {
+      type: "paragraph";
+      text: string;
+    }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+    }
+  | {
+      type: "gallery";
+      images: Array<{
+        src: string;
+        alt: string;
+        caption?: string;
+      }>;
+    };
+
+export type ProjectContent = string | ProjectContentBlock[];
+
+export type ProjectLinks = {
+  live?: {
+    href: string;
+    label?: string;
+  };
+  source?:
+    | {
+        href: string;
+        label?: string;
+      }
+    | {
+        private: true;
+      };
+  comingSoon?: boolean;
+};
+
 export type Project = {
   name: string;
   kind: string;
   description: string;
   gradient: string;
   tint: string;
+  images?: {
+    card: {
+      src: string;
+      alt: string;
+    };
+    detailHeader: {
+      src: string;
+      alt: string;
+    };
+  };
   tags: string[];
   year: string;
   role: string;
-  overview: string;
+  content: ProjectContent;
   highlights: string[];
   stack: string[];
-  links: {
-    live: string;
-    source: string;
-  };
+  links: ProjectLinks;
 };
 
 export type FunItem = {
