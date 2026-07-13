@@ -20,7 +20,7 @@ export function AboutSection() {
           {profile.aboutSummary}
         </p>
         <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3">
-          <div className={`${aboutCardClass} bg-[#f7f2ff] dark:bg-[#241d2f]`}>
+          <div className={`${aboutCardClass} bg-[#f1ebff] dark:bg-[#211a33]`}>
             <BrandIcon
               name="dotnet"
               className="pointer-events-none absolute left-[-5px] top-[-55px] h-60 w-auto opacity-[0.25]"

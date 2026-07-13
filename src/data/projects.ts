@@ -31,7 +31,7 @@ export const projects: Project[] = [
     description:
       "A physiotherapy-adjacent mobile app for self-triage, guided assessments, and recovery routines for physical pain and discomfort.",
     gradient: "#050505, #3a3a3c",
-    tint: "#0071e3",
+    tint: "#4b5563",
     images: {
       card: {
         src: "/project-assets/path-to-recovery-icon.png",
