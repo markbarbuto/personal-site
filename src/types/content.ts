@@ -71,11 +71,11 @@ export type Project = {
   gradient: string;
   tint: string;
   images?: {
-    card: {
+    card?: {
       src: string;
       alt: string;
     };
-    detailHeader: {
+    detailHeader?: {
       src: string;
       alt: string;
     };
