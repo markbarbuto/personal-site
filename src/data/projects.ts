@@ -2,24 +2,24 @@ import type { Project } from "../types/content";
 
 export const projects: Project[] = [
   {
-    name: "ResuMe LLM",
+    name: "Vitae AI",
     kind: "Self-Hosted AI",
     description:
-      "A privately-hosted LLM that answers questions about my career from my resume — the engine behind the chat at the top of this page. No third-party APIs, fully self-hosted.",
+      "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. It's the engine behind the chat at the top of this page.",
     gradient: "#ff8a5c, #ffd166",
     tint: "#ff8a5c",
-    tags: ["ai", "rag", "selfhosted"],
+    tags: ["ai", "rag", "selfhosted", "python", "llama-cpp", "oracle-cloud"],
     year: "2025",
     role: "Designer & Engineer",
     content:
-      "ResuMe LLM is a self-hosted assistant that lets visitors ask about my work in plain language instead of scrolling. It runs an open-weights model behind a retrieval layer over my resume, so every answer is grounded in real content — with no data leaving my own infrastructure.",
+      "Vitae AI is a self-hosted assistant designed to answer questions about my resume, career, projects, and interests in plain language. It uses retrieval-augmented generation to search a curated knowledge base before generating a response, so answers can be grounded in the same documents and context I use to describe my work. The model runtime is built around llama.cpp and is privately hosted in Oracle Cloud, keeping the system lightweight while avoiding reliance on a third-party hosted LLM API.",
     highlights: [
-      "Fully self-hosted open-weights model — no third-party APIs",
-      "Retrieval-augmented generation over a curated resume corpus",
-      "Streaming responses with graceful canned fallbacks",
-      "Runs on a single GPU with a lightweight vector store",
+      "Privately hosted assistant with context from my resume, career history, projects, and interests",
+      "Retrieval-augmented generation over a curated personal knowledge base",
+      "Lightweight llama.cpp model runtime hosted in Oracle Cloud",
+      "Designed for future integration with the portfolio chat assistant",
     ],
-    stack: ["Python", "Ollama", "FastAPI", "pgvector"],
+    stack: ["Python", "llama.cpp", "FastAPI", "RAG", "Oracle Cloud"],
     links: {
       live: { href: "#" },
       source: { href: "#" },
