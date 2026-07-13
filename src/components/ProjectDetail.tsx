@@ -336,7 +336,7 @@ function ProjectContent({ content, gradient, onOpenImage }: ProjectContentProps)
         }
 
         return (
-          <p key={`${block.text.slice(0, 28)}-${index}`} className="max-w-[760px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
+          <p key={`${block.text.slice(0, 28)}-${index}`} className="w-full text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
             {block.text}
           </p>
         );
