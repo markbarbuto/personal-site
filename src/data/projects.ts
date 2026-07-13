@@ -105,7 +105,7 @@ export const projects: Project[] = [
 		description:
 			"An offline-first wellness app that gives Indigenous youth across Canada access to culturally relevant resources, personalized wellness tools, and direct support options.",
 		gradient: "#172a72, #f9893d",
-		tint: "#172a72",
+		tint: "#2f63d8",
 		images: {
 			card: {
 				src: "/project-assets/indigenous-supports-khp.png",
@@ -127,7 +127,7 @@ export const projects: Project[] = [
 			"offline-first",
 		],
 		year: "2026",
-		role: "Full-Stack Developer",
+		role: "Lead Full-Stack Developer",
 		content: [
 			{
 				type: "paragraph",
@@ -171,6 +171,11 @@ export const projects: Project[] = [
 				text:
 					"The mobile application was built with React Native, TypeScript, Expo Router and WatermelonDB (built on top of SQLite). When an internet connection is available, its synchronization engine pulls updates from the content management system and applies them to the local database, allowing previously synchronized resources to continue working offline.",
 			},
+      {
+				type: "paragraph",
+				text:
+					"Since data privacy, anonymonity and accessibility are key considerations for Kids Help Phone, the app adheres to strict data protection standards and privacy regulations, including compliance with PIPEDA, OCAP, WCAG 2.0, and other applicable laws.",
+			},
 			{
 				type: "paragraph",
 				text:
@@ -209,10 +214,9 @@ export const projects: Project[] = [
 			},
 		],
 		highlights: [
-			"Offline-first access to over 100 wellness articles",
-			"My Wellness Bundle for creating a locally available personal wellness and safety plan",
-			"Calling, texting, and online messaging pathways to Kids Help Phone support",
+			"Anonymous, offline-first access to over 100 wellness articles, locally available safety plan, and direct support options",
 			"Incremental delta sync using created, updated, and deleted change sets",
+			"React Native, Expo Router, and Redux Toolkit for cross-platform mobile development",
 			"WatermelonDB and SQLite storage with local encryption of sensitive data",
 			".NET 8, Azure Functions, and SQL Server backend hosted in Azure",
 			"Developed with Kids Help Phone and feedback from Indigenous communities",
