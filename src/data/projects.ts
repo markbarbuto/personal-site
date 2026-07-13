@@ -251,4 +251,96 @@ export const projects: Project[] = [
 			},
 		},
 	},
+  {
+    name: "Handwritten Digit Classifier",
+    kind: "Machine Learning",
+    description:
+      "A Python K-nearest neighbours classifier for binary handwritten digit recognition on MNIST, with validation-driven K selection and accuracy plots.",
+    gradient: "#111827, #2563eb",
+    tint: "#16a34a",
+    images: {
+      card: {
+        src: "/project-assets/handwritten-digit-classifier/card.png",
+        alt: "Handwritten Digit Classifier project card image",
+      },
+      detailHeader: {
+        src: "/project-assets/handwritten-digit-classifier/header.png",
+        alt: "Handwritten Digit Classifier header image",
+      },
+    },
+    tags: ["machine-learning", "python", "knn", "numpy", "scikit-learn", "classification"],
+    year: "2021",
+    role: "Developer",
+    content: [
+      {
+        type: "paragraph",
+        text: "Handwritten Digit Classifier is a project written with Python and machine learning libraries that uses K-nearest neighbours to classify pairs of handwritten digits from the MNIST dataset. KNN works by comparing a new input against labeled examples, finding the closest training samples, and assigning the class that appears most often among those neighbours.",
+      },
+      {
+        type: "image",
+        src: "/project-assets/handwritten-digit-classifier/knn-k-diagram.png",
+        alt: "K-nearest neighbours diagram showing how different K values affect class selection",
+        caption: "KNN classifies a point by looking at the labels of its nearest neighbours; changing K changes how local or broad that vote becomes.",
+      },
+      {
+        type: "paragraph",
+        text: "Choosing the value of K is important because it controls how sensitive the classifier is to nearby examples. A small K can react strongly to noise or unusual samples, while a large K can smooth over useful local patterns. An even value of K can introduce unpredictable results due to voting ties. This project treats K as a value to optimize with validation data instead of hard-coding it.",
+      },
+      {
+        type: "gallery",
+        images: [
+          {
+            src: "/project-assets/handwritten-digit-classifier/mnist-digits-5-6.png",
+            alt: "Sample MNIST handwritten digits for the 5 versus 6 classification run",
+            caption: "Sample digits from the 5 versus 6 classification run.",
+          },
+          {
+            src: "/project-assets/handwritten-digit-classifier/accuracy-digits-5-6.png",
+            alt: "Training and validation accuracy plot for the 5 versus 6 classification run",
+            caption: "Validation selected K = 3, with about 99.3% final test accuracy.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "The implementation includes a preprocessing step that builds reduced train, validation, and test sets for any two digits from 0 to 9. It then trains scikit-learn KNN models across odd K values from 1 to 19, compares training and validation accuracy, and selects the best K using validation performance before reporting final test accuracy.",
+      },
+      {
+        type: "paragraph",
+        text: "A key takeaway from this project was the importance of separating training, validation, and test sets. The training set is used to fit the model, the validation set helps tune K for the highest accuracy during development, and the test set provides a final check of how well the classifier performs against new data.",
+      },
+      {
+        type: "gallery",
+        images: [
+          {
+            src: "/project-assets/handwritten-digit-classifier/mnist-digits-4-7.png",
+            alt: "Sample MNIST handwritten digits for the 4 versus 7 classification run",
+            caption: "Sample digits from the 4 versus 7 classification run.",
+          },
+          {
+            src: "/project-assets/handwritten-digit-classifier/accuracy-digits-4-7.png",
+            alt: "Training and validation accuracy plot for the 4 versus 7 classification run",
+            caption: "Validation selected K = 9, with about 99.7% final test accuracy.",
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "On the accuracy graphs, the best value of K is the point where validation accuracy is highest, not necessarily where training accuracy is highest. In the  5 versus 6 run, K = 3 was selected because it had the highest validation accuracy (~99.3%), even though K = 1 had slightly higher training accuracy. In the 4 versus 7 run, K = 9 was selected because it had the highest validation accuracy (~99.7%).",
+      },
+    ],
+    highlights: [
+      "Binary classification of handwirtten MNIST digit pairs using K-nearest neighbours",
+      "Validation sweep across odd K values from 1 to 19",
+      "Best-K selection using validation accuracy before final test evaluation",
+      "Accuracy visualizations for training and validation accuracy",
+      "Reached ~99.3% test accuracy for 5 versus 6, and ~99.7% for 4 versus 7",
+    ],
+    stack: ["Python", "Jupyter Notebook", "NumPy", "scikit-learn", "Matplotlib", "MNIST", "KNN"],
+    links: {
+      source: {
+        href: "https://github.com/markbarbuto/KNN-Digit-Classifier",
+      },
+    },
+  },
 ];
