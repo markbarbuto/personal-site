@@ -8,7 +8,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="pt-[52px]">
-      <div className="rounded-[22px] bg-gradient-to-br from-ink to-[#2b2b30] p-[30px] text-center shadow-[0_14px_44px_rgba(0,0,0,0.18)] dark:from-[#1c1c24] dark:to-[#111116] dark:shadow-[0_18px_52px_rgba(0,0,0,0.42)]">
+      <div className="rounded-[22px] bg-ink p-[30px] text-center shadow-soft dark:bg-[#19191f] dark:shadow-[0_16px_48px_rgba(0,0,0,0.3)]">
         <h2 className="text-[30px] font-bold tracking-[-0.02em] text-white">Get in touch</h2>
         <p className="mx-auto mt-2.5 max-w-[460px] text-base text-white/65">{profile.contactIntro}</p>
         <BlueAction

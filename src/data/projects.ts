@@ -103,7 +103,7 @@ export const projects: Project[] = [
 		name: "Indigenous Supports from KHP",
 		kind: "Mobile App",
 		description:
-			"An offline-first wellness app that gives Indigenous youth across Canada access to culturally relevant resources, personalized wellness tools, and direct support options.",
+      "An offline-first app built for Kids Help Phone providing offline-first access to wellness resources for Indigenous youth in rural regions across Canada.",
 		gradient: "#172a72, #f9893d",
 		tint: "#2f63d8",
 		images: {
@@ -250,76 +250,4 @@ export const projects: Project[] = [
 			},
 		},
 	},
-  {
-    name: "Nimbus",
-    kind: "Cloud Platform",
-    description:
-      "A serverless deployment platform that spins up preview environments per pull request in seconds. Built on AWS Lambda + edge functions.",
-    gradient: "#1c7d5b, #37d9a0",
-    tint: "#1c7d5b",
-    tags: ["aws", "serverless", "node"],
-    year: "2022",
-    role: "Founding Engineer",
-    content:
-      "Nimbus gives every pull request its own live URL. It watches your repo, builds an isolated environment, and tears it down when the PR merges — so reviewers test the real thing instead of reading diffs. It quietly became critical infrastructure for the team.",
-    highlights: [
-      "Per-PR preview environments in under 20 seconds",
-      "Edge-cached routing across 12 global regions",
-      "Cut staging costs ~60% with scale-to-zero",
-      "Handled 400k+ ephemeral deploys in its first year",
-    ],
-    stack: ["Node.js", "AWS Lambda", "Terraform", "PostgreSQL"],
-    links: {
-      live: { href: "#" },
-      source: { href: "#" },
-    },
-  },
-  {
-    name: "Trailmix",
-    kind: "Mobile App",
-    description:
-      "A cross-platform hiking companion with offline maps and crowd-sourced trail conditions. 20k+ downloads across iOS and Android.",
-    gradient: "#6b4fbb, #b58bff",
-    tint: "#6b4fbb",
-    tags: ["reactnative", "mobile", "maps"],
-    year: "2021",
-    role: "Mobile Lead",
-    content:
-      "Trailmix is for the moment the signal drops. It packs offline vector maps, GPS breadcrumb tracking, and community-reported trail conditions into a single app that works deep in the backcountry. The hardest part was making maps feel instant without a network.",
-    highlights: [
-      "Offline vector maps with on-device routing",
-      "Crowd-sourced conditions sync when back in range",
-      "20k+ downloads and a 4.8-star average rating",
-      "Battery-aware tracking built for all-day hikes",
-    ],
-    stack: ["React Native", "Mapbox", "SQLite", "Expo"],
-    links: {
-      live: { href: "#" },
-      source: { href: "#" },
-    },
-  },
-  {
-    name: "Palette",
-    kind: "AI Tool",
-    description:
-      "A generative color-system tool that turns a single brand image into a full accessible palette, powered by a fine-tuned vision model.",
-    gradient: "#e10098, #ff8ac6",
-    tint: "#e10098",
-    tags: ["ai", "design", "python"],
-    year: "2023",
-    role: "Creator",
-    content:
-      "Drop in a photo or logo and Palette returns a complete, WCAG-checked color system — primaries, neutrals, semantic states, the works. It pairs a fine-tuned vision model with a constraint solver so every generated pair actually passes contrast.",
-    highlights: [
-      "One image in, a full accessible design-token set out",
-      "Every color pair is contrast-checked to WCAG AA/AAA",
-      "Exports to CSS, Tailwind, and Figma variables",
-      "Fine-tuned vision model runs on a single GPU",
-    ],
-    stack: ["Python", "PyTorch", "FastAPI", "React"],
-    links: {
-      live: { href: "#" },
-      source: { href: "#" },
-    },
-  },
 ];
