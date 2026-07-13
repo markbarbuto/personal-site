@@ -124,7 +124,7 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
         <p className="mt-[7px] line-clamp-2 text-[15px] leading-normal text-muted dark:text-[#b7b7c2]">
           {project.description}
         </p>
-        <div className="mt-[13px] flex flex-wrap gap-[7px]">
+        <div className="mt-[13px] flex min-w-0 flex-nowrap gap-[7px] overflow-hidden">
           {project.tags.map((tag) => (
             <ProjectTagChip
               key={tag}

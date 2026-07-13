@@ -21,7 +21,7 @@ type ProjectTagChipProps = {
 };
 
 const projectTagChipClass =
-  "px-0 py-1 text-[12.5px] font-semibold text-appleBlue";
+  "inline-flex flex-none whitespace-nowrap px-0 py-1 text-[12.5px] font-semibold text-appleBlue";
 
 const clickableProjectTagChipClass = `${projectTagChipClass} transition-colors hover:text-[#005bb5] dark:hover:text-[#66b3ff]`;
 
