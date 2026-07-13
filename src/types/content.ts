@@ -44,6 +44,16 @@ export type ProjectContentBlock =
         alt: string;
         caption?: string;
       }>;
+    }
+  | {
+      type: "link";
+      href: string;
+      label: string;
+    }
+  | {
+      type: "code";
+      code: string;
+      language?: string;
     };
 
 export type ProjectContent = string | ProjectContentBlock[];

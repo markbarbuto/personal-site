@@ -307,6 +307,34 @@ function ProjectContent({ content, gradient, onOpenImage }: ProjectContentProps)
           );
         }
 
+        if (block.type === "link") {
+          return (
+            <a
+              key={`${block.href}-${index}`}
+              href={block.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit max-w-full items-center gap-2 rounded-full text-[17px] font-semibold leading-normal text-appleBlue underline-offset-4 transition-colors hover:text-[#005bbf] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-appleBlue focus-visible:ring-offset-4 focus-visible:ring-offset-panel dark:hover:text-[#6fb4ff] dark:focus-visible:ring-offset-[#101014]"
+            >
+              <span className="min-w-0 break-words">{block.label}</span>
+              <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4 flex-none" />
+            </a>
+          );
+        }
+
+        if (block.type === "code") {
+          return (
+            <pre
+              key={`${block.language ?? "code"}-${index}`}
+              className="my-2 max-w-full overflow-x-auto rounded-[18px] border border-black/10 bg-[#1f2328] p-5 text-[13.5px] leading-relaxed text-[#f0f3f6] shadow-[0_18px_44px_rgba(0,0,0,0.12)] dark:border-white/10 dark:bg-[#171b20]"
+            >
+              <code className={block.language ? `language-${block.language}` : undefined}>
+                {block.code}
+              </code>
+            </pre>
+          );
+        }
+
         return (
           <p key={`${block.text.slice(0, 28)}-${index}`} className="max-w-[760px] text-[19px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
             {block.text}

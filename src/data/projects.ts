@@ -100,49 +100,158 @@ export const projects: Project[] = [
     },
   },
   {
-    name: "Indigenous Supports from KHP",
-    kind: "Mobile App",
-    description:
-      "A wellness app built for Kids Help Phone that provides offline-first access to wellness resources for Indigenous youth in rural regions across Canada.",
-    gradient: "#172a72, #f9893d",
-    tint: "#172a72",
-    images: {
-      card: {
-        src: "/project-assets/indigenous-supports-khp.png",
-        alt: "Indigenous Supports from Kids Help Phone app icon",
-      },
-    },
-    tags: ["mobile", "kidshelpphone", "react-native", "typescript", ".net", "sql", "azure", "cloud"],
-    year: "2026",
-    role: "Full-Stack Developer",
-    content:
-      "Built in partnership with Kids Help Phone, this platform surfaces culturally-relevant mental health and community supports for Indigenous youth. The focus was on trust, accessibility, and meeting people where they are with content that reflects their communities.",
-    highlights: [
-      "Offline-first access to wellness resources for Indigenous youth in rural regions across Canada",
-      "Custom-built content management system built on .NET 8 and SQL Server, hosted in Azure cloud",
-      "Accessible, mobile-first experience (WCAG 2.0 compliant)",
-      "Secure, encrypted data storage with no PII collected or stored",
-      "Localized content across multiple indigenous languages using i18n",
-      "Built in partnership with Kids Help Phone",
+		name: "Indigenous Supports from KHP",
+		kind: "Mobile App",
+		description:
+			"An offline-first wellness app that gives Indigenous youth across Canada access to culturally relevant resources, personalized wellness tools, and direct support options.",
+		gradient: "#172a72, #f9893d",
+		tint: "#172a72",
+		images: {
+			card: {
+				src: "/project-assets/indigenous-supports-khp.png",
+				alt: "Indigenous Supports from Kids Help Phone app icon",
+			},
+			detailHeader: {
+				src: "/project-assets/indigenous-supports-khp/app-overview.jpg",
+				alt: "Indigenous Supports from KHP mobile app",
+			},
+		},
+		tags: [
+			"mobile",
+			"kidshelpphone",
+			"react-native",
+			"typescript",
+			".net",
+			"sql",
+			"azure",
+			"offline-first",
+		],
+		year: "2026",
+		role: "Full-Stack Developer",
+		content: [
+			{
+				type: "paragraph",
+				text:
+					"Indigenous Supports from KHP is a cross-platform mobile app created with Kids Help Phone for Indigenous youth across Canada. It provides access to over 100 mental health and wellness articles, including selected content in Indigenous languages, alongside direct support options and tools that can be used offline.",
+			},
+			{
+				type: "paragraph",
+				text:
+					"The app was built — in close collaboration with Kids Help Phone and feedback from Indigenous communities — in response to the limited availability of mental health and wellness resources in rural and remote communities, where internet access may be slow, intermittent, or unavailable. Its offline-first design keeps core content and personal wellness tools available on the device instead of requiring a continuous connection.",
+			},
+			{
+				type: "link",
+				href: "https://www.instagram.com/p/DZdDxibEf-N/",
+				label: "View the Kids Help Phone launch post on Instagram",
+			},
+			{
+				type: "paragraph",
+				text:
+					"Its main features include a browsable content library, My Wellness Bundle — a guided safety-plan questionnaire, direct access to Kids Help Phone support — calling, texting, or online messaging, and the Resources Around Me module — nearby and virtual support services across Canada.",
+			},
+			{
+				type: "gallery",
+				images: [
+					{
+						src: "/project-assets/indigenous-supports-khp/content-library.jpg",
+						alt: "Wellness content in the Indigenous Supports from KHP app",
+						caption:
+							"Wellness resources remain available locally after they have been synchronized.",
+					},
+					{
+						src: "/project-assets/indigenous-supports-khp/wellness-bundle.jpg",
+						alt: "My Wellness Bundle questionnaire in the Indigenous Supports from KHP app",
+						caption:
+							"My Wellness Bundle helps users create a personal wellness and safety plan.",
+					},
+					{
+						src: "/project-assets/indigenous-supports-khp/direct-support.jpg",
+						alt: "Direct support options in the Indigenous Supports from KHP app",
+						caption:
+							"Users can connect with Kids Help Phone through calling, texting, and online messaging.",
+					},
+				],
+			},
+			{
+				type: "paragraph",
+				text:
+					"The mobile application was built with React Native, TypeScript, Expo Router and WatermelonDB (built on top of SQLite). When an internet connection is available, its synchronization engine pulls updates from the content management system and applies them to the local database, allowing previously synchronized resources to continue working offline.",
+			},
+			{
+				type: "paragraph",
+				text:
+					"The supporting backend is a custom headless CMS built with .NET 8 and SQL Server, hosted in Azure using Azure App Services with deployment slots.",
+			},
+			{
+				type: "paragraph",
+				text:
+					"To make synchronization more efficient and reliable, I implemented an incremental delta-sync process based on change data capture. After the initial download, the client sends the timestamp of its last successful synchronization. The .NET API responds only with records created, updated, or deleted since that time instead of repeatedly transferring the complete dataset. This reduces network usage and synchronization time, which is important especiialy internet connection is unreliable.",
+			},
+			{
+				type: "code",
+				language: "json",
+				code: `{
+  "sync_timestamp": "2026-07-13T04:15:00Z",
+  "data": {
+    "created": [
+      {
+        "id": "id1",
+        "title": "Article 1",
+        "content": "...",
+        "updated_at": "2026-07-13T02:10:00Z"
+      }
     ],
-    stack: [
-      "React Native",
-      "TypeScript",
-      "Expo Router",
-      "Redux",
-      "i18n",
-      "WatermelonDB",
-      "Nativewind",
-      "Gluestack-ui",
-      "Azure",
-      ".NET 8",
-      "SQL Server",
+    "updated": [
+      {
+        "id": "id2",
+        "title": "Article 2",
+        "content": "...",
+        "updated_at": "2026-07-13T03:45:00Z"
+      }
     ],
-    links: {
-      live: { href: "#" },
-      source: { href: "#" },
-    },
-  },
+    "deleted": [ "id3" ]
+  }
+}`,
+			},
+		],
+		highlights: [
+			"Offline-first access to more than 100 mental health and wellness articles",
+			"My Wellness Bundle for creating a locally available personal wellness and safety plan",
+			"Calling, texting, and online messaging pathways to Kids Help Phone support",
+			"Resources Around Me search for in-person and virtual services across Canada",
+			"Incremental delta sync using created, updated, and deleted change sets",
+			"WatermelonDB and SQLite storage with local encryption of sensitive data",
+			".NET 8, Azure Functions, and SQL Server backend hosted in Azure",
+			"Developed with Kids Help Phone and feedback from Indigenous communities",
+		],
+		stack: [
+			"React Native",
+			"TypeScript",
+			"Expo",
+			"Expo Router",
+			"Redux Toolkit",
+			"i18next",
+			"WatermelonDB",
+			"SQLite",
+			"NativeWind",
+			"Gluestack UI",
+			".NET 8",
+			"Entity Framework Core",
+			"SQL Server",
+			"Azure Functions",
+			"Azure DevOps",
+			"Fastlane",
+		],
+		links: {
+			live: {
+				href: "https://apps.apple.com/ca/app/indigenous-supports-from-khp/id6760955357",
+				label: "View on the App Store",
+			},
+			source: {
+				private: true,
+			},
+		},
+	},
   {
     name: "Nimbus",
     kind: "Cloud Platform",
