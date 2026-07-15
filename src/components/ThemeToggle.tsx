@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa6";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const storageKey = "portfolio-theme";
 
@@ -10,7 +10,7 @@ function getInitialIsDark() {
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(getInitialIsDark);
-  const Icon = isDark ? FaSun : FaMoon;
+  const Icon = isDark ? FiSun : FiMoon;
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
