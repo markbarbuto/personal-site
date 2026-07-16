@@ -1,24 +1,32 @@
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
-import { FaArrowUpRightFromSquare, FaChevronDown } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa6";
 import { funItems } from "../data/fun";
+import type { FunItem } from "../types/content";
+import { FunInterestContent } from "./FunInterestContent";
+import { FunInterestDetail } from "./FunInterestDetail";
 import { SectionCard } from "./SectionCard";
 
 export function FunSection() {
   const [openKey, setOpenKey] = useState<string | null>(null);
   const openItem = funItems.find((item) => item.key === openKey) ?? null;
-  const [detailItem, setDetailItem] = useState(openItem);
-  const detailId = "fun-detail";
+  const [accordionItem, setAccordionItem] = useState(openItem);
+  const [detailItem, setDetailItem] = useState<FunItem | null>(null);
+  const accordionId = "fun-accordion";
 
   useEffect(() => {
     if (openItem) {
-      setDetailItem(openItem);
+      setAccordionItem(openItem);
       return undefined;
     }
 
-    const timeoutId = window.setTimeout(() => setDetailItem(null), 300);
+    const timeoutId = window.setTimeout(() => setAccordionItem(null), 300);
     return () => window.clearTimeout(timeoutId);
   }, [openItem]);
+
+  function selectItem(item: FunItem) {
+    setOpenKey((current) => (current === item.key ? null : item.key));
+  }
 
   return (
     <section id="fun" className="pt-[52px]">
@@ -34,71 +42,72 @@ export function FunSection() {
               <button
                 key={item.key}
                 type="button"
-                className="fun-card-tinted fun-item glossy-tile rounded-2xl border p-[18px] text-left text-ink transition dark:text-white"
-                style={{
-                  "--fun-tint": item.tint,
-                  "--fun-accent": item.accent,
-                } as CSSProperties}
+                className="fun-card-tinted fun-item glossy-tile relative isolate flex min-h-[132px] flex-col justify-between overflow-hidden rounded-2xl border p-[18px] text-left text-ink transition dark:text-white"
+                style={
+                  {
+                    "--fun-tint": item.tint,
+                    "--fun-accent": item.accent,
+                  } as CSSProperties
+                }
                 data-active={active}
-                onClick={() => setOpenKey((current) => (current === item.key ? null : item.key))}
+                onClick={() => selectItem(item)}
                 aria-expanded={active}
-                aria-controls={detailId}
+                aria-controls={accordionId}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <span className="text-[22px]" aria-hidden="true">
+                {item.decoration && (
+                  <img
+                    src={item.decoration.src}
+                    alt={item.decoration.alt}
+                    className="pointer-events-none absolute -right-7 -top-7 h-48 w-48 object-contain opacity-[0.15] dark:opacity-[0.18]"
+                    loading="lazy"
+                  />
+                )}
+                <div className="relative z-10 flex items-start gap-2">
+                  <span className="min-h-[24px] text-[22px]" aria-hidden="true">
                     {item.icon}
                   </span>
+                </div>
+                <div className="relative z-10 mt-3 flex items-center justify-between gap-2">
+                  <div className="text-[15px] font-semibold">{item.title}</div>
                   <FaChevronDown
                     aria-hidden="true"
-                    className="h-[18px] w-[18px] transition-transform"
+                    className="h-[18px] w-[18px] flex-none transition-transform"
                     color={item.accent}
                     style={{ transform: active ? "rotate(180deg)" : "rotate(0deg)" }}
                   />
-                </div>
-                <div className="mt-2 text-[15px] font-semibold">{item.title}</div>
-                <div className="mt-0.5 text-[13px] text-muted dark:text-white/70">
-                  {item.tagline}
                 </div>
               </button>
             );
           })}
         </div>
+
         <div
-          id={detailId}
+          id={accordionId}
           className={`grid transition-[grid-template-rows,opacity,margin-top] duration-[350ms] ease-in-out ${
-            openItem ? "mt-3.5 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+            openItem ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
           }`}
         >
-          <div className="min-h-0 overflow-hidden">
+          <div className={`min-h-0 ${openItem ? "overflow-visible" : "overflow-hidden"}`}>
             <div
-              className={`px-[18px] py-[18px] transition-[opacity,transform] duration-[350ms] ease-in-out ${
+              className={`px-1 pt-4 transition-[opacity,transform] duration-[350ms] ease-in-out ${
                 openItem ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
               }`}
             >
-              {detailItem && (
-                <>
-                  <h3 className="text-[15px] font-bold">{detailItem.title}</h3>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
-                    {detailItem.detail}
-                  </p>
-                  {detailItem.link && (
-                    <a
-                      href={detailItem.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3.5 inline-flex items-center gap-1.5 text-sm font-semibold no-underline"
-                      style={{ color: detailItem.accent }}
-                    >
-                      {detailItem.link.label}
-                      <FaArrowUpRightFromSquare aria-hidden="true" className="h-3.5 w-3.5" />
-                    </a>
-                  )}
-                </>
+              {accordionItem && (
+                <FunInterestContent
+                  item={accordionItem}
+                  layout="inline"
+                  onReadMore={() => setDetailItem(accordionItem)}
+                />
               )}
             </div>
           </div>
         </div>
       </SectionCard>
+
+      {detailItem && (
+        <FunInterestDetail item={detailItem} onClose={() => setDetailItem(null)} />
+      )}
     </section>
   );
 }

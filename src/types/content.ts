@@ -99,9 +99,32 @@ export type Project = {
   links: ProjectLinks;
 };
 
+export type FocusImage = {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+};
+
+export type FunFeature = {
+  teamCardDetail: string;
+  valuesCardDetail: string;
+  tournamentCardDetail: string;
+  summary: string;
+  charityDetail: string;
+  metrics: Array<{
+    value: string;
+    label: string;
+  }>;
+  anchorImage: FocusImage;
+  detailHeaderImage: FocusImage;
+  teamImages: FocusImage[];
+  tournamentImages: FocusImage[];
+};
+
 export type FunItem = {
   key: string;
-  icon: string;
+  icon?: string;
+  decoration?: FocusImage;
   title: string;
   tagline: string;
   tint: string;
@@ -111,4 +134,5 @@ export type FunItem = {
     label: string;
     url: string;
   } | null;
+  feature?: FunFeature;
 };

@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   FaArrowLeft,
   FaArrowUpRightFromSquare,
   FaCheck,
   FaClock,
-  FaXmark,
 } from "react-icons/fa6";
 import type { Project, ProjectContentBlock } from "../types/content";
 import { BlueAction } from "./BlueAction";
 import { GlossyChip, ProjectTagChip } from "./Chips";
+import { ImageFocusOverlay } from "./ImageFocus";
+import { useImageFocus } from "./useImageFocus";
 
 type ProjectDetailProps = {
   project: Project;
@@ -18,8 +19,12 @@ type ProjectDetailProps = {
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const [isClosing, setIsClosing] = useState(false);
   const [actionsBelowTitle, setActionsBelowTitle] = useState(false);
-  const [focusedImage, setFocusedImage] = useState<ProjectContentImage | null>(null);
-  const [isFocusedImageClosing, setIsFocusedImageClosing] = useState(false);
+  const {
+    focusedImage,
+    isFocusedImageClosing,
+    openFocusedImage,
+    closeFocusedImageWithAnimation,
+  } = useImageFocus<ProjectContentImage>();
   const titleRowRef = useRef<HTMLDivElement | null>(null);
   const actionsRef = useRef<HTMLDivElement | null>(null);
   const titleMeasureRef = useRef<HTMLSpanElement | null>(null);
@@ -49,36 +54,6 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
       window.removeEventListener("resize", measureTitleFit);
     };
   }, [project.name]);
-
-  const closeFocusedImageWithAnimation = useCallback(() => {
-    if (isFocusedImageClosing) return;
-
-    setIsFocusedImageClosing(true);
-    window.setTimeout(() => {
-      setFocusedImage(null);
-      setIsFocusedImageClosing(false);
-    }, 200);
-  }, [isFocusedImageClosing]);
-
-  useEffect(() => {
-    if (!focusedImage) return;
-
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-
-      event.preventDefault();
-      event.stopPropagation();
-      closeFocusedImageWithAnimation();
-    }
-
-    window.addEventListener("keydown", onKeyDown, { capture: true });
-    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
-  }, [focusedImage, closeFocusedImageWithAnimation]);
-
-  function openFocusedImage(image: ProjectContentImage) {
-    setIsFocusedImageClosing(false);
-    setFocusedImage(image);
-  }
 
   function closeWithAnimation() {
     if (isClosing) return;
@@ -251,7 +226,6 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
     </div>
   );
 }
-
 type ProjectContentProps = {
   content: Project["content"];
   gradient: string;
@@ -385,44 +359,5 @@ function ContentImageFigure({ image, imageClassName, onOpen }: ContentImageFigur
         />
       </button>
     </figure>
-  );
-}
-
-type ImageFocusOverlayProps = {
-  image: ProjectContentImage;
-  isClosing: boolean;
-  onClose: () => void;
-};
-
-function ImageFocusOverlay({ image, isClosing, onClose }: ImageFocusOverlayProps) {
-  return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 sm:p-8 ${
-        isClosing ? "fade-out" : "fade-in"
-      }`}
-      role="dialog"
-      aria-modal="true"
-      aria-label={image.alt}
-      onClick={onClose}
-    >
-      <button
-        type="button"
-        className="absolute right-4 top-4 rounded-full border border-white/15 bg-black/45 p-3 text-white shadow-[0_12px_36px_rgba(0,0,0,0.32)] transition-colors hover:bg-white/15 sm:right-6 sm:top-6"
-        aria-label="Close image preview"
-        onClick={onClose}
-      >
-        <FaXmark aria-hidden="true" className="h-5 w-5" />
-      </button>
-      <figure
-        className="max-h-full max-w-[min(1100px,100%)]"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <img
-          src={image.src}
-          alt={image.alt}
-          className="block max-h-[82vh] w-auto max-w-full rounded-[22px] object-contain shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
-        />
-      </figure>
-    </div>
   );
 }
