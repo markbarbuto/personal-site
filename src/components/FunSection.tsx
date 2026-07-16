@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { funItems } from "../data/fun";
-import type { FunItem } from "../types/content";
+import type { FunItem } from "../types/fun";
 import { FunInterestContent } from "./FunInterestContent";
 import { FunInterestDetail } from "./FunInterestDetail";
 import { SectionCard } from "./SectionCard";
@@ -83,13 +83,13 @@ export function FunSection() {
 
         <div
           id={accordionId}
-          className={`grid transition-[grid-template-rows,opacity,margin-top] duration-[350ms] ease-in-out ${
+          className={`grid transition-[grid-template-rows,opacity,margin-top] duration-[250ms] ease-in-out ${
             openItem ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
           }`}
         >
           <div className={`min-h-0 ${openItem ? "overflow-visible" : "overflow-hidden"}`}>
             <div
-              className={`px-1 pt-4 transition-[opacity,transform] duration-[350ms] ease-in-out ${
+              className={`px-1 pt-4 transition-[opacity,transform] duration-[450ms] ease-in-out ${
                 openItem ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
               }`}
             >
