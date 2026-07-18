@@ -179,16 +179,16 @@ export const travelFunItem: TravelFunItem = {
             objectPosition: "center 68%",
           },
           {
-            id: "rome-stadio-olimpico",
-            src: "/fun-assets/travel/italy-2025/rome-stadio-olimpico.jpg",
-            alt: "A football match beneath the lights at Rome's Stadio Olimpico",
-            objectPosition: "center 62%",
-          },
-          {
             id: "italy-coffee-and-pastries",
             src: "/fun-assets/travel/italy-2025/coffee-and-pastries.jpg",
             alt: "An espresso and a plate of Italian pastries on a café table",
             objectPosition: "center 55%",
+          },
+          {
+            id: "rome-stadio-olimpico",
+            src: "/fun-assets/travel/italy-2025/rome-stadio-olimpico.jpg",
+            alt: "A football match beneath the lights at Rome's Stadio Olimpico",
+            objectPosition: "center 62%",
           },
           {
             id: "vatican-st-peters-basilica",
