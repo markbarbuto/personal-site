@@ -1,9 +1,9 @@
 import type { TravelFunItem } from "../../types/fun";
 
 const travelImage = {
-  src: "/fun-assets/travel/mallorca-street.jpg",
-  alt: "A sunlit Mediterranean stone street descending toward turquoise water",
-  objectPosition: "center center",
+  src: "/fun-assets/travel/italy-2025/rome-colosseum-night.jpg",
+  alt: "The illuminated Colosseum beneath the night sky in Rome",
+  objectPosition: "center 68%",
 };
 
 const travelAccordionImage = {
@@ -140,6 +140,103 @@ export const travelFunItem: TravelFunItem = {
             src: "/fun-assets/travel/spain-2024/madrid-plaza-mayor-night.jpg",
             alt: "Friends walking through Madrid's Plaza Mayor at night",
             objectPosition: "center 55%",
+          },
+        ],
+      },
+      {
+        id: "italy-2025",
+        title: "Italy",
+        dateRange: {
+          start: "2025-02",
+          end: "2025-02",
+          labelOverride: "February 2025",
+        },
+        destinations: [
+          {
+            country: "Italy",
+            countryCode: "IT",
+          },
+        ],
+        cities: ["Rome", "Vatican City", "Naples"],
+        summary:
+          "Italy in winter brought together Rome's ancient layers, the energy of Naples, and the rituals that made each day memorable: espresso and pastries, pizza and wine, long dinners with friends, and football under the lights. From the Colosseum after dark to the view across Naples, the trip felt like history and everyday life constantly sharing the same streets.",
+        stamp: {
+          accent: "#c4573d",
+          shape: "ticket",
+          motif: "landmark",
+        },
+        photos: [
+          {
+            id: "italy-pizza-and-wine",
+            src: "/fun-assets/travel/italy-2025/pizza-and-wine.jpg",
+            alt: "Pizza boxes and glasses of red wine shared around a table in Italy",
+            objectPosition: "center 58%",
+          },
+          {
+            id: "rome-colosseum-night",
+            src: "/fun-assets/travel/italy-2025/rome-colosseum-night.jpg",
+            alt: "The illuminated Colosseum beneath the night sky in Rome",
+            objectPosition: "center 68%",
+          },
+          {
+            id: "rome-stadio-olimpico",
+            src: "/fun-assets/travel/italy-2025/rome-stadio-olimpico.jpg",
+            alt: "A football match beneath the lights at Rome's Stadio Olimpico",
+            objectPosition: "center 62%",
+          },
+          {
+            id: "italy-coffee-and-pastries",
+            src: "/fun-assets/travel/italy-2025/coffee-and-pastries.jpg",
+            alt: "An espresso and a plate of Italian pastries on a café table",
+            objectPosition: "center 55%",
+          },
+          {
+            id: "vatican-st-peters-basilica",
+            src: "/fun-assets/travel/italy-2025/vatican-st-peters-basilica.jpg",
+            alt: "Statues lining the façade of Saint Peter's Basilica in Vatican City",
+            objectPosition: "center 62%",
+          },
+          {
+            id: "rome-stadio-olimpico-friends",
+            src: "/fun-assets/travel/italy-2025/rome-stadio-olimpico-friends.jpg",
+            alt: "Four friends together beside the pitch at Rome's Stadio Olimpico",
+            objectPosition: "center 42%",
+          },
+          {
+            id: "naples-city-view",
+            src: "/fun-assets/travel/italy-2025/naples-city-view.jpg",
+            alt: "A warm panoramic view across Naples and its coastline",
+            objectPosition: "center 52%",
+          },
+          {
+            id: "italy-dinner-with-friends",
+            src: "/fun-assets/travel/italy-2025/dinner-with-friends.jpg",
+            alt: "Friends gathered around a restaurant table for dinner in Italy",
+            objectPosition: "center 42%",
+          },
+          {
+            id: "rome-bookshop-portrait",
+            src: "/fun-assets/travel/italy-2025/rome-bookshop-portrait.jpg",
+            alt: "Reading an art book outside a bookshop in Rome",
+            objectPosition: "center 35%",
+          },
+          {
+            id: "rome-trevi-fountain",
+            src: "/fun-assets/travel/italy-2025/rome-trevi-fountain.jpg",
+            alt: "The ornate sculptures of the Trevi Fountain beneath a clear blue sky",
+            objectPosition: "center 58%",
+          },
+          {
+            id: "rome-painted-dome",
+            src: "/fun-assets/travel/italy-2025/rome-painted-dome.jpg",
+            alt: "An ornate painted church dome glowing in warm light in Rome",
+            objectPosition: "center center",
+          },
+          {
+            id: "vatican-st-peters-square",
+            src: "/fun-assets/travel/italy-2025/vatican-st-peters-square.jpg",
+            alt: "The colonnade and Apostolic Palace beneath a blue sky in Saint Peter's Square",
+            objectPosition: "center 54%",
           },
         ],
       },
