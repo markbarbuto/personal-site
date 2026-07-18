@@ -408,6 +408,11 @@ html.dark .travel-stamp-ticket::after {
   animation: travelTripSwap 220ms ease-out both;
 }
 
+.travel-trip-transition-stage {
+  backface-visibility: hidden;
+  will-change: opacity, transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .travel-trip-swap {
     animation: none;

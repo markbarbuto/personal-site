@@ -118,10 +118,10 @@ export function TravelPassportSelector({
         </div>
       </div>
 
-      <div className="travel-passport-fade -mx-1 mt-5">
+      <div className="travel-passport-fade -mx-1 mt-5 flow-root">
         <div
           ref={scrollRef}
-          className="hide-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-7 py-3 sm:gap-4 sm:px-8"
+          className="hide-scrollbar -my-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-7 py-8 sm:gap-4 sm:px-8"
           onScroll={updateScrollState}
           role="tablist"
           aria-label="Trips organized by date"
@@ -140,20 +140,23 @@ export function TravelPassportSelector({
                 aria-controls={active ? `travel-trip-${trip.id}` : undefined}
                 data-trip-id={trip.id}
                 data-selected={active}
+                data-active={active}
                 className="travel-stamp-card fun-item glossy-tile relative flex w-[154px] flex-none snap-center flex-col rounded-[20px] border p-3 text-left text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-appleBlue focus-visible:ring-offset-4 focus-visible:ring-offset-panel sm:w-[190px] sm:p-4 dark:text-white dark:focus-visible:ring-offset-[#101014]"
                 style={{ "--stamp-accent": trip.stamp.accent } as CSSProperties}
                 onClick={() => selectTrip(trip.id)}
                 onKeyDown={(event) => selectAdjacentTrip(event, tripIndex)}
               >
                 <span
-                  className={`travel-stamp flex h-[104px] w-full flex-col items-center justify-center border-2 px-3 text-center sm:h-[118px] ${stampShapeClasses[trip.stamp.shape]}`}
+                  className={`travel-stamp flex h-[104px] w-full flex-col items-center border-2 px-3 pb-3 pt-2.5 text-center sm:h-[118px] ${stampShapeClasses[trip.stamp.shape]}`}
                 >
-                  <span className="absolute left-2.5 top-2 text-[9px] font-bold uppercase tracking-[0.12em]">
+                  <span className="block flex-none text-[9px] font-bold uppercase leading-none tracking-[0.12em]">
                     {primaryDestination?.countryCode}
                   </span>
-                  <StampIcon aria-hidden="true" className="h-7 w-7 sm:h-8 sm:w-8" />
-                  <span className="mt-2 max-w-full truncate text-[14px] font-bold uppercase tracking-[0.08em] sm:text-[15px]">
-                    {trip.title}
+                  <span className="mt-1 flex min-h-0 w-full flex-1 flex-col items-center justify-center">
+                    <StampIcon aria-hidden="true" className="h-7 w-7 flex-none sm:h-8 sm:w-8" />
+                    <span className="mt-2 max-w-full truncate text-[14px] font-bold uppercase tracking-[0.08em] sm:text-[15px]">
+                      {trip.title}
+                    </span>
                   </span>
                 </span>
 

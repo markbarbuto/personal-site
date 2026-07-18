@@ -64,7 +64,7 @@ export const travelFunItem: TravelFunItem = {
         summary:
           "Spain moved at three distinct rhythms: Barcelona's bold architecture and coastal energy, Mallorca's quiet stone streets and turquoise water, and Madrid's grand avenues, food, and late-night pace. Moving between them made the country's regional character as memorable as its shared history.",
         stamp: {
-          accent: "#2f7d4a",
+          accent: "#c4573d",
           shape: "arch",
           motif: "coast",
         },
@@ -161,7 +161,7 @@ export const travelFunItem: TravelFunItem = {
         summary:
           "Italy in winter brought together Rome's ancient layers, the energy of Naples, and the rituals that made each day memorable: espresso and pastries, pizza and wine, long dinners with friends, and football under the lights. From the Colosseum after dark to the view across Naples, the trip felt like history and everyday life constantly sharing the same streets.",
         stamp: {
-          accent: "#c4573d",
+          accent: "#2f7d4a",
           shape: "ticket",
           motif: "landmark",
         },
@@ -239,6 +239,25 @@ export const travelFunItem: TravelFunItem = {
             objectPosition: "center 54%",
           },
         ],
+      },
+      {
+        id: "colombia-2025",
+        title: "Colombia",
+        dateRange: {
+          start: "2025-12",
+          end: "2025-12",
+          labelOverride: "December 2025",
+        },
+        destinations: [{ country: "Colombia", countryCode: "CO" }],
+        cities: ["Bogotá", "Medellín", "Cartagena"],
+        summary:
+          "Colombia brought together three distinct rhythms: Bogotá's high-altitude energy and layered history, Medellín's mountain setting and creative momentum, and Cartagena's colourful streets and Caribbean warmth. Moving between them made the country's food, architecture, and regional character especially memorable.",
+        stamp: {
+          accent: "#d97718",
+          shape: "oval",
+          motif: "mountains",
+        },
+        photos: [],
       },
     ],
   },
