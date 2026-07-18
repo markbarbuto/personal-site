@@ -11,11 +11,13 @@ export const gunnersFunItem: GunnersFunItem = {
   tint: "rgba(139, 121, 77, 0.13)",
   accent: "#6f613b",
   detail:
-    "I am a co-founder of 905 Gunners FC, a soccer team founded in 2022 by a group of friends. The team is built around unity, healthy competition, and giving back. We participate in charity tournaments every year and hosted our first charity tournament in April 2026.",
-  link: {
-    label: "Follow 905 Gunners on Instagram",
-    url: "https://www.instagram.com/905.gunners/",
-  },
+    "I am a co-founder of 905 Gunners FC, a soccer team founded in 2022 by a group of friends. Our team is built around unity, healthy competition, and giving back. We participate in charity tournaments every year and hosted our first charity tournament in April 2026.",
+  actions: [
+    {
+      label: "Follow 905 Gunners on Instagram",
+      url: "https://www.instagram.com/905.gunners/",
+    },
+  ],
   feature: {
     type: "905-gunners",
     previewImage: {

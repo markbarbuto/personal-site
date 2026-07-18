@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import type { FunItem } from "../types/fun";
 import { FunInterestContent } from "./FunInterestContent";
@@ -10,13 +10,22 @@ type FunInterestDetailProps = {
 
 export function FunInterestDetail({ item, onClose }: FunInterestDetailProps) {
   const [isClosing, setIsClosing] = useState(false);
+  const returnHash = useRef(
+    window.location.hash.startsWith("#travel-") ? "#fun" : window.location.hash,
+  );
 
   const closeWithAnimation = useCallback(() => {
     if (isClosing) return;
 
     setIsClosing(true);
-    window.setTimeout(onClose, 300);
-  }, [isClosing, onClose]);
+    window.setTimeout(() => {
+      if (item.feature?.type === "travel") {
+        const returnUrl = `${window.location.pathname}${window.location.search}${returnHash.current}`;
+        window.history.replaceState(null, "", returnUrl);
+      }
+      onClose();
+    }, 300);
+  }, [isClosing, item.feature?.type, onClose]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {

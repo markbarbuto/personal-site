@@ -1,17 +1,10 @@
 import type { FunItem } from "../types/fun";
 import { gunnersFunItem } from "./fun/gunners";
+import { travelFunItem } from "./fun/travel";
 
 export const funItems: FunItem[] = [
   gunnersFunItem,
-  {
-    key: "travel",
-    icon: "✈️",
-    title: "Travel",
-    tint: "rgba(160,107,255,0.08)",
-    accent: "#a06bff",
-    detail:
-      "There's almost always a next trip on my whiteboard. I like slow travel—renting a place for a couple of weeks, learning the neighbourhood coffee spot, and wandering without much of a plan. Recent favourites include long train journeys and anywhere with good food and worse WiFi.",
-  },
+  travelFunItem,
   {
     key: "music",
     icon: "🎧",

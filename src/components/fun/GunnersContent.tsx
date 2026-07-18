@@ -5,7 +5,7 @@ import { useImageFocus } from "../useImageFocus";
 import { FunFeatureDetailLayout, FunFeaturePreview } from "./FunFeatureLayouts";
 import { SectionImageGallery } from "./FunImageGallery";
 
-type Gunners905ContentProps = {
+type GunnersContentProps = {
   item: GunnersFunItem;
   layout: "inline" | "full";
   onReadMore?: () => void;
@@ -29,7 +29,7 @@ const cardStyles: Record<FunFeatureCard["id"], { card: string; image: string }> 
   },
 };
 
-export function Gunners905Content({ item, layout, onReadMore }: Gunners905ContentProps) {
+export function GunnersContent({ item, layout, onReadMore }: GunnersContentProps) {
   const {
     focusedImage,
     isFocusedImageClosing,
@@ -64,7 +64,7 @@ export function Gunners905Content({ item, layout, onReadMore }: Gunners905Conten
       <FunFeatureDetailLayout
         title={item.title}
         tagline={item.tagline}
-        link={item.link}
+        actions={item.actions}
         headerImage={feature.headerImage}
         onOpenImage={openFocusedImage}
       >

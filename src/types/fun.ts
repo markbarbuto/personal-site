@@ -3,6 +3,16 @@ import type { FocusImage } from "./content";
 export type FunLink = {
   label: string;
   url: string;
+  preserveHash?: boolean;
+};
+
+export type FunCardImage = FocusImage & {
+  mode?: "contain" | "cover";
+};
+
+export type FunFeatureMedia = {
+  previewImage: FocusImage;
+  headerImage: FocusImage;
 };
 
 export type FunFeatureChip = {
@@ -25,18 +35,57 @@ export type FunFeatureSection = {
   images: FocusImage[];
 };
 
-export type GunnersFeature = {
+export type GunnersFeature = FunFeatureMedia & {
   type: "905-gunners";
-  previewImage: FocusImage;
-  headerImage: FocusImage;
   cards: FunFeatureCard[];
   sections: FunFeatureSection[];
+};
+
+export type TravelPhoto = {
+  id: string;
+  alt: string;
+  src?: string;
+  objectPosition?: string;
+};
+
+export type TravelDateRange = {
+  start: string;
+  end?: string;
+  labelOverride?: string;
+};
+
+export type TravelDestination = {
+  country: string;
+  countryCode: string;
+};
+
+export type TravelStamp = {
+  accent: string;
+  shape: "arch" | "oval" | "rectangle" | "ticket";
+  motif: "coast" | "compass" | "landmark" | "mountains";
+};
+
+export type TravelTrip = {
+  id: string;
+  title: string;
+  dateRange: TravelDateRange;
+  destinations: TravelDestination[];
+  cities: string[];
+  summary: string;
+  photos: TravelPhoto[];
+  stamp: TravelStamp;
+};
+
+export type TravelFeature = FunFeatureMedia & {
+  type: "travel";
+  intro: string;
+  trips: TravelTrip[];
 };
 
 type FunItemBase = {
   key: string;
   icon?: string;
-  decoration?: FocusImage;
+  decoration?: FunCardImage;
   title: string;
   tint: string;
   accent: string;
@@ -49,8 +98,14 @@ export type BasicFunItem = FunItemBase & {
 
 export type GunnersFunItem = FunItemBase & {
   tagline: string;
-  link: FunLink;
+  actions: FunLink[];
   feature: GunnersFeature;
 };
 
-export type FunItem = BasicFunItem | GunnersFunItem;
+export type TravelFunItem = FunItemBase & {
+  tagline: string;
+  actions: FunLink[];
+  feature: TravelFeature;
+};
+
+export type FunItem = BasicFunItem | GunnersFunItem | TravelFunItem;

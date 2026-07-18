@@ -1,6 +1,7 @@
-import type { FunItem, GunnersFunItem } from "../types/fun";
-import { Gunners905Content } from "./fun/Gunners905Content";
+import type { FunItem, GunnersFunItem, TravelFunItem } from "../types/fun";
+import { GunnersContent } from "./fun/GunnersContent";
 import { ReadMoreButton } from "./fun/ReadMoreButton";
+import { TravelContent } from "./fun/TravelContent";
 
 type FunInterestContentProps = {
   item: FunItem;
@@ -12,9 +13,17 @@ function isGunnersItem(item: FunItem): item is GunnersFunItem {
   return item.feature?.type === "905-gunners";
 }
 
+function isTravelItem(item: FunItem): item is TravelFunItem {
+  return item.feature?.type === "travel";
+}
+
 export function FunInterestContent({ item, layout, onReadMore }: FunInterestContentProps) {
   if (isGunnersItem(item)) {
-    return <Gunners905Content item={item} layout={layout} onReadMore={onReadMore} />;
+    return <GunnersContent item={item} layout={layout} onReadMore={onReadMore} />;
+  }
+
+  if (isTravelItem(item)) {
+    return <TravelContent item={item} layout={layout} onReadMore={onReadMore} />;
   }
 
   return (

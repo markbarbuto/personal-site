@@ -7,11 +7,23 @@ import { FunInterestContent } from "./FunInterestContent";
 import { FunInterestDetail } from "./FunInterestDetail";
 import { SectionCard } from "./SectionCard";
 
+function getDeepLinkedTravelItem() {
+  if (!window.location.hash.startsWith("#travel-")) return null;
+
+  const tripId = window.location.hash.replace(/^#travel-/, "");
+  return (
+    funItems.find(
+      (item) => item.feature?.type === "travel" && item.feature.trips.some((trip) => trip.id === tripId),
+    ) ?? null
+  );
+}
+
 export function FunSection() {
-  const [openKey, setOpenKey] = useState<string | null>(null);
+  const deepLinkedTravelItem = getDeepLinkedTravelItem();
+  const [openKey, setOpenKey] = useState<string | null>(deepLinkedTravelItem?.key ?? null);
   const openItem = funItems.find((item) => item.key === openKey) ?? null;
   const [accordionItem, setAccordionItem] = useState(openItem);
-  const [detailItem, setDetailItem] = useState<FunItem | null>(null);
+  const [detailItem, setDetailItem] = useState<FunItem | null>(deepLinkedTravelItem);
   const accordionId = "fun-accordion";
 
   useEffect(() => {
@@ -55,19 +67,36 @@ export function FunSection() {
                 aria-controls={accordionId}
               >
                 {item.decoration && (
-                  <img
-                    src={item.decoration.src}
-                    alt={item.decoration.alt}
-                    className="pointer-events-none absolute -right-7 -top-7 h-48 w-48 object-contain opacity-[0.15] dark:opacity-[0.18]"
-                    loading="lazy"
-                  />
+                  <>
+                    <img
+                      src={item.decoration.src}
+                      alt={item.decoration.alt}
+                      className={
+                        item.decoration.mode === "cover"
+                          ? "pointer-events-none absolute inset-0 h-full w-full object-cover"
+                          : "pointer-events-none absolute -right-7 -top-7 h-48 w-48 object-contain opacity-[0.15] dark:opacity-[0.18]"
+                      }
+                      style={{ objectPosition: item.decoration.objectPosition }}
+                      loading="lazy"
+                    />
+                    {item.decoration.mode === "cover" && (
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10"
+                      />
+                    )}
+                  </>
                 )}
                 <div className="relative z-10 flex items-start gap-2">
                   <span className="min-h-[24px] text-[22px]" aria-hidden="true">
                     {item.icon}
                   </span>
                 </div>
-                <div className="relative z-10 mt-3 flex items-center justify-between gap-2">
+                <div
+                  className={`relative z-10 mt-3 flex items-center justify-between gap-2 ${
+                    item.decoration?.mode === "cover" ? "text-white" : ""
+                  }`}
+                >
                   <div className="text-[15px] font-semibold">{item.title}</div>
                   <FaChevronDown
                     aria-hidden="true"
