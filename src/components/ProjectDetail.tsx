@@ -5,9 +5,10 @@ import {
   FaCheck,
   FaClock,
 } from "react-icons/fa6";
-import type { Project, ProjectContentBlock } from "../types/content";
+import type { GalleryImageOrientation, Project, ProjectContentBlock } from "../types/content";
 import { BlueAction } from "./BlueAction";
 import { GlossyChip, ProjectTagChip } from "./Chips";
+import { SectionImageGallery } from "./fun/FunImageGallery";
 import { ImageFocusOverlay } from "./ImageFocus";
 import { useImageFocus } from "./useImageFocus";
 
@@ -236,6 +237,7 @@ type ProjectContentImage = {
   src: string;
   alt: string;
   caption?: string;
+  orientation?: GalleryImageOrientation;
 };
 
 function ProjectContent({ content, gradient, onOpenImage }: ProjectContentProps) {
@@ -269,6 +271,21 @@ function ProjectContent({ content, gradient, onOpenImage }: ProjectContentProps)
 
         if (block.type === "gallery") {
           if (block.images.length === 0) return null;
+
+          const galleryImages = block.images.filter((image) => image.src);
+
+          if (galleryImages.length === block.images.length) {
+            return (
+              <SectionImageGallery
+                key={`gallery-${index}`}
+                images={galleryImages}
+                onOpen={onOpenImage}
+                className="my-3"
+                desktopLayout={block.layout}
+                mobileLayout="stack"
+              />
+            );
+          }
 
           return (
             <div

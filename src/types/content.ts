@@ -26,6 +26,8 @@ export type SkillGroup = {
   skills: Skill[];
 };
 
+export type GalleryImageOrientation = "landscape" | "portrait";
+
 export type ProjectContentBlock =
   | {
       type: "paragraph";
@@ -36,13 +38,16 @@ export type ProjectContentBlock =
       src: string;
       alt: string;
       caption?: string;
+      orientation?: GalleryImageOrientation;
     }
   | {
       type: "gallery";
+      layout?: "pattern" | "equal-landscape";
       images: Array<{
         src: string;
         alt: string;
         caption?: string;
+        orientation?: GalleryImageOrientation;
       }>;
     }
   | {
@@ -103,4 +108,5 @@ export type FocusImage = {
   src: string;
   alt: string;
   objectPosition?: string;
+  orientation?: GalleryImageOrientation;
 };

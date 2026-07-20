@@ -16,6 +16,7 @@ function getPhotoImage(photo: TravelPhoto): FocusImage | null {
     src: photo.src,
     alt: photo.alt,
     objectPosition: photo.objectPosition,
+    orientation: photo.orientation,
   };
 }
 

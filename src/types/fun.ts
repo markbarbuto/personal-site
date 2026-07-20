@@ -46,6 +46,7 @@ export type TravelPhoto = {
   alt: string;
   src?: string;
   objectPosition?: string;
+  orientation?: FocusImage["orientation"];
 };
 
 export type TravelDateRange = {

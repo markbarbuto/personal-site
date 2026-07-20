@@ -152,6 +152,7 @@ export const projects: Project[] = [
 			},
 			{
 				type: "gallery",
+				layout: "equal-landscape",
 				images: [
 					{
 						src: "/project-assets/indigenous-supports-khp/content-library-combined.jpg",
