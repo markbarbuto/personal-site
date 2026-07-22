@@ -3,7 +3,7 @@ import type { GunnersFunItem } from "../../types/fun";
 export const gunnersFunItem: GunnersFunItem = {
   key: "gunners",
   decoration: {
-    src: "/fun-assets/905-gunners/crest.png",
+    src: "/fun-assets/905-gunners/crest-3d-angled.png",
     alt: "",
   },
   title: "905 Gunners FC",
@@ -37,7 +37,7 @@ export const gunnersFunItem: GunnersFunItem = {
         body: "905 Gunners is a soccer team founded by a group of friends.",
         chips: [{ label: "Est. 2022" }],
         backgroundImage: {
-          src: "/fun-assets/905-gunners/crest.png",
+          src: "/fun-assets/905-gunners/crest-3d-angled.png",
           alt: "",
         },
       },
