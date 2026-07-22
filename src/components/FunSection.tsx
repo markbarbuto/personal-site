@@ -95,7 +95,7 @@ export function FunSection() {
       <h2 className="mb-[18px] text-[30px] font-bold tracking-[-0.02em]">Fun</h2>
       <SectionCard>
         <p className="mb-[22px] text-base leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
-          When I'm not shipping, you'll usually find me somewhere in one of these:
+          When I'm not working on software, I'm usually investing my time into things that keep me interested.
         </p>
         <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-3">
           {funItems.map((item) => {

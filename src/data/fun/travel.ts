@@ -1,9 +1,9 @@
 import type { TravelFunItem } from "../../types/fun";
 
 const travelImage = {
-  src: "/fun-assets/travel/italy-2025/rome-colosseum-cutout.png",
-  alt: "The illuminated Colosseum in Rome",
-  objectPosition: "right bottom",
+  src: "/fun-assets/travel/palm-tree-cutout.png",
+  alt: "The crown and upper trunk of a Mediterranean palm tree",
+  objectPosition: "65% top",
 };
 
 const travelAccordionImage = {
@@ -24,7 +24,7 @@ export const travelFunItem: TravelFunItem = {
     ...travelImage,
     alt: "",
     mode: "cutout",
-    opacity: 0.20,
+    opacity: 0.30,
   },
   title: "Travel",
   tagline: "",
