@@ -1,9 +1,9 @@
 import type { TravelFunItem } from "../../types/fun";
 
 const travelImage = {
-  src: "/fun-assets/travel/italy-2025/rome-colosseum-night.jpg",
-  alt: "The illuminated Colosseum beneath the night sky in Rome",
-  objectPosition: "center 68%",
+  src: "/fun-assets/travel/italy-2025/rome-colosseum-cutout.png",
+  alt: "The illuminated Colosseum in Rome",
+  objectPosition: "right bottom",
 };
 
 const travelAccordionImage = {
@@ -20,21 +20,21 @@ const travelHeaderImage = {
 
 export const travelFunItem: TravelFunItem = {
   key: "travel",
-  icon: "✈️",
   decoration: {
     ...travelImage,
     alt: "",
-    mode: "cover",
+    mode: "cutout",
+    opacity: 0.20,
   },
   title: "Travel",
-  tagline: "Annual trips with friends since 2022",
-  tint: "rgba(160,107,255,0.08)",
-  accent: "#a06bff",
+  tagline: "",
+  tint: "rgba(201,161,95,0.18)",
+  accent: "#c9a15f",
   detail:
     "Since 2022, a group of friends and I have made travel an annual tradition. Each trip is a chance to learn through a country's culture, food, architecture, and history. I love the thrill of landing somewhere I don't speak the language—and the joy, awkwardness, and unexpected connection that come from finding a way to communicate with locals.",
   actions: [
     {
-      label: "Explore the trips",
+      label: "Where I've been",
       url: "#travel-passport",
       preserveHash: true,
     },

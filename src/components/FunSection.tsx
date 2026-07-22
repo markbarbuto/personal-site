@@ -74,9 +74,14 @@ export function FunSection() {
                       className={
                         item.decoration.mode === "cover"
                           ? "pointer-events-none absolute inset-0 h-full w-full object-cover"
+                          : item.decoration.mode === "cutout"
+                            ? "pointer-events-none absolute -right-7 -top-7 h-48 w-60 object-contain"
                           : "pointer-events-none absolute -right-7 -top-7 h-48 w-48 object-contain opacity-[0.15] dark:opacity-[0.18]"
                       }
-                      style={{ objectPosition: item.decoration.objectPosition }}
+                      style={{
+                        objectPosition: item.decoration.objectPosition,
+                        opacity: item.decoration.opacity,
+                      }}
                       loading="lazy"
                     />
                     {item.decoration.mode === "cover" && (

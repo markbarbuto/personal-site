@@ -7,7 +7,8 @@ export type FunLink = {
 };
 
 export type FunCardImage = FocusImage & {
-  mode?: "contain" | "cover";
+  mode?: "contain" | "cover" | "cutout";
+  opacity?: number;
 };
 
 export type FunFeatureMedia = {

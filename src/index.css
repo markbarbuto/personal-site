@@ -233,7 +233,7 @@ html.dark .project-card-tinted {
 }
 
 html.dark .fun-card-tinted {
-  background-color: color-mix(in srgb, var(--fun-accent) 18%, #19191f);
+  background-color: color-mix(in srgb, var(--fun-accent) 24%, #19191f);
   border-color: rgba(255, 255, 255, 0.14);
 }
 
