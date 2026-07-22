@@ -11,7 +11,7 @@ export const profile = {
   aboutIntro:
     "I specialize in building applications using:",
   educationSummary:
-    "I graduated from University of Toronto with an Honors Bachelor of Science in Computer Science in April 2024.",
+    "I graduated from University of Toronto with an Honors Bachelor of Science in Computer Science in April 2024, playing Varsity Soccer throughout my undergrad.",
   coreStack: [
     "C#",
     ".NET",
