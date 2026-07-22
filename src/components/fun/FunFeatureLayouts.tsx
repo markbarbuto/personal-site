@@ -22,27 +22,30 @@ export function FunFeaturePreview({
   onReadMore,
 }: FunFeaturePreviewProps) {
   return (
-    <div className="grid h-full grid-rows-[auto_1fr_auto] gap-5 sm:grid-cols-[1.05fr_0.95fr] sm:grid-rows-[1fr_auto]">
-      <div className="py-0.5 sm:col-start-1 sm:row-start-1">
-        <h3 className="text-[20px] font-bold leading-none tracking-[-0.02em]">{title}</h3>
-        <p className="mt-4 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
+    <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-x-5 gap-y-4 sm:grid-cols-[1.05fr_0.95fr] sm:grid-rows-[auto_1fr]">
+      <h3 className="row-start-1 py-0.5 text-[20px] font-bold leading-none tracking-[-0.02em] sm:col-start-1">
+        {title}
+      </h3>
+
+      <div className="contents sm:col-start-1 sm:row-start-2 sm:flex sm:min-h-0 sm:flex-col">
+        <p className="row-start-2 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
           {detail}
         </p>
+
+        {onReadMore && (
+          <div className="row-start-4 mt-auto pt-5">
+            <ReadMoreButton className="mt-0" onClick={onReadMore} />
+          </div>
+        )}
       </div>
 
       <GalleryImageButton
         image={image}
         onOpen={onOpenImage}
-        className="row-start-2 aspect-[6/4] w-full self-center sm:col-start-2 sm:row-span-2 sm:row-start-1"
+        className="row-start-3 h-full min-h-0 w-full self-stretch sm:col-start-2 sm:row-start-2"
         imageClassName="h-full w-full object-cover"
         eager
       />
-
-      {onReadMore && (
-        <div className="row-start-3 sm:col-start-1 sm:row-start-2">
-          <ReadMoreButton className="mt-0" onClick={onReadMore} />
-        </div>
-      )}
     </div>
   );
 }
