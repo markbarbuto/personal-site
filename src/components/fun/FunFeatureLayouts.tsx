@@ -22,22 +22,27 @@ export function FunFeaturePreview({
   onReadMore,
 }: FunFeaturePreviewProps) {
   return (
-    <div className="grid gap-5 sm:grid-cols-[1.05fr_0.95fr] sm:items-center">
-      <div>
+    <div className="grid h-full grid-rows-[auto_1fr_auto] gap-5 sm:grid-cols-[1.05fr_0.95fr] sm:grid-rows-[1fr_auto]">
+      <div className="py-0.5 sm:col-start-1 sm:row-start-1">
         <h3 className="text-[20px] font-bold leading-none tracking-[-0.02em]">{title}</h3>
         <p className="mt-4 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
           {detail}
         </p>
-        {onReadMore && <ReadMoreButton onClick={onReadMore} />}
       </div>
 
       <GalleryImageButton
         image={image}
         onOpen={onOpenImage}
-        className="aspect-[6/4] w-full"
+        className="row-start-2 aspect-[6/4] w-full self-center sm:col-start-2 sm:row-span-2 sm:row-start-1"
         imageClassName="h-full w-full object-cover"
         eager
       />
+
+      {onReadMore && (
+        <div className="row-start-3 sm:col-start-1 sm:row-start-2">
+          <ReadMoreButton className="mt-0" onClick={onReadMore} />
+        </div>
+      )}
     </div>
   );
 }

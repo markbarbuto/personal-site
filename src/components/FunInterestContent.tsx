@@ -27,7 +27,11 @@ export function FunInterestContent({ item, layout, onReadMore }: FunInterestCont
   }
 
   return (
-    <div className={layout === "full" ? "mx-auto max-w-[760px] pt-12" : ""}>
+    <div
+      className={
+        layout === "full" ? "mx-auto max-w-[760px] pt-12" : "flex h-full flex-col"
+      }
+    >
       {layout === "full" ? (
         <h1 className="text-[clamp(38px,6vw,58px)] font-bold leading-none tracking-[-0.03em]">
           {item.title}
@@ -42,7 +46,11 @@ export function FunInterestContent({ item, layout, onReadMore }: FunInterestCont
       >
         {item.detail}
       </p>
-      {layout === "inline" && onReadMore && <ReadMoreButton onClick={onReadMore} />}
+      {layout === "inline" && onReadMore && (
+        <div className="mt-auto pt-5">
+          <ReadMoreButton className="mt-0" onClick={onReadMore} />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import type { CSSProperties } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { funItems } from "../data/fun";
 import type { FunItem } from "../types/fun";
 import { FunInterestContent } from "./FunInterestContent";
 import { FunInterestDetail } from "./FunInterestDetail";
 import { SectionCard } from "./SectionCard";
+
+const FUN_ACCORDION_SWAP_DURATION = 430;
 
 function getDeepLinkedTravelItem() {
   if (!window.location.hash.startsWith("#travel-")) return null;
@@ -23,17 +25,65 @@ export function FunSection() {
   const [openKey, setOpenKey] = useState<string | null>(deepLinkedTravelItem?.key ?? null);
   const openItem = funItems.find((item) => item.key === openKey) ?? null;
   const [accordionItem, setAccordionItem] = useState(openItem);
+  const [outgoingAccordionItem, setOutgoingAccordionItem] = useState<FunItem | null>(null);
+  const accordionItemRef = useRef(openItem);
+  const closeTimerRef = useRef<number | null>(null);
+  const switchTimerRef = useRef<number | null>(null);
   const [detailItem, setDetailItem] = useState<FunItem | null>(deepLinkedTravelItem);
   const accordionId = "fun-accordion";
 
   useEffect(() => {
-    if (openItem) {
-      setAccordionItem(openItem);
-      return undefined;
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
     }
 
-    const timeoutId = window.setTimeout(() => setAccordionItem(null), 300);
-    return () => window.clearTimeout(timeoutId);
+    if (switchTimerRef.current !== null) {
+      window.clearTimeout(switchTimerRef.current);
+      switchTimerRef.current = null;
+    }
+
+    if (openItem) {
+      const currentItem = accordionItemRef.current;
+
+      if (currentItem && currentItem.key !== openItem.key) {
+        setOutgoingAccordionItem(currentItem);
+        switchTimerRef.current = window.setTimeout(() => {
+          setOutgoingAccordionItem(null);
+          switchTimerRef.current = null;
+        }, FUN_ACCORDION_SWAP_DURATION);
+      } else {
+        setOutgoingAccordionItem(null);
+      }
+
+      accordionItemRef.current = openItem;
+      setAccordionItem(openItem);
+      return () => {
+        if (switchTimerRef.current !== null) {
+          window.clearTimeout(switchTimerRef.current);
+          switchTimerRef.current = null;
+        }
+      };
+    }
+
+    setOutgoingAccordionItem(null);
+    closeTimerRef.current = window.setTimeout(() => {
+      accordionItemRef.current = null;
+      setAccordionItem(null);
+      closeTimerRef.current = null;
+    }, 300);
+
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+
+      if (switchTimerRef.current !== null) {
+        window.clearTimeout(switchTimerRef.current);
+        switchTimerRef.current = null;
+      }
+    };
   }, [openItem]);
 
   function selectItem(item: FunItem) {
@@ -127,13 +177,35 @@ export function FunSection() {
                 openItem ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
               }`}
             >
-              {accordionItem && (
-                <FunInterestContent
-                  item={accordionItem}
-                  layout="inline"
-                  onReadMore={() => setDetailItem(accordionItem)}
-                />
-              )}
+              <div className="fun-accordion-switcher">
+                {outgoingAccordionItem && (
+                  <div
+                    key={outgoingAccordionItem.key}
+                    className="fun-accordion-panel fun-accordion-panel-exit"
+                    aria-hidden="true"
+                  >
+                    <FunInterestContent
+                      item={outgoingAccordionItem}
+                      layout="inline"
+                      onReadMore={() => setDetailItem(outgoingAccordionItem)}
+                    />
+                  </div>
+                )}
+                {accordionItem && (
+                  <div
+                    key={accordionItem.key}
+                    className={`fun-accordion-panel ${
+                      outgoingAccordionItem ? "fun-accordion-panel-enter" : ""
+                    }`}
+                  >
+                    <FunInterestContent
+                      item={accordionItem}
+                      layout="inline"
+                      onReadMore={() => setDetailItem(accordionItem)}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
