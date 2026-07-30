@@ -10,8 +10,8 @@ export const gunnersFunItem: GunnersFunItem = {
   tagline: "Founding Member",
   tint: "rgba(0, 107, 54, 0.18)",
   accent: "#006b36",
-  detail:
-    "I am a co-founder of 905 Gunners FC, a soccer team founded in 2022 by a group of friends. Our team is built around unity, healthy competition, and giving back. We participate in charity tournaments every year and hosted our first charity tournament in April 2026.",
+  preview:
+    "I am a founding member of 905 Gunners FC, a soccer team founded in 2022 by a group of friends. Our team is built around unity, healthy competition, and giving back. We participate in charity tournaments every year and hosted our first charity tournament in April 2026.",
   actions: [
     {
       label: "Follow 905 Gunners on Instagram",

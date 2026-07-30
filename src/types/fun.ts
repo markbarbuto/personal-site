@@ -91,7 +91,7 @@ type FunItemBase = {
   title: string;
   tint: string;
   accent: string;
-  detail: string;
+  preview: string;
 };
 
 export type BasicFunItem = FunItemBase & {

@@ -238,7 +238,7 @@ export function TravelContent({ item, layout, onReadMore }: TravelContentProps) 
       <>
         <FunFeaturePreview
           title={item.title}
-          detail={item.detail}
+          preview={item.preview}
           image={feature.previewImage}
           onOpenImage={openFocusedImage}
           onReadMore={onReadMore}
@@ -259,6 +259,7 @@ export function TravelContent({ item, layout, onReadMore }: TravelContentProps) 
       <FunFeatureDetailLayout
         title={item.title}
         tagline={item.tagline}
+        preview={item.preview}
         actions={item.actions}
         headerImage={feature.headerImage}
         onOpenImage={openFocusedImage}

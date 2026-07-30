@@ -43,7 +43,7 @@ export function GunnersContent({ item, layout, onReadMore }: GunnersContentProps
       <>
         <FunFeaturePreview
           title={item.title}
-          detail={item.detail}
+          preview={item.preview}
           image={feature.previewImage}
           onOpenImage={openFocusedImage}
           onReadMore={onReadMore}
@@ -64,6 +64,7 @@ export function GunnersContent({ item, layout, onReadMore }: GunnersContentProps
       <FunFeatureDetailLayout
         title={item.title}
         tagline={item.tagline}
+        preview={item.preview}
         actions={item.actions}
         headerImage={feature.headerImage}
         onOpenImage={openFocusedImage}

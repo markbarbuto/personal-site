@@ -8,7 +8,7 @@ import { ReadMoreButton } from "./ReadMoreButton";
 
 type FunFeaturePreviewProps = {
   title: string;
-  detail: string;
+  preview: string;
   image: FocusImage;
   onOpenImage: (image: FocusImage) => void;
   onReadMore?: () => void;
@@ -16,7 +16,7 @@ type FunFeaturePreviewProps = {
 
 export function FunFeaturePreview({
   title,
-  detail,
+  preview,
   image,
   onOpenImage,
   onReadMore,
@@ -29,7 +29,7 @@ export function FunFeaturePreview({
 
       <div className="contents sm:col-start-1 sm:row-start-2 sm:flex sm:min-h-0 sm:flex-col">
         <p className="row-start-2 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
-          {detail}
+          {preview}
         </p>
 
         {onReadMore && (
@@ -53,6 +53,7 @@ export function FunFeaturePreview({
 type FunFeatureDetailLayoutProps = {
   title: string;
   tagline: string;
+  preview: string;
   actions?: FunLink[];
   headerImage: FocusImage;
   onOpenImage: (image: FocusImage) => void;
@@ -62,6 +63,7 @@ type FunFeatureDetailLayoutProps = {
 export function FunFeatureDetailLayout({
   title,
   tagline,
+  preview,
   actions = [],
   headerImage,
   onOpenImage,
@@ -119,6 +121,10 @@ export function FunFeatureDetailLayout({
         </div>
         <p className="mt-2 text-[17px] font-medium text-appleBlue">{tagline}</p>
       </header>
+
+      <p className="mt-8 max-w-[760px] text-[18px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
+        {preview}
+      </p>
 
       {children}
     </div>

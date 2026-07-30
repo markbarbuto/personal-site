@@ -44,7 +44,7 @@ export function FunInterestContent({ item, layout, onReadMore }: FunInterestCont
           layout === "full" ? "mt-5 text-[19px]" : "mt-2.5 text-[15px]"
         }`}
       >
-        {item.detail}
+        {item.preview}
       </p>
       {layout === "inline" && onReadMore && (
         <div className="mt-auto pt-5">

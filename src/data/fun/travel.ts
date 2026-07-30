@@ -30,8 +30,8 @@ export const travelFunItem: TravelFunItem = {
   tagline: "",
   tint: "rgba(201,161,95,0.18)",
   accent: "#c9a15f",
-  detail:
-    "Since 2022, a group of friends and I have made travel an annual tradition. Each trip is a chance to learn through a country's culture, food, architecture, and history. I love the thrill of landing somewhere I don't speak the language—and the joy, awkwardness, and unexpected connection that come from finding a way to communicate with locals.",
+  preview:
+    "Since 2022, a group of friends and I have travelled somewhere new every year. On each trip, I enjoy learning about the country’s culture, food, architecture, and history. I especially enjoy the challenge of exploring a place where I don’t speak the language; the unexpected connection that comes from finding a way to communicate with locals is hard to beat.",
   actions: [
     {
       label: "Where I've been",
@@ -62,7 +62,7 @@ export const travelFunItem: TravelFunItem = {
         ],
         cities: ["Barcelona", "Mallorca", "Madrid"],
         summary:
-          "Spain moved at three distinct rhythms: Barcelona's bold architecture and coastal energy, Mallorca's quiet stone streets and turquoise water, and Madrid's grand avenues, food, and late-night pace. Moving between them made the country's regional character as memorable as its shared history.",
+          "There aren't many things better than watching your favourite team play. The atmosphere, architecture, and nightlife in Barcelona were unlike any other place I've seen. Mallorca's stone streets, and breathtaking beaches were so relaxing. Madrid's metro, community spaces, and bustling streets were some of the coolest moments. My greatest discovery was convenience store iced cappuccinos \"para llevar\" (to-go).",
         stamp: {
           accent: "#c4573d",
           shape: "arch",
@@ -161,7 +161,7 @@ export const travelFunItem: TravelFunItem = {
         ],
         cities: ["Rome", "Vatican City", "Naples"],
         summary:
-          "Italy in winter brought together Rome's ancient layers, the energy of Naples, and the rituals that made each day memorable: espresso and pastries, pizza and wine, long dinners with friends, and football under the lights. From the Colosseum after dark to the view across Naples, the trip felt like history and everyday life constantly sharing the same streets.",
+          "Late winter is not the typical time to visit, but it meant we got the more authentic experience. Expressos and cannoli every day, Romans talking smack to me because I'm Calabrese, and probably the best sandwiches and pizza I've ever had. I felt the history of The Colloseum and ancient architecture. Entering the Vatican City and St. Peter's Basilica during the Jubilee Year was a privilege. Watching the huge rivalry football match between Lazio and Napoli was emotional.",
         stamp: {
           accent: "#2f7d4a",
           shape: "ticket",
@@ -206,22 +206,23 @@ export const travelFunItem: TravelFunItem = {
             objectPosition: "center 62%",
           },
           {
-            id: "rome-stadio-olimpico-friends",
-            src: "/fun-assets/travel/italy-2025/rome-stadio-olimpico-friends.jpg",
-            alt: "Four friends together beside the pitch at Rome's Stadio Olimpico",
-            objectPosition: "center 42%",
-          },
-          {
             id: "naples-city-view",
             src: "/fun-assets/travel/italy-2025/naples-city-view.jpg",
             alt: "A warm panoramic view across Naples and its coastline",
             objectPosition: "center 52%",
           },
           {
+            id: "naples-galleria-umberto-i",
+            src: "/fun-assets/travel/italy-2025/naples-galleria-umberto-i.jpg",
+            alt: "The glass-vaulted ceiling and ornate interior of Galleria Umberto I in Naples",
+            objectPosition: "center 15%",
+            orientation: "portrait",
+          },
+          {
             id: "italy-dinner-with-friends",
             src: "/fun-assets/travel/italy-2025/dinner-with-friends.jpg",
             alt: "Friends gathered around a restaurant table for dinner in Italy",
-            objectPosition: "center 42%",
+            objectPosition: "20% 42%",
           },
           {
             id: "rome-painted-dome",
@@ -261,7 +262,102 @@ export const travelFunItem: TravelFunItem = {
           shape: "oval",
           motif: "mountains",
         },
-        photos: [],
+        photos: [
+          {
+            id: "bogota-monserrate-market",
+            src: "/fun-assets/travel/colombia-2025/bogota-monserrate-market.jpg",
+            alt: "A market walkway on Monserrate decorated with rows of Colombian flags",
+            objectPosition: "center 48%",
+            orientation: "portrait",
+          },
+          {
+            id: "bogota-mountain-street",
+            src: "/fun-assets/travel/colombia-2025/bogota-mountain-street.jpg",
+            alt: "A Bogotá street framed by brick buildings with green mountains rising behind it",
+            objectPosition: "center 58%",
+            orientation: "portrait",
+          },
+          {
+            id: "guatape-penol-entrance",
+            src: "/fun-assets/travel/colombia-2025/guatape-penol-entrance.jpg",
+            alt: "The stairway climbing the side of El Peñol rock above the shops in Guatapé",
+            objectPosition: "center 5%",
+            orientation: "portrait",
+          },
+          {
+            id: "guatape-penol-closeup",
+            src: "/fun-assets/travel/colombia-2025/guatape-penol-closeup.jpg",
+            alt: "A close-up view looking up the steep rock face of El Peñol beneath a clear blue sky",
+            objectPosition: "center 60%",
+            orientation: "portrait",
+          },
+                    {
+            id: "bogota-lourdes-church",
+            src: "/fun-assets/travel/colombia-2025/bogota-lourdes-church.jpg",
+            alt: "The Gothic Revival tower of the Church of Our Lady of Lourdes beneath storm clouds in Bogotá",
+            objectPosition: "center 42%",
+            orientation: "portrait",
+          },
+          {
+            id: "medellin-night-view",
+            src: "/fun-assets/travel/colombia-2025/medellin-night-view.jpg",
+            alt: "A daytime view across Medellín's skyline and surrounding mountains beneath dramatic clouds",
+            objectPosition: "center 70%",
+          },
+          {
+            id: "medellin-christmas-lights",
+            src: "/fun-assets/travel/colombia-2025/medellin-christmas-lights.jpg",
+            alt: "Glowing flowers and hummingbirds suspended above a stream during Medellín's Christmas lights",
+            objectPosition: "center 44%",
+            orientation: "portrait",
+          },
+          {
+            id: "bogota-monserrate-overlook",
+            src: "/fun-assets/travel/colombia-2025/bogota-monserrate-overlook.jpg",
+            alt: "Visitors walking across the Monserrate overlook beneath dramatic mountain clouds",
+            objectPosition: "center 58%",
+            orientation: "portrait",
+          },
+          {
+            id: "guatape-friends-overlook",
+            src: "/fun-assets/travel/colombia-2025/guatape-friends-overlook.jpg",
+            alt: "Five friends at a Guatapé overlook with the reservoir and green hills behind them",
+            objectPosition: "center 46%",
+          },
+          {
+            id: "colombia-empanadas",
+            src: "/fun-assets/travel/colombia-2025/colombia-empanadas.jpg",
+            alt: "Fresh Colombian empanadas served with dipping sauces on wooden boards",
+            objectPosition: "center 52%",
+          },
+          {
+            id: "cartagena-coast-sunset",
+            src: "/fun-assets/travel/colombia-2025/cartagena-coast-sunset.jpg",
+            alt: "The Cartagena coastline and Caribbean Sea beneath a warm evening sunset",
+            objectPosition: "center 56%",
+          },
+          {
+            id: "cartagena-beach-sunset-portrait",
+            src: "/fun-assets/travel/colombia-2025/cartagena-beach-sunset-portrait.jpg",
+            alt: "A traveller watching the sunset from a beach near Cartagena",
+            objectPosition: "center 48%",
+            orientation: "portrait",
+          },
+          {
+            id: "cartagena-rooftop-friends",
+            src: "/fun-assets/travel/colombia-2025/cartagena-rooftop-friends.jpg",
+            alt: "Friends gathered around a rooftop table beneath string lights in Cartagena",
+            objectPosition: "center 48%",
+            orientation: "portrait",
+          },
+          {
+            id: "medellin-outdoor-nightlife",
+            src: "/fun-assets/travel/colombia-2025/medellin-outdoor-nightlife.jpg",
+            alt: "A narrow green peninsula extending into the reservoir near Guatapé",
+            objectPosition: "center 52%",
+            orientation: "portrait",
+          },
+        ],
       },
     ],
   },
