@@ -13,5 +13,5 @@ export const musicFunItem: BasicFunItem = {
   tint: "rgba(79,124,255,0.16)",
   accent: "#4f7cff",
   preview:
-    "Music is the constant soundtrack to my day—deep-focus playlists while coding, something louder on the walk home. I'm always hunting for the next artist to obsess over, and I keep a running playlist of what I've had on repeat lately.",
+    "Listening, playing and producing. I played a few drum recitals, competed in a few competitions, and won one. But drums are too loud so I stopped playing; somewhere along the way in my undergrad I started learning how to produce music with FL Studio.",
 };
