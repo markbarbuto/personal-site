@@ -31,7 +31,7 @@ export const travelFunItem: TravelFunItem = {
   tint: "rgba(201,161,95,0.18)",
   accent: "#c9a15f",
   preview:
-    "Since 2022, a group of friends and I have travelled somewhere new every year. On each trip, I enjoy learning about the country’s culture, food, architecture, and history. I especially enjoy the challenge of exploring a place where I don’t speak the language; the unexpected connection that comes from finding a way to communicate with locals is hard to beat.",
+    "Since 2024, a group of friends and I have travelled somewhere new every year. On each trip, I enjoy learning about the country’s culture, food, architecture, and history. I especially enjoy the challenge of exploring a place where I don’t speak the language; the unexpected connection that comes from finding a way to communicate with locals is hard to beat.",
   actions: [
     {
       label: "Where I've been",
