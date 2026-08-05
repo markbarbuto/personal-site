@@ -9,8 +9,9 @@ import { ReadMoreButton } from "./ReadMoreButton";
 type FunFeaturePreviewProps = {
   title: string;
   preview: string;
-  image: FocusImage;
-  onOpenImage: (image: FocusImage) => void;
+  image?: FocusImage;
+  imageClassName?: string;
+  onOpenImage?: (image: FocusImage) => void;
   onReadMore?: () => void;
 };
 
@@ -18,11 +19,18 @@ export function FunFeaturePreview({
   title,
   preview,
   image,
+  imageClassName = "h-full w-full object-cover",
   onOpenImage,
   onReadMore,
 }: FunFeaturePreviewProps) {
   return (
-    <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-x-5 gap-y-4 sm:grid-cols-[1.05fr_0.95fr] sm:grid-rows-[auto_1fr]">
+    <div
+      className={`grid h-full grid-rows-[auto_auto_1fr_auto] gap-y-4 sm:grid-rows-[auto_1fr] ${
+        image
+          ? "gap-x-5 sm:grid-cols-[1.05fr_0.95fr]"
+          : ""
+      }`}
+    >
       <h3 className="row-start-1 py-0.5 text-[20px] font-bold leading-none tracking-[-0.02em] sm:col-start-1">
         {title}
       </h3>
@@ -39,13 +47,27 @@ export function FunFeaturePreview({
         )}
       </div>
 
-      <GalleryImageButton
-        image={image}
-        onOpen={onOpenImage}
-        className="row-start-3 h-full min-h-0 w-full self-stretch sm:col-start-2 sm:row-start-2"
-        imageClassName="h-full w-full object-cover"
-        eager
-      />
+      {image &&
+        (onOpenImage ? (
+          <GalleryImageButton
+            image={image}
+            onOpen={onOpenImage}
+            className="row-start-3 h-full min-h-0 w-full self-stretch sm:col-start-2 sm:row-start-2"
+            imageClassName={imageClassName}
+            eager
+          />
+        ) : (
+          <div className="row-start-3 h-full min-h-0 w-full self-stretch overflow-hidden rounded-[18px] bg-black/5 shadow-[0_16px_38px_rgba(0,0,0,0.11)] dark:bg-white/5 sm:col-start-2 sm:row-start-2">
+            <img
+              src={image.src}
+              alt={image.alt}
+              className={imageClassName}
+              style={{ objectPosition: image.objectPosition }}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        ))}
     </div>
   );
 }
