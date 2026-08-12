@@ -36,7 +36,7 @@ export function FunFeaturePreview({
       </h3>
 
       <div className="contents sm:col-start-1 sm:row-start-2 sm:flex sm:min-h-0 sm:flex-col">
-        <p className="row-start-2 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
+        <p className="row-start-2 line-clamp-6 text-[15px] leading-relaxed text-[#40404a] dark:text-[#c7c7d1]">
           {preview}
         </p>
 
