@@ -256,7 +256,7 @@ export const travelFunItem: TravelFunItem = {
         destinations: [{ country: "Colombia", countryCode: "CO" }],
         cities: ["Bogotá", "Medellín", "Cartagena"],
         summary:
-          "Short of breath, and short of luggage. After about 5 steps up Montserrate, we could already feel it. Great empanadas though; we had them everyday. Medellín had more motorcycles than cars, and it was definitely not as dangerous as people make it out to be. The day trip to Guatapé was a fun adventure with beautiful scenery, and exploring every corner of Comuna 13 was also an amazing history lesson. Cartagena's beaches were perfect, making for a perfect end to our trip.",
+          "Short of breath, and short of luggage. After about 5 steps up Montserrate, we could already feel it. Great empanadas though; we had them everyday. Medellín had more motorcycles than cars, and was definitely not as dangerous as people make it out to be. Guatapé blessed us with a Bandeja paisa and beautiful scenery; exploring every corner of Comuna 13 was also an amazing history lesson. Cartagena's beaches were picturesque, making for the perfect end to our trip.",
         stamp: {
           accent: "#d97718",
           shape: "oval",
