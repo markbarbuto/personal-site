@@ -277,7 +277,11 @@ export function TravelContent({ item, layout, onReadMore }: TravelContentProps) 
             />
             <div ref={tripShellRef} className="travel-trip-transition-shell">
               <div ref={tripStageRef} className="travel-trip-transition-stage flow-root">
-                <TravelTripCard trip={activeTrip} onOpenImage={openFocusedImage} />
+                <TravelTripCard
+                  key={activeTrip.id}
+                  trip={activeTrip}
+                  onOpenImage={openFocusedImage}
+                />
               </div>
             </div>
           </>
