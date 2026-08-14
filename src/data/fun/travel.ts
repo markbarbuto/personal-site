@@ -161,7 +161,7 @@ export const travelFunItem: TravelFunItem = {
         ],
         cities: ["Rome", "Vatican City", "Naples"],
         summary:
-          "Late winter wasn't the typical time to visit, but it meant we got the more authentic experience. Espressos :) and cannoli every day, Romans talking smack because I'm Calabrese, and probably the best sandwiches and pizza I've ever had. I could feel the history of the Colloseum and other ancient architecture. Entering the Vatican City and St. Peter's Basilica during the Jubilee Year was a privilege. Watching the huge rivalry football match between Lazio and Napoli was magisterial.",
+          "Late winter isn't the typical time to visit, but it meant we got the authentic experience. Espressos and cannoli every day, Romans talking smack because I'm Calabrese, and probably the best sandwiches and pizza I've ever had. I could feel the history of the Colloseum and other ancient architecture. Entering the Vatican City and St. Peter's Basilica during the Jubilee Year was a privilege. Watching the huge rivalry football match between Lazio and Napoli was magisterial.",
         stamp: {
           accent: "#2f7d4a",
           shape: "ticket",
@@ -256,7 +256,7 @@ export const travelFunItem: TravelFunItem = {
         destinations: [{ country: "Colombia", countryCode: "CO" }],
         cities: ["Bogotá", "Medellín", "Cartagena"],
         summary:
-          "Short of breath, and short of luggage. After about 5 steps up Montserrate, we could already feel it. Great empanadas though; we had them everyday. Medellín had more motorcycles than cars, and it was definitely not as dangerous as people make it out to be. The day trip to Guatapé was a fun adventure with beautiful scenery, and exploring every corner Comuna 13 was also an amazing history lesson. Cartagena's beaches were perfect, making for a perfect end to our trip.",
+          "Short of breath, and short of luggage. After about 5 steps up Montserrate, we could already feel it. Great empanadas though; we had them everyday. Medellín had more motorcycles than cars, and it was definitely not as dangerous as people make it out to be. The day trip to Guatapé was a fun adventure with beautiful scenery, and exploring every corner of Comuna 13 was also an amazing history lesson. Cartagena's beaches were perfect, making for a perfect end to our trip.",
         stamp: {
           accent: "#d97718",
           shape: "oval",
