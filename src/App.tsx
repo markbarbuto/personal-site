@@ -7,9 +7,12 @@ import { Hero } from "./components/Hero";
 import { NavBar } from "./components/NavBar";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { SkillsSection } from "./components/SkillsSection";
+import { useInitialHashScroll } from "./components/useInitialHashScroll";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
+  useInitialHashScroll();
+
   return (
     <div className="relative min-h-screen bg-panel pb-20 text-ink transition-colors dark:bg-[#101014] dark:text-[#f5f5f7]">
       <NavBar />
