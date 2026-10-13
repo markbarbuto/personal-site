@@ -25,7 +25,6 @@ export const skillGroups: SkillGroup[] = [
     label: "Frontend",
     skills: [
       { label: "React", icon: { type: "brand", name: "react" } },
-      { label: "Next.js", icon: { type: "brand", name: "nextdotjs" } },
       { label: "Tailwind", icon: { type: "brand", name: "tailwindcss" } },
       { label: "Redux", icon: { type: "brand", name: "redux" } },
       { label: "Blazor", icon: { type: "brand", name: "blazor" } },
