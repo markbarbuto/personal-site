@@ -140,7 +140,19 @@ export function AssistantModule() {
           </BlueAction>
         </form>
       </div>
-      <div className="mt-3 text-[12.5px] text-[#a1a1a6] dark:text-[#858592]">
+      <div className="mt-3 flex items-center gap-1.5 text-[12.5px] text-[#a1a1a6] dark:text-[#858592]">
+        <svg
+          aria-hidden="true"
+          viewBox="11 11 100 100"
+          className="h-[13px] w-[13px] flex-none"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="7"
+          strokeMiterlimit="8"
+        >
+          <path d="M47.2 25.5 H95.2 L63.2 81.5 L47.2 59.5 Z" />
+          <path d="M24.8 38.5 H72.8 L40.8 94.5 L24.8 72.5 Z" />
+        </svg>
         Vitae AI - Coming soon
       </div>
     </>
