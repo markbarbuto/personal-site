@@ -6,8 +6,18 @@ export const projects: Project[] = [
     kind: "Self-Hosted AI",
     description:
       "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. It's the engine behind the chat at the top of this page.",
-    gradient: "#ff8a5c, #ffd166",
-    tint: "#ff8a5c",
+    gradient: "#5a1414, #7a1f1f",
+    tint: "#9b1c1c",
+    images: {
+      card: {
+        src: "/project-assets/vitae-ai-icon.png",
+        alt: "Vitae AI logo",
+      },
+      detailHeader: {
+        src: "/project-assets/vitae-ai-header.png",
+        alt: "Vitae AI header image",
+      },
+    },
     tags: ["ai", "rag", "selfhosted", "python", "llama-cpp", "oracle-cloud"],
     year: "2025",
     role: "Designer & Engineer",
