@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { profile, socialLinks } from "../data/profile";
+import { AvatarCoin } from "./AvatarCoin";
 
 type HeroProps = {
   children: ReactNode;
@@ -18,19 +19,17 @@ export function Hero({ children }: HeroProps) {
       id="me"
       className="flex flex-col items-center px-6 pb-10 pt-[100px] text-center sm:pt-[100px]"
     >
-      <div className="flex h-[116px] w-[116px] items-center justify-center overflow-hidden rounded-full border-[5px] border-white bg-white shadow-[0_12px_30px_rgba(0,0,0,0.16)] dark:border-white/15 dark:bg-[#2a2a32] dark:shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
-        <img
-          src={profile.avatarUrl}
-          alt={profile.name}
-          className="h-full w-full object-cover"
-          draggable={false}
-        />
+      <div className="isolate flex max-w-full flex-col items-center">
+        <AvatarCoin />
+        <div className="glossy-tile relative z-0 -mt-3 w-[334px] max-w-full rounded-[28px] border bg-white px-5 pb-6 pt-7 dark:bg-[#24242c]">
+          <h1 className="text-[30px] font-bold leading-[1.2] tracking-[-0.02em]">
+            {profile.name}
+          </h1>
+          <p className="mt-[7px] text-base font-medium leading-[1.3] text-appleBlue dark:text-[#58aaff]">
+            {profile.title}
+          </p>
+        </div>
       </div>
-      <div className="mt-6 text-[17px] font-medium text-muted dark:text-[#b7b7c2]">Hey, I'm</div>
-      <h1 className="mt-1 text-[clamp(36px,5vw,52px)] font-bold leading-none tracking-[-0.03em]">
-        {profile.name}
-      </h1>
-      <div className="mt-2.5 text-[21px] font-medium text-appleBlue">{profile.title}</div>
       <div className="mt-[22px] flex gap-3">
         {socialLinks.map((link) => {
           const Icon = socialIcons[link.label];
