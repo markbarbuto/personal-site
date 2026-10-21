@@ -6,3 +6,7 @@ dist
 npm-debug.log*
 .DS_Store
 *.local
+
+.vercel
+.env*
+.playwright-mcp
