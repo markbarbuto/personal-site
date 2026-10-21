@@ -1,10 +1,41 @@
 import { skillGroups } from "../data/skills";
+import type { Skill, SkillIcon as SkillIconData } from "../types/content";
 import { GlossyChip } from "./Chips";
 import { BrandIcon } from "./icons/BrandIcon";
 import { DeviconIcon } from "./icons/DeviconIcon";
 import { FaSkillIcon } from "./icons/FaSkillIcon";
 import { ImageIcon } from "./icons/ImageIcon";
 import { SectionCard } from "./SectionCard";
+
+function SkillIcon({ icon }: { icon: SkillIconData }) {
+  switch (icon.type) {
+    case "brand":
+      return <BrandIcon name={icon.name} color={icon.color} />;
+    case "devicon":
+      return <DeviconIcon name={icon.name} />;
+    case "image":
+      return <ImageIcon src={icon.src} />;
+    case "fa":
+      return <FaSkillIcon name={icon.name} color={icon.color} />;
+  }
+}
+
+function SkillChipIcon({ skill }: { skill: Skill }) {
+  if (!skill.darkIcon) {
+    return <SkillIcon icon={skill.icon} />;
+  }
+
+  return (
+    <>
+      <span className="contents dark:hidden">
+        <SkillIcon icon={skill.icon} />
+      </span>
+      <span className="hidden dark:contents">
+        <SkillIcon icon={skill.darkIcon} />
+      </span>
+    </>
+  );
+}
 
 export function SkillsSection() {
   return (
@@ -27,17 +58,7 @@ export function SkillsSection() {
               {group.skills.map((skill) => (
                 <GlossyChip
                   key={`${group.label}-${skill.label}`}
-                  icon={
-                    skill.icon.type === "brand" ? (
-                      <BrandIcon name={skill.icon.name} color={skill.icon.color} />
-                    ) : skill.icon.type === "devicon" ? (
-                      <DeviconIcon name={skill.icon.name} />
-                    ) : skill.icon.type === "image" ? (
-                      <ImageIcon src={skill.icon.src} />
-                    ) : (
-                      <FaSkillIcon name={skill.icon.name} color={skill.icon.color} />
-                    )
-                  }
+                  icon={<SkillChipIcon skill={skill} />}
                 >
                   {skill.label}
                 </GlossyChip>
