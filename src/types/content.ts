@@ -19,6 +19,7 @@ export type SkillIcon =
 export type Skill = {
   label: string;
   icon: SkillIcon;
+  darkIcon?: SkillIcon;
 };
 
 export type SkillGroup = {

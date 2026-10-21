@@ -3,6 +3,7 @@ import azureIcon from "devicon/icons/azure/azure-original.svg?url";
 import azureDevopsIcon from "devicon/icons/azuredevops/azuredevops-original.svg?url";
 import csharpIcon from "devicon/icons/csharp/csharp-original.svg?url";
 import playwrightIcon from "devicon/icons/playwright/playwright-original.svg?url";
+import pythonIcon from "devicon/icons/python/python-original.svg?url";
 
 const icons: Record<string, string> = {
   amazonwebservices: amazonWebServicesIcon,
@@ -10,6 +11,7 @@ const icons: Record<string, string> = {
   azuredevops: azureDevopsIcon,
   csharp: csharpIcon,
   playwright: playwrightIcon,
+  python: pythonIcon,
 };
 
 type DeviconIconProps = {
