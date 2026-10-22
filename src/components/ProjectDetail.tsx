@@ -11,6 +11,7 @@ import { GlossyChip, ProjectTagChip } from "./Chips";
 import { SectionImageGallery } from "./fun/FunImageGallery";
 import { ImageFocusOverlay } from "./ImageFocus";
 import { useImageFocus } from "./useImageFocus";
+import { ThemeToggle } from "./ThemeToggle";
 
 type ProjectDetailProps = { project: Project } & (
   | { mode: "page" }
@@ -67,7 +68,10 @@ export function ProjectDetail(props: ProjectDetailProps) {
   }
 
   function navigateToPageSection(sectionId: string) {
-    if (isPage) { window.location.assign(`/${sectionId}`); return; }
+    if (isPage || window.location.pathname !== "/") {
+      window.location.assign(`/${sectionId}`);
+      return;
+    }
     if (isClosing) return;
 
     setIsClosing(true);
@@ -120,8 +124,12 @@ export function ProjectDetail(props: ProjectDetailProps) {
       aria-modal={isPage ? undefined : true}
       aria-label={isPage ? undefined : project.name}
     >
-      <div className="fixed left-[max(24px,calc((100vw-900px)/2+24px))] top-[18px] z-10 rounded-full border border-black/5 bg-white/70 p-1.5 shadow-nav backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#1c1c22]/75 dark:shadow-[0_10px_36px_rgba(0,0,0,0.42)]">
-        {isPage ? <a href="/projects/" className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink dark:text-white"><FaArrowLeft aria-hidden="true" className="h-4 w-4" />All projects</a> : <button
+      <div className="fixed left-[max(24px,calc((100vw-900px)/2+24px))] top-[18px] z-10 flex items-center rounded-full border border-black/5 bg-white/70 p-1.5 shadow-nav backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#1c1c22]/75 dark:shadow-[0_10px_36px_rgba(0,0,0,0.42)]">
+        {isPage ? <>
+          <a href="/projects/" className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink dark:text-white"><FaArrowLeft aria-hidden="true" className="h-4 w-4" />All projects</a>
+          <a href="/" className="nav-link rounded-full px-4 py-2 text-sm font-medium text-ink dark:text-white">Home</a>
+          <ThemeToggle />
+        </> : <button
           type="button"
           className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink transition-colors dark:text-white"
           onClick={closeWithAnimation}

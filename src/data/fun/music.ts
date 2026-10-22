@@ -3,7 +3,7 @@ import type { BasicFunItem } from "../../types/fun";
 export const musicFunItem: BasicFunItem = {
   key: "music",
   decoration: {
-    src: "/fun-assets/music/music-record-3d.png",
+    src: "/fun-assets/music/music-record-3d.webp",
     alt: "",
     objectPosition: "75% top",
     mode: "cutout",

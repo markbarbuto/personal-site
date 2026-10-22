@@ -15,7 +15,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3">
           <FeatureCard className="min-h-[320px] bg-[#dcd5f6] dark:bg-[#2a1e55]">
             <img
-              src="/about-assets/dotnet-3d-faded.png"
+              src="/about-assets/dotnet-3d-faded.webp"
               alt=""
               className="pointer-events-none absolute left-1/2 top-0 h-auto w-[258px] max-w-none -translate-x-1/2 object-contain opacity-[0.25]"
               width={1254}
@@ -38,7 +38,7 @@ export function AboutSection() {
 
           <FeatureCard className="min-h-[320px] bg-[#e6ecfb] dark:bg-[#1c2743]">
             <img
-              src="/about-assets/utoronto-coa.png"
+              src="/about-assets/utoronto-coa.webp"
               alt=""
               className="pointer-events-none absolute top-5 left-1/2 h-[270px] w-auto -translate-x-1/2 object-contain opacity-[0.25]"
               width={1068}
@@ -56,7 +56,7 @@ export function AboutSection() {
 
           <FeatureCard className="min-h-[320px] bg-[#e5f4eb] dark:bg-[#1a3327]">
             <img
-              src="/about-assets/mobile-phone.png"
+              src="/about-assets/mobile-phone.webp"
               alt=""
               className="pointer-events-none absolute top-5 left-1/2 h-[270px] w-auto -translate-x-1/2 object-contain opacity-[0.25]"
               width={589}

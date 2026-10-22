@@ -204,6 +204,9 @@ function ProjectCard({ project, tint, onOpen, onTagClick }: ProjectCardProps) {
           <img
             src={project.images.card.src}
             alt={project.images.card.alt}
+            width={140}
+            height={140}
+            loading="lazy"
             className="h-full w-full object-cover"
           />
         </div>

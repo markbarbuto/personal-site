@@ -5,7 +5,7 @@ export const profile = {
   name: "Mark Barbuto",
   title: "Software Developer",
   email: "markbarbuto@outlook.com",
-  avatarUrl: "/profile/mark-barbuto-linkedin.jpg",
+  avatarUrl: "/profile/mark-barbuto-linkedin.webp",
   aboutSummary:
     "I'm a full-stack software developer with over 4 years of professional experience building scalable applications across web, mobile, and cloud platforms.",
   aboutIntro:

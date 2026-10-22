@@ -10,3 +10,5 @@ npm-debug.log*
 .vercel
 .env*
 .playwright-mcp
+.audit/
+playwright-report/
