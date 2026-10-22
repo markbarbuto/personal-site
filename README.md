@@ -1,89 +1,73 @@
 # Portfolio
 
-A Vite + React + TypeScript personal portfolio converted from the reference HTML.
+Mark Barbuto's portfolio at [markbarbuto.com](https://markbarbuto.com), built with React, TypeScript, and Vite and hosted on Vercel.
 
-## Local Development
+## Develop locally
 
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-Build and preview the production output:
+Build the static pages and preview the production output.
 
-```bash
+```sh
 npm run build
 npm run preview
 ```
 
-Lint the project:
+The build renders the homepage, project archive, and each case study into HTML before deployment. React hydrates those pages to enable filters, project dialogs, galleries, theme controls, travel details, and the assistant. Direct project links work without JavaScript.
 
-```bash
+## Edit content
+
+- `src/data/site.ts` owns the production origin and default metadata.
+- `src/data/profile.ts` owns the biography and contact links.
+- `src/data/experience.ts` owns professional history.
+- `src/data/skills.ts` owns skill groups.
+- `src/data/projects.ts` owns project slugs, descriptions, content, and links.
+- `src/data/fun/` owns interests and travel content.
+- `src/pages.ts` derives published routes, metadata, and structured data.
+
+Keep project slugs stable when renaming titles. Adding a project automatically adds its page and sitemap entry. Existing project and travel authoring skills remain under `.agents/skills/`.
+
+## Verify changes
+
+```sh
 npm run lint
+npm run build
+npm run check:seo
+npm run test:assistant
+npx playwright install chromium
+npm run test:browser
 ```
 
-## Content Editing
+The SEO check validates generated content, canonicals, links, metadata, structured data, discovery files, and the social image. Browser tests run against static output on desktop and mobile, including JavaScript-disabled pages and hydration behavior. Browser artifacts stay under `.audit/seo-aeo/`.
 
-Portfolio content is stored in typed data modules:
+Set `PLAYWRIGHT_CHANNEL=chrome` to use an installed Chrome browser instead of Playwright's bundled Chromium when required by the local environment.
 
-- `src/data/profile.ts` - name, initials, title, email, social links, about copy, nav
-- `src/data/experience.ts` - work history
-- `src/data/skills.ts` - skill groups and icons
-- `src/data/projects.ts` - project cards and detail pages
-- `src/data/fun.ts` - fun cards and expandable detail copy
-- `src/data/prompts.ts` - suggested assistant prompts
+## Update images
 
-The components in `src/components` are mostly presentational. This keeps placeholder content easy to replace without editing JSX.
+Keep original image assets as source files. Regenerate optimized variants and the social preview when source images change.
 
-## Assistant Module
-
-The chat area is named the Assistant module in code because the user-facing feature is an assistant, even though the future implementation will be backed by a self-hosted open-weights LLM.
-
-Current files:
-
-- `src/components/assistant/AssistantModule.tsx` - chat UI and state
-- `src/components/assistant/PromptChips.tsx` - suggested prompts
-- `src/services/assistantClient.ts` - demo response service and future integration boundary
-- `src/types/assistant.ts` - request/response/message types
-
-For now, the assistant returns local canned demo responses. No network call is made in this iteration.
-
-## Future Lightweight RAG Assistant
-
-Recommended future architecture:
-
-- Keep this frontend as a static GitHub Pages site.
-- Host a small Assistant API on an Oracle Cloud VM.
-- Use a lightweight self-hosted RAG setup instead of a heavy always-on model stack.
-- Start with a small quantized open-weights instruct model through Ollama or `llama.cpp` server.
-- Keep the source corpus small: resume, project notes, interests, and a short bio.
-- Use retrieval so each request sends only relevant snippets to the model.
-- Start with Markdown/JSON documents plus a small vector index such as FAISS, Chroma, or SQLite-backed embeddings.
-- If Oracle free-tier resources are tight, use retrieval plus template answers first and add generation only where it improves the experience.
-- Keep the model server private on the VM. Expose only the Assistant API.
-- Put HTTPS in front of the API with Caddy or Nginx.
-- Add strict CORS for the portfolio domain, rate limiting, request size limits, and conservative logging.
-
-The frontend should eventually call:
-
-```ts
-fetch(`${import.meta.env.VITE_ASSISTANT_API_URL}/chat`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message, history }),
-});
+```sh
+npm run images:optimize
+npm run images:social
 ```
 
-Do not put secret keys or private credentials in Vite environment variables. Any `VITE_*` variable is bundled into public frontend code.
+`scripts/optimize-images.mjs` records the chosen image widths. Components reference the generated WebP files. The social image is a 1200 by 630 PNG generated from vector text and the existing portrait.
 
-## Deployment
+## Configure the assistant
 
-This project is configured for GitHub Pages at:
+Set `VITE_ASSISTANT_API_URL` to use an external API. The frontend sends a POST request to its `/chat` endpoint. When the URL is absent, the demo answers from the same public profile, experience, project, skill, and interest data used by the site. Unsupported demo questions receive an explicit unknown-answer response.
 
-```text
-https://markbarbuto.github.io/
-```
+The external API and its retrieval corpus are separate from this repository. Review its answers against the published facts before describing it as an active integration. Keep model services private behind the API and use HTTPS, appropriate CORS, request limits, and rate limits.
 
-Vite uses `base: "/"` in `vite.config.ts`.
+Vite variables are bundled into public browser code. Never put credentials in `VITE_*` variables.
 
-The GitHub Actions workflow at `.github/workflows/deploy.yml` builds `dist` and deploys it with official GitHub Pages actions. In the GitHub repository settings, configure Pages to deploy from GitHub Actions.
+## Deploy to Vercel
+
+`vercel.json` sets `npm run build` and the `dist` output directory. Published pages use trailing slashes. The deployment contains real documents and `404.html`; it does not rewrite unknown URLs to the homepage.
+
+All canonical URLs use `https://markbarbuto.com/`. Preview builds with `VERCEL_ENV=preview` include noindex metadata. Vercel also normally supplies preview noindex headers. Confirm actual deployment headers and hostname redirects after release.
+
+The GitHub workflow verifies builds and generated content. Production deployment remains controlled by the Vercel project. See [SEO and AEO operations](docs/seo-aeo.md) for release checks and account tasks.

@@ -11,13 +11,17 @@ import { GlossyChip, ProjectTagChip } from "./Chips";
 import { SectionImageGallery } from "./fun/FunImageGallery";
 import { ImageFocusOverlay } from "./ImageFocus";
 import { useImageFocus } from "./useImageFocus";
+import { ThemeToggle } from "./ThemeToggle";
 
-type ProjectDetailProps = {
-  project: Project;
-  onClose: () => void;
-};
+type ProjectDetailProps = { project: Project } & (
+  | { mode: "page" }
+  | { mode?: "modal"; onClose: () => void }
+);
 
-export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
+export function ProjectDetail(props: ProjectDetailProps) {
+  const { project } = props;
+  const isPage = props.mode === "page";
+  const ContentTag = isPage ? "main" : "div";
   const [isClosing, setIsClosing] = useState(false);
   const [actionsBelowTitle, setActionsBelowTitle] = useState(false);
   const {
@@ -60,15 +64,19 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
     if (isClosing) return;
 
     setIsClosing(true);
-    window.setTimeout(onClose, 300);
+    if (props.mode !== "page") window.setTimeout(props.onClose, 300);
   }
 
   function navigateToPageSection(sectionId: string) {
+    if (isPage || window.location.pathname !== "/") {
+      window.location.assign(`/${sectionId}`);
+      return;
+    }
     if (isClosing) return;
 
     setIsClosing(true);
     window.setTimeout(() => {
-      onClose();
+      props.onClose();
       window.setTimeout(() => {
         document.querySelector(sectionId)?.scrollIntoView({ behavior: "smooth" });
         window.history.replaceState(null, "", sectionId);
@@ -79,12 +87,12 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const projectActions = (
     <>
       {project.links.live &&
-        (project.links.live.href.startsWith("#") ? (
+        (project.links.live.href.startsWith("#") && !isPage ? (
           <BlueAction onClick={() => navigateToPageSection(project.links.live!.href)}>
             {project.links.live.label ?? "View live"}
           </BlueAction>
         ) : (
-          <BlueAction href={project.links.live.href} target="_blank" rel="noopener noreferrer">
+          <BlueAction href={project.links.live.href.startsWith("#") ? `/${project.links.live.href}` : project.links.live.href} target={project.links.live.href.startsWith("#") ? undefined : "_blank"} rel="noopener noreferrer">
             {project.links.live.label ?? "View live"} <FaArrowUpRightFromSquare aria-hidden="true" className="h-4 w-4" />
           </BlueAction>
         ))}
@@ -109,14 +117,19 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] overflow-y-auto bg-panel dark:bg-[#101014] ${
+      className={`${isPage ? "min-h-screen text-ink dark:text-[#f5f5f7]" : "fixed inset-0 z-[100] overflow-y-auto"} bg-panel dark:bg-[#101014] ${
         isClosing ? "fade-out" : "fade-in"
       }`}
-      role="dialog"
-      aria-modal="true"
+      role={isPage ? undefined : "dialog"}
+      aria-modal={isPage ? undefined : true}
+      aria-label={isPage ? undefined : project.name}
     >
-      <div className="fixed left-[max(24px,calc((100vw-900px)/2+24px))] top-[18px] z-10 rounded-full border border-black/5 bg-white/70 p-1.5 shadow-nav backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#1c1c22]/75 dark:shadow-[0_10px_36px_rgba(0,0,0,0.42)]">
-        <button
+      <div className="fixed left-[max(24px,calc((100vw-900px)/2+24px))] top-[18px] z-10 flex items-center rounded-full border border-black/5 bg-white/70 p-1.5 shadow-nav backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-[#1c1c22]/75 dark:shadow-[0_10px_36px_rgba(0,0,0,0.42)]">
+        {isPage ? <>
+          <a href="/projects/" className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink dark:text-white"><FaArrowLeft aria-hidden="true" className="h-4 w-4" />All projects</a>
+          <a href="/" className="nav-link rounded-full px-4 py-2 text-sm font-medium text-ink dark:text-white">Home</a>
+          <ThemeToggle />
+        </> : <button
           type="button"
           className="nav-link inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-ink transition-colors dark:text-white"
           onClick={closeWithAnimation}
@@ -124,9 +137,9 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         >
           <FaArrowLeft aria-hidden="true" className="h-4 w-4" />
           Back
-        </button>
+        </button>}
       </div>
-      <div
+      <ContentTag
         className={`mx-auto max-w-[900px] px-6 pb-[90px] pt-[86px] ${
           isClosing ? "sheet-down" : "sheet-up"
         }`}
@@ -216,7 +229,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
             </div>
           </div>
         </div>
-      </div>
+      </ContentTag>
       {focusedImage && (
         <ImageFocusOverlay
           image={focusedImage}

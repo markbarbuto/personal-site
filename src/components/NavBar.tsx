@@ -1,7 +1,7 @@
 import { navItems, profile, socialLinks } from "../data/profile";
 import { ThemeToggle } from "./ThemeToggle";
 
-export function NavBar() {
+export function NavBar({ homeLinks = false }: { homeLinks?: boolean }) {
   const linkedInHref = socialLinks.find((link) => link.label === "LinkedIn")?.href ?? "#";
 
   return (
@@ -26,7 +26,7 @@ export function NavBar() {
       {navItems.map((item) => (
         <a
           key={item.href}
-          href={item.href}
+          href={homeLinks ? `/${item.href}` : item.href}
           className="nav-link flex-none rounded-full px-4 py-2 text-sm font-medium text-ink no-underline transition-colors dark:text-white"
         >
           {item.label}

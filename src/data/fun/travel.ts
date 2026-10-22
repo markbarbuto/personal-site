@@ -1,7 +1,7 @@
 import type { TravelFunItem } from "../../types/fun";
 
 const travelImage = {
-  src: "/fun-assets/travel/travel-globe-3d.png",
+  src: "/fun-assets/travel/travel-globe-3d.webp",
   alt: "An ivory globe with gold land on a brass stand",
   objectPosition: "65% top",
 };

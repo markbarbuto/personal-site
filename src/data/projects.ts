@@ -2,19 +2,20 @@ import type { Project } from "../types/content";
 
 export const projects: Project[] = [
   {
+    slug: "vitae-ai",
     name: "Vitae AI",
     kind: "Self-Hosted AI",
     description:
-      "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. It's the engine behind the chat at the top of this page.",
+      "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. Designed for future integration with the portfolio chat assistant.",
     gradient: "#5a1414, #7a1f1f",
     tint: "#9b1c1c",
     images: {
       card: {
-        src: "/project-assets/vitae-ai-icon.png",
+        src: "/project-assets/vitae-ai-icon.webp",
         alt: "Vitae AI logo",
       },
       detailHeader: {
-        src: "/project-assets/vitae-ai-header.png",
+        src: "/project-assets/vitae-ai-header.webp",
         alt: "Vitae AI header image",
       },
     },
@@ -37,6 +38,7 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "path-to-recovery",
     name: "Path to Recovery",
     kind: "Mobile App",
     description:
@@ -45,11 +47,11 @@ export const projects: Project[] = [
     tint: "#4b5563",
     images: {
       card: {
-        src: "/project-assets/path-to-recovery-icon.png",
+        src: "/project-assets/path-to-recovery-icon.webp",
         alt: "Path to Recovery app icon",
       },
       detailHeader: {
-        src: "/project-assets/path-to-recovery-wordmark.png",
+        src: "/project-assets/path-to-recovery-wordmark.webp",
         alt: "Path to Recovery header image",
       },
     },
@@ -69,11 +71,11 @@ export const projects: Project[] = [
         type: "gallery",
         images: [
           {
-            src: "/project-assets/path-to-recovery-icon.png",
+            src: "/project-assets/path-to-recovery-icon.webp",
             alt: "Path to Recovery app icon",
           },
           {
-            src: "/project-assets/path-to-recovery-wordmark.png",
+            src: "/project-assets/path-to-recovery-wordmark.webp",
             alt: "Path to Recovery wordmark",
           },
         ],
@@ -111,6 +113,7 @@ export const projects: Project[] = [
     },
   },
   {
+		slug: "indigenous-supports-from-khp",
 		name: "Indigenous Supports from KHP",
 		kind: "Mobile App",
 		description:
@@ -119,11 +122,11 @@ export const projects: Project[] = [
 		tint: "#2f63d8",
 		images: {
 			card: {
-				src: "/project-assets/indigenous-supports-khp.png",
+				src: "/project-assets/indigenous-supports-khp.webp",
 				alt: "Indigenous Supports from Kids Help Phone app icon",
 			},
 			detailHeader: {
-				src: "/project-assets/indigenous-supports-khp/header.png",
+				src: "/project-assets/indigenous-supports-khp/header.webp",
 				alt: "Indigenous Supports from KHP mobile app screens",
 			},
 		},
@@ -263,6 +266,7 @@ export const projects: Project[] = [
 		},
 	},
   {
+    slug: "handwritten-digit-classifier",
     name: "Handwritten Digit Classifier",
     kind: "Machine Learning",
     description:
@@ -271,11 +275,11 @@ export const projects: Project[] = [
     tint: "#16a34a",
     images: {
       card: {
-        src: "/project-assets/handwritten-digit-classifier/card.png",
+        src: "/project-assets/handwritten-digit-classifier/card.webp",
         alt: "Handwritten Digit Classifier project card image",
       },
       detailHeader: {
-        src: "/project-assets/handwritten-digit-classifier/header.png",
+        src: "/project-assets/handwritten-digit-classifier/header.webp",
         alt: "Handwritten Digit Classifier header image",
       },
     },

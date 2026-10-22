@@ -1,4 +1,4 @@
-import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { projects } from "../data/projects";
@@ -12,8 +12,8 @@ const featuredProjects = projects.filter((project) => featuredProjectNames.inclu
 
 type ProjectFilter = { kind: "featured" } | { kind: "all" } | { kind: "tag"; tag: string };
 
-export function ProjectsSection() {
-  const [filter, setFilter] = useState<ProjectFilter>({ kind: "featured" });
+export function ProjectsSection({ initialFilter = "featured" }: { initialFilter?: "featured" | "all" }) {
+  const [filter, setFilter] = useState<ProjectFilter>({ kind: initialFilter });
   const [tagsExpanded, setTagsExpanded] = useState(false);
   // How many filter buttons fit on the first row next to the "+N more" chip; null when every button fits.
   const [collapsedCount, setCollapsedCount] = useState<number | null>(null);
@@ -101,13 +101,6 @@ export function ProjectsSection() {
     buttons[tagsExpanded ? buttons.length - 1 : collapsedCount]?.focus();
   }
 
-  function onProjectKeyDown(event: ReactKeyboardEvent<HTMLElement>, project: Project) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      setOpenProject(project);
-    }
-  }
-
   return (
     <section id="projects" className="pt-[52px]">
       <div className="mb-4 flex min-h-10 flex-wrap items-center justify-between gap-4">
@@ -153,7 +146,6 @@ export function ProjectsSection() {
               project={project}
               tint={project.tint}
               onOpen={() => setOpenProject(project)}
-              onKeyDown={(event) => onProjectKeyDown(event, project)}
               onTagClick={onTagClick}
             />
           ))}
@@ -164,6 +156,7 @@ export function ProjectsSection() {
           )}
         </div>
       </SectionCard>
+      <a href="/projects/" className="mt-4 inline-block text-sm font-semibold text-appleBlue hover:underline">Browse project case studies</a>
 
       {openProject && <ProjectDetail project={openProject} onClose={() => setOpenProject(null)} />}
     </section>
@@ -174,26 +167,24 @@ type ProjectCardProps = {
   project: Project;
   tint: string;
   onOpen: () => void;
-  onKeyDown: (event: ReactKeyboardEvent<HTMLElement>) => void;
   onTagClick: (event: MouseEvent<HTMLButtonElement>, tag: string) => void;
 };
 
-function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCardProps) {
+function ProjectCard({ project, tint, onOpen, onTagClick }: ProjectCardProps) {
   return (
     <article
       className="project-card project-card-tinted glossy-tile flex min-h-[200px] flex-col items-stretch gap-6 rounded-[22px] border border-black/5 p-[30px] text-left text-ink transition sm:flex-row sm:items-center dark:border-white/10 dark:text-[#f5f5f7]"
       style={{ "--project-tint": tint } as CSSProperties}
       onClick={onOpen}
-      onKeyDown={onKeyDown}
-      role="button"
-      tabIndex={0}
-      aria-label={`Open project details for ${project.name}`}
     >
       <div className="flex min-w-0 flex-1 flex-col">
         <span className="text-[11.5px] font-semibold uppercase tracking-[0.06em] text-[#a1a1a6] dark:text-[#858592]">
           {project.kind}
         </span>
-        <h3 className="mt-1 text-[21px] font-bold tracking-[-0.015em]">{project.name}</h3>
+        <h3 className="mt-1 text-[21px] font-bold tracking-[-0.015em]"><a href={`/projects/${project.slug}/`} onClick={(event) => {
+          event.stopPropagation();
+          if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onOpen(); }
+        }}>{project.name}</a></h3>
         <p className="mt-[7px] line-clamp-2 text-[15px] leading-normal text-muted dark:text-[#b7b7c2]">
           {project.description}
         </p>
@@ -213,6 +204,9 @@ function ProjectCard({ project, tint, onOpen, onKeyDown, onTagClick }: ProjectCa
           <img
             src={project.images.card.src}
             alt={project.images.card.alt}
+            width={140}
+            height={140}
+            loading="lazy"
             className="h-full w-full object-cover"
           />
         </div>

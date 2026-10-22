@@ -8,7 +8,6 @@ import { NavBar } from "./components/NavBar";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { SkillsSection } from "./components/SkillsSection";
 import { useInitialHashScroll } from "./components/useInitialHashScroll";
-import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   useInitialHashScroll();
@@ -29,7 +28,6 @@ export default function App() {
           <ContactSection />
         </div>
       </main>
-      <Analytics />
     </div>
   );
 }

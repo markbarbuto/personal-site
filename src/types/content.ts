@@ -81,6 +81,7 @@ export type ProjectLinks = {
 };
 
 export type Project = {
+  slug: string;
   name: string;
   kind: string;
   description: string;

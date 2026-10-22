@@ -3,25 +3,24 @@ import { FiMoon, FiSun } from "react-icons/fi";
 
 const storageKey = "portfolio-theme";
 
-function getInitialIsDark() {
-  if (typeof window === "undefined") return false;
-  return window.localStorage.getItem(storageKey) === "dark";
-}
-
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(getInitialIsDark);
+  const [isDark, setIsDark] = useState(false);
   const Icon = isDark ? FiSun : FiMoon;
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    window.localStorage.setItem(storageKey, isDark ? "dark" : "light");
-  }, [isDark]);
+    setIsDark(document.documentElement.classList.contains("dark"));
+  }, []);
 
   return (
     <button
       type="button"
       className="nav-link flex h-9 w-9 flex-none items-center justify-center rounded-full text-ink transition-colors dark:text-white"
-      onClick={() => setIsDark((current) => !current)}
+      onClick={() => {
+        const next = !isDark;
+        setIsDark(next);
+        document.documentElement.classList.toggle("dark", next);
+        window.localStorage.setItem(storageKey, next ? "dark" : "light");
+      }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
     >
