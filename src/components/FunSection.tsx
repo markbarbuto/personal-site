@@ -21,16 +21,20 @@ function getDeepLinkedTravelItem() {
 }
 
 export function FunSection() {
-  const deepLinkedTravelItem = getDeepLinkedTravelItem();
-  const [openKey, setOpenKey] = useState<string | null>(deepLinkedTravelItem?.key ?? null);
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const openItem = funItems.find((item) => item.key === openKey) ?? null;
   const [accordionItem, setAccordionItem] = useState(openItem);
   const [outgoingAccordionItem, setOutgoingAccordionItem] = useState<FunItem | null>(null);
   const accordionItemRef = useRef(openItem);
   const closeTimerRef = useRef<number | null>(null);
   const switchTimerRef = useRef<number | null>(null);
-  const [detailItem, setDetailItem] = useState<FunItem | null>(deepLinkedTravelItem);
+  const [detailItem, setDetailItem] = useState<FunItem | null>(null);
   const accordionId = "fun-accordion";
+
+  useEffect(() => {
+    const item = getDeepLinkedTravelItem();
+    if (item) { setOpenKey(item.key); setDetailItem(item); }
+  }, []);
 
   useEffect(() => {
     if (closeTimerRef.current !== null) {

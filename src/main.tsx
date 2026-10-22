@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { SiteApp } from "./SiteApp";
+import { resolvePage } from "./pages";
 import "./index.css";
 
 const root = document.getElementById("root");
@@ -14,8 +15,11 @@ document.documentElement.classList.toggle(
   window.localStorage.getItem("portfolio-theme") === "dark",
 );
 
-createRoot(root).render(
+const app = (
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <SiteApp page={resolvePage(window.location.pathname)} />
+  </StrictMode>
 );
+
+if (root.children.length > 0) hydrateRoot(root, app);
+else createRoot(root).render(app);

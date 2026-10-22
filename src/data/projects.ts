@@ -2,10 +2,11 @@ import type { Project } from "../types/content";
 
 export const projects: Project[] = [
   {
+    slug: "vitae-ai",
     name: "Vitae AI",
     kind: "Self-Hosted AI",
     description:
-      "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. It's the engine behind the chat at the top of this page.",
+      "A privately-hosted LLM that answers questions about my resume, career, projects, and interests. Designed for future integration with the portfolio chat assistant.",
     gradient: "#5a1414, #7a1f1f",
     tint: "#9b1c1c",
     images: {
@@ -37,6 +38,7 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "path-to-recovery",
     name: "Path to Recovery",
     kind: "Mobile App",
     description:
@@ -111,6 +113,7 @@ export const projects: Project[] = [
     },
   },
   {
+		slug: "indigenous-supports-from-khp",
 		name: "Indigenous Supports from KHP",
 		kind: "Mobile App",
 		description:
@@ -263,6 +266,7 @@ export const projects: Project[] = [
 		},
 	},
   {
+    slug: "handwritten-digit-classifier",
     name: "Handwritten Digit Classifier",
     kind: "Machine Learning",
     description:
