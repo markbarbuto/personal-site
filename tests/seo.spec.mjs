@@ -123,3 +123,17 @@ test("case study image focus opens and closes", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
+
+test("analytics loads once on every kind of direct landing page", async ({ page }) => {
+  const requests = [];
+  await page.route("**/_vercel/insights/script.js", async (route) => {
+    requests.push(route.request().url());
+    await route.fulfill({ contentType: "application/javascript", body: "" });
+  });
+  for (const path of ["/", "/projects/", "/projects/vitae-ai/"]) {
+    requests.length = 0;
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    await expect.poll(() => requests.length).toBe(1);
+    await expect(page.locator('script[src="/_vercel/insights/script.js"]')).toHaveCount(1);
+  }
+});

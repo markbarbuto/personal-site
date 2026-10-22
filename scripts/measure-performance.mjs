@@ -14,6 +14,12 @@ try {
     for (const build of builds) {
       const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true });
       const page = await context.newPage();
+      const failures = [];
+      page.on("response", (response) => {
+        if (response.status() >= 400 && !new URL(response.url()).pathname.startsWith("/_vercel/")) {
+          failures.push(`${response.status()} ${response.url()}`);
+        }
+      });
       const session = await context.newCDPSession(page);
       await session.send("Network.enable");
       await session.send("Network.setCacheDisabled", { cacheDisabled: true });
@@ -39,6 +45,7 @@ try {
         javascript: performance.getEntriesByType("resource").filter((entry) => entry.name.endsWith(".js")).reduce((total, entry) => total + entry.encodedBodySize, 0),
       }));
       assert(metrics.lcp > 0, `${build.directory} produced no LCP measurement`);
+      assert.deepEqual(failures, [], `${build.directory} loaded failed resources`);
       results.push({ directory: build.directory, iteration, ...metrics });
       if (!iteration) {
         await mkdir(".audit/seo-aeo/performance", { recursive: true });

@@ -3,8 +3,9 @@ import { NavBar } from "./components/NavBar";
 import { ProjectDetail } from "./components/ProjectDetail";
 import { ProjectsSection } from "./components/ProjectsSection";
 import type { Page } from "./pages";
+import { Analytics } from "@vercel/analytics/react";
 
-export function SiteApp({ page }: { page: Page }) {
+function PageContent({ page }: { page: Page }) {
   switch (page.kind) {
     case "home": return <App />;
     case "project": return <ProjectDetail mode="page" project={page.project} />;
@@ -27,4 +28,8 @@ export function SiteApp({ page }: { page: Page }) {
     );
     default: { const exhaustive: never = page; return exhaustive; }
   }
+}
+
+export function SiteApp({ page }: { page: Page }) {
+  return <><PageContent page={page} /><Analytics /></>;
 }
