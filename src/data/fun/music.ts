@@ -3,12 +3,13 @@ import type { BasicFunItem } from "../../types/fun";
 export const musicFunItem: BasicFunItem = {
   key: "music",
   decoration: {
-    src: "/fun-assets/music/music-drum-3d.png",
+    src: "/fun-assets/music/music-record-3d.png",
     alt: "",
     objectPosition: "75% top",
     mode: "cutout",
-    opacity: 0.18,
-    offsetY: 12,
+    opacity: 0.35,
+    scale: 0.85,
+    offsetY: 0,
   },
   title: "Music",
   tint: "rgba(79,124,255,0.16)",
