@@ -131,6 +131,10 @@ export function FunSection() {
                       style={{
                         objectPosition: item.decoration.objectPosition,
                         opacity: item.decoration.opacity,
+                        scale: item.decoration.scale,
+                        transform: item.decoration.offsetY
+                          ? `translateY(${item.decoration.offsetY}px)`
+                          : undefined,
                       }}
                       loading="lazy"
                     />

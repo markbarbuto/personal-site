@@ -1,8 +1,8 @@
 import type { TravelFunItem } from "../../types/fun";
 
 const travelImage = {
-  src: "/fun-assets/travel/palm-tree-cutout.png",
-  alt: "The crown and upper trunk of a Mediterranean palm tree",
+  src: "/fun-assets/travel/travel-globe-3d.png",
+  alt: "An ivory globe with gold land on a brass stand",
   objectPosition: "65% top",
 };
 
@@ -25,6 +25,7 @@ export const travelFunItem: TravelFunItem = {
     alt: "",
     mode: "cutout",
     opacity: 0.30,
+    scale: 0.9,
   },
   title: "Travel",
   tagline: "",

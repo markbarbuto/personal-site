@@ -9,6 +9,8 @@ export type FunLink = {
 export type FunCardImage = FocusImage & {
   mode?: "contain" | "cover" | "cutout";
   opacity?: number;
+  offsetY?: number;
+  scale?: number;
 };
 
 export type FunFeatureMedia = {
