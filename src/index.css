@@ -278,7 +278,8 @@ html.dark .avatar-coin {
     0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-html.dark .glossy-tile {
+html.dark .glossy-tile,
+.now-playing-sheen {
   background-image: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.14) 0%,
@@ -564,6 +565,30 @@ html.dark .travel-stamp-ticket::after {
   }
 }
 
+@keyframes nowPlayingBar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.now-playing-bar {
+  transform-origin: bottom;
+  animation: nowPlayingBar 900ms ease-in-out infinite;
+}
+
+.now-playing-reveal {
+  animation: fadeIn 400ms ease both;
+}
+
+.now-playing-skeleton-exit {
+  animation: fadeOut 400ms ease both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .travel-trip-swap {
     animation: none;
@@ -574,7 +599,8 @@ html.dark .travel-stamp-ticket::after {
   }
 
   .fun-accordion-panel-enter,
-  .fun-accordion-panel-exit {
+  .fun-accordion-panel-exit,
+  .now-playing-bar {
     animation: none;
   }
 }

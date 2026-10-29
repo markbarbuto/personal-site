@@ -10,6 +10,7 @@ type FunFeaturePreviewProps = {
   title: string;
   preview: string;
   image?: FocusImage;
+  media?: ReactNode;
   imageClassName?: string;
   onOpenImage?: (image: FocusImage) => void;
   onReadMore?: () => void;
@@ -19,6 +20,7 @@ export function FunFeaturePreview({
   title,
   preview,
   image,
+  media,
   imageClassName = "h-full w-full object-cover",
   onOpenImage,
   onReadMore,
@@ -26,7 +28,7 @@ export function FunFeaturePreview({
   return (
     <div
       className={`grid h-full grid-rows-[auto_auto_1fr_auto] gap-y-4 sm:grid-rows-[auto_1fr] ${
-        image
+        image || media
           ? "gap-x-5 sm:grid-cols-[1.05fr_0.95fr]"
           : ""
       }`}
@@ -68,6 +70,12 @@ export function FunFeaturePreview({
             />
           </div>
         ))}
+
+      {media && (
+        <div className="row-start-3 h-full min-h-0 w-full min-w-0 self-stretch sm:col-start-2 sm:row-start-2">
+          {media}
+        </div>
+      )}
     </div>
   );
 }
