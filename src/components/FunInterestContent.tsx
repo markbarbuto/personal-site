@@ -1,6 +1,7 @@
-import type { FunItem, GunnersFunItem, TravelFunItem } from "../types/fun";
+import type { FunItem, GunnersFunItem, MusicFunItem, TravelFunItem } from "../types/fun";
 import { GunnersContent } from "./fun/GunnersContent";
 import { FunFeaturePreview } from "./fun/FunFeatureLayouts";
+import { NowPlayingPanel } from "./fun/NowPlayingPanel";
 import { TravelContent } from "./fun/TravelContent";
 
 type FunInterestContentProps = {
@@ -17,6 +18,10 @@ function isTravelItem(item: FunItem): item is TravelFunItem {
   return item.feature?.type === "travel";
 }
 
+function isMusicItem(item: FunItem): item is MusicFunItem {
+  return item.feature?.type === "spotify";
+}
+
 export function FunInterestContent({ item, layout, onReadMore }: FunInterestContentProps) {
   if (isGunnersItem(item)) {
     return <GunnersContent item={item} layout={layout} onReadMore={onReadMore} />;
@@ -31,6 +36,7 @@ export function FunInterestContent({ item, layout, onReadMore }: FunInterestCont
       <FunFeaturePreview
         title={item.title}
         preview={item.preview}
+        media={isMusicItem(item) ? <NowPlayingPanel /> : undefined}
         onReadMore={onReadMore}
       />
     );

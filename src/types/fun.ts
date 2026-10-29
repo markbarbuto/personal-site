@@ -112,4 +112,8 @@ export type TravelFunItem = FunItemBase & {
   feature: TravelFeature;
 };
 
-export type FunItem = BasicFunItem | GunnersFunItem | TravelFunItem;
+export type MusicFunItem = FunItemBase & {
+  feature: { type: "spotify" };
+};
+
+export type FunItem = BasicFunItem | GunnersFunItem | TravelFunItem | MusicFunItem;
