@@ -6,7 +6,7 @@ import type { NowPlaying } from "../../types/spotify";
 const NOW_PLAYING_URL = "/api/spotify/now-playing";
 const POLL_INTERVAL = 20_000;
 const PANEL_CLASS_NAME =
-  "relative isolate flex h-full w-full flex-col overflow-hidden rounded-[18px] border border-white/10 bg-[#14141c] p-4 text-white shadow-[0_16px_38px_rgba(0,0,0,0.11)] sm:p-5";
+  "glossy-tile relative isolate flex h-full w-full flex-col overflow-hidden rounded-[18px] border bg-[#14141c] !bg-none bg-clip-padding p-4 text-white sm:p-5";
 
 const COVER_CLASS_NAME = "h-[60px] w-[60px] flex-none rounded-xl sm:h-[104px] sm:w-[104px]";
 
