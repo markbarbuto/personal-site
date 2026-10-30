@@ -3,30 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Barbuto | Software Developer</title>
     <meta
       name="description"
-      content="Mark Barbuto is a software developer who loves turning messy problems into calm, well-crafted products."
+      content="Mark Barbuto is a full-stack software developer building .NET, Azure, and React Native apps, including Kids Help Phone's Indigenous Supports app."
     />
+    <meta name="author" content="Mark Barbuto" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href="https://markbarbuto.com/" />
+    <link rel="alternate" type="text/plain" title="LLM-readable profile" href="/llms.txt" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Mark Barbuto" />
+    <meta property="og:url" content="https://markbarbuto.com/" />
     <meta property="og:title" content="Mark Barbuto | Software Developer" />
     <meta
       property="og:description"
-      content="A personal software developer portfolio with projects, experience, skills, and an assistant demo."
+      content="Projects, experience, and skills of Mark Barbuto, a full-stack developer working across .NET, Azure, and React Native."
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://markbarbuto.github.io/" />
-    <meta property="og:image" content="https://markbarbuto.github.io/og-image.png" />
+    <meta property="og:image" content="https://markbarbuto.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mark Barbuto, Software Developer" />
+    <meta property="profile:first_name" content="Mark" />
+    <meta property="profile:last_name" content="Barbuto" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mark Barbuto | Software Developer" />
     <meta
       name="twitter:description"
-      content="A personal software developer portfolio with projects, experience, skills, and an assistant demo."
+      content="Projects, experience, and skills of Mark Barbuto, a full-stack developer working across .NET, Azure, and React Native."
     />
-    <link rel="canonical" href="https://markbarbuto.github.io/" />
+    <meta name="twitter:image" content="https://markbarbuto.com/og-image.png" />
+    <meta name="theme-color" content="#f5f5f7" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>Mark Barbuto | Software Developer</title>
+    <!-- Set the theme before the prerendered markup paints, so dark-mode visitors don't see a light flash. -->
+    <script>
+      try {
+        document.documentElement.classList.toggle("dark", localStorage.getItem("portfolio-theme") === "dark");
+      } catch {}
+    </script>
+    <!--structured-data-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

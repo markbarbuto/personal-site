@@ -4,6 +4,7 @@ export const profile = {
   initials: "MB",
   name: "Mark Barbuto",
   title: "Software Developer",
+  siteUrl: "https://markbarbuto.com",
   email: "markbarbuto@outlook.com",
   avatarUrl: "/profile/mark-barbuto-linkedin.jpg",
   aboutSummary:
