@@ -10,7 +10,7 @@ import { SectionCard } from "./SectionCard";
 const FUN_ACCORDION_SWAP_DURATION = 430;
 
 function getDeepLinkedTravelItem() {
-  if (!window.location.hash.startsWith("#travel-")) return null;
+  if (typeof window === "undefined" || !window.location.hash.startsWith("#travel-")) return null;
 
   const tripId = window.location.hash.replace(/^#travel-/, "");
   return (

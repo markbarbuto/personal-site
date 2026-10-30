@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
@@ -9,13 +9,15 @@ if (!root) {
   throw new Error("Root element #root was not found.");
 }
 
-document.documentElement.classList.toggle(
-  "dark",
-  window.localStorage.getItem("portfolio-theme") === "dark",
-);
-
-createRoot(root).render(
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// Production builds ship prerendered markup (scripts/prerender.mjs); the dev server does not.
+if (root.firstElementChild) {
+  hydrateRoot(root, app);
+} else {
+  createRoot(root).render(app);
+}

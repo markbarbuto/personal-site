@@ -1,5 +1,8 @@
 node_modules
 dist
+dist-ssr
+.lighthouseci
+lhci-report
 .env
 .env.*
 !.env.example
