@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
     "check:seo": "node scripts/check-seo.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "export-knowledge": "tsx scripts/export-knowledge.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -33,6 +34,7 @@
     "globals": "^16.0.0",
     "postcss": "^8.5.0",
     "tailwindcss": "^3.4.0",
+    "tsx": "^4.20.6",
     "typescript-eslint": "^8.0.0"
   }
 }

@@ -69,7 +69,7 @@ export function AboutSection() {
                   {profile.mobileExperience}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {["React Native", "Expo", "TypeScript", "NativeWind"].map((skill) => (
+                  {profile.mobileStack.map((skill) => (
                     <CompactGlossyChip key={skill}>{skill}</CompactGlossyChip>
                   ))}
                 </div>
