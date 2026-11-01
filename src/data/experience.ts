@@ -11,7 +11,7 @@ export const experience: Experience[] = [
   {
     role: "IT Application Developer",
     company: "Celestica",
-    dates: "Sep 2022 — Apr 2024",
+    dates: "May 2022 — Apr 2024",
     description:
       "Resolved critical issues in global .NET manufacturing execution system, preventing production outages and shipment delays. Received People Driven Award for building a component defect tracking module that reduced defect resolution time by 67%, projecting over $14,000 in cost savings.",
   },
