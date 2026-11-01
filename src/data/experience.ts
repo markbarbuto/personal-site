@@ -20,6 +20,6 @@ export const experience: Experience[] = [
     company: "Green P.I.",
     dates: "May 2021 — Aug 2021",
     description:
-      "Automated payment processing in .NET that reduced manual workload by over 30%. Conducted network performance analysis on multiple endpoints for IT infrastructure assessment. Led the research and development of wearable augmented reality device.",
+      "Automated payment processing in .NET and SQL Server, improving the client's workflow efficiency by ~33%. Conducted network performance analysis on multiple endpoints for IT infrastructure assessment. Performed IoT research and development for a wearable augmented reality device using Raspberry Pi.",
   },
 ];
