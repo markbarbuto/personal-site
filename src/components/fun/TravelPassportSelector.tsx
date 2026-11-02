@@ -31,7 +31,7 @@ function PalaceStampIcon(props: IconBaseProps) {
     <svg viewBox="0 0 64 64" fill="currentColor" {...props}>
       <path d="M5 58V29h6v-6h6v6h6v-6h6v6h6v29H5Zm10-5h10V41a5 5 0 0 0-10 0v12Z" fillRule="evenodd" />
       <path d="M36 58V34h23v24H36Zm8-5h7V43a3.5 3.5 0 0 0-7 0v10Z" fillRule="evenodd" />
-      <path d="M34 31a14 14 0 0 1 12-14V9h3v8a14 14 0 0 1 12 14H34ZM8 20V9h6v5h5V9h6v5h5V9h6v11H8ZM46 6V2h3v4h-3Z" />
+      <path d="M34 31a14 14 0 0 1 12-14V9h3v8a14 14 0 0 1 12 14H34ZM6 20V9h6v5h5V9h6v5h5V9h6v11H6ZM46 6V2h3v4h-3Z" />
     </svg>
   );
 }
