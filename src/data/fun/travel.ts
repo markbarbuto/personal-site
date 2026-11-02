@@ -403,16 +403,16 @@ export const travelFunItem: TravelFunItem = {
             objectPosition: "center 65%",
           },
           {
-            id: "madeira-pedra-rija-friends",
-            src: "/fun-assets/travel/portugal-2026/madeira-pedra-rija-friends.jpg",
-            alt: "Five friends gathered around a wooden Pedra Rija sign on a misty mountain trail in Madeira",
-            objectPosition: "center 45%",
-          },
-          {
             id: "madeira-moonlit-mountains",
             src: "/fun-assets/travel/portugal-2026/madeira-moonlit-mountains.jpg",
             alt: "Moonlight reflecting on the sea beyond dark mountain ridges in Madeira",
             objectPosition: "center 62%",
+          },
+          {
+            id: "madeira-pedra-rija-friends",
+            src: "/fun-assets/travel/portugal-2026/madeira-pedra-rija-friends.jpg",
+            alt: "Five friends gathered around a wooden Pedra Rija sign on a misty mountain trail in Madeira",
+            objectPosition: "center 45%",
           },
           {
             id: "fanal-forest-mist",
@@ -421,17 +421,17 @@ export const travelFunItem: TravelFunItem = {
             objectPosition: "center 50%",
           },
           {
+            id: "madeira-cable-car-coast",
+            src: "/fun-assets/travel/portugal-2026/madeira-cable-car-coast.jpg",
+            alt: "Cable cars above terracotta rooftops and green hills overlooking the sea in Madeira",
+            objectPosition: "center 45%",
+          },
+          {
             id: "madeira-coastal-portrait",
             src: "/fun-assets/travel/portugal-2026/madeira-coastal-portrait.jpg",
             alt: "A traveller leaning on a seaside wall overlooking Madeira's coastline at dusk",
             objectPosition: "center 48%",
             orientation: "portrait",
-          },
-          {
-            id: "madeira-cable-car-coast",
-            src: "/fun-assets/travel/portugal-2026/madeira-cable-car-coast.jpg",
-            alt: "Cable cars above terracotta rooftops and green hills overlooking the sea in Madeira",
-            objectPosition: "center 45%",
           },
           {
             id: "madeira-sailboats",
