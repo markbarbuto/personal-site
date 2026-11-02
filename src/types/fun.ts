@@ -66,7 +66,7 @@ export type TravelDestination = {
 export type TravelStamp = {
   accent: string;
   shape: "arch" | "oval" | "rectangle" | "ticket";
-  motif: "coast" | "compass" | "landmark" | "mountains";
+  motif: "coast" | "compass" | "landmark" | "mountains" | "palace";
 };
 
 export type TravelTrip = {
