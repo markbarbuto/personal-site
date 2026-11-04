@@ -18,11 +18,14 @@ export async function* readAssistantEvents(body: ReadableStream<Uint8Array>): As
   const reader = body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
+  let pending = "";
 
   for (;;) {
     const { done, value } = await reader.read();
-    if (done) return;
-    buffer += decoder.decode(value, { stream: true });
+    const text = pending + (done ? "" : decoder.decode(value, { stream: true }));
+    // SSE allows CRLF, LF or CR. A trailing CR waits for the next chunk in case it is half of a CRLF.
+    pending = !done && text.endsWith("\r") ? "\r" : "";
+    buffer += (pending ? text.slice(0, -1) : text).replace(/\r\n?/g, "\n");
 
     let end;
     while ((end = buffer.indexOf("\n\n")) !== -1) {
@@ -30,6 +33,7 @@ export async function* readAssistantEvents(body: ReadableStream<Uint8Array>): As
       buffer = buffer.slice(end + 2);
       if (event) yield event;
     }
+    if (done) return;
   }
 }
 
