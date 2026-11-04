@@ -1,65 +1,49 @@
-import type { AssistantRequest, AssistantResponse } from "../types/assistant";
+import type { AssistantEvent, AssistantRequest } from "../types/assistant";
 
-const apiUrl = import.meta.env.VITE_ASSISTANT_API_URL;
+const EVENT_NAMES = new Set<string>(["meta", "token", "refusal", "done", "busy", "rate_limited", "error"]);
 
-export async function sendAssistantMessage({
-  message,
-  history,
-}: AssistantRequest): Promise<AssistantResponse> {
-  if (apiUrl) {
-    const response = await fetch(`${apiUrl.replace(/\/$/, "")}/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, history }),
-    });
+export async function* streamAssistant(request: AssistantRequest): AsyncGenerator<AssistantEvent> {
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(request),
+  });
+  if (!response.ok || !response.body) {
+    throw new Error(`Assistant API returned ${response.status}`);
+  }
+  yield* readAssistantEvents(response.body);
+}
 
-    if (!response.ok) {
-      throw new Error(`Assistant API returned ${response.status}`);
+export async function* readAssistantEvents(body: ReadableStream<Uint8Array>): AsyncGenerator<AssistantEvent> {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let pending = "";
+
+  for (;;) {
+    const { done, value } = await reader.read();
+    const text = pending + (done ? "" : decoder.decode(value, { stream: true }));
+    // SSE allows CRLF, LF or CR. A trailing CR waits for the next chunk in case it is half of a CRLF.
+    pending = !done && text.endsWith("\r") ? "\r" : "";
+    buffer += (pending ? text.slice(0, -1) : text).replace(/\r\n?/g, "\n");
+
+    let end;
+    while ((end = buffer.indexOf("\n\n")) !== -1) {
+      const event = parseEvent(buffer.slice(0, end));
+      buffer = buffer.slice(end + 2);
+      if (event) yield event;
     }
-
-    return response.json() as Promise<AssistantResponse>;
+    if (done) return;
   }
-
-  await wait(800);
-
-  return {
-    message: {
-      role: "assistant",
-      content: answerDemoQuestion(message),
-    },
-  };
 }
 
-function answerDemoQuestion(question: string) {
-  const text = question.toLowerCase();
-
-  if (/(experience|work|job|career|role|company|companies)/.test(text)) {
-    return "Sure! I've been building software for about seven years. Right now I'm a Senior Software Engineer at Northwind Labs leading real-time collaboration features. Before that I was at Brightline growing their dashboard to 40k users, and I started out at Kite & Co. modernizing a legacy Rails app. Want me to dig into any of those?";
+function parseEvent(block: string): AssistantEvent | null {
+  let name = "";
+  let data = "";
+  for (const line of block.split("\n")) {
+    if (line.startsWith("event:")) name = line.slice(6).trim();
+    else if (line.startsWith("data:")) data += line.slice(5).trim();
   }
-
-  if (/(project|built|build|ship|portfolio|made)/.test(text)) {
-    return "A few I'm proud of: Ledger, a privacy-first finance app that runs fully on-device; Waypoint, a CLI that maps any git repo (3k+ devs use it); and Chatterbox — the little AI you're chatting with right now. Scroll down to Projects for the write-ups!";
-  }
-
-  if (/(skill|tech|stack|language|tool|framework)/.test(text)) {
-    return "Day to day I'm in TypeScript, Python and Go. On the front end that's React, Next.js and Tailwind; on the back end Node, FastAPI and a mix of Postgres, Redis and Mongo. I've also been going deep on applied AI with PyTorch lately.";
-  }
-
-  if (/(fun|hobby|hobbies|interest|outside|free time|weekend)/.test(text)) {
-    return "Outside of code I shoot 35mm film, run trails, and I'm a bit of a home-espresso nerd. There's also some bouldering and a slowly growing shelf of synths. The Fun section has the full list 😄";
-  }
-
-  if (/(contact|email|reach|hire|hiring|available|opportun|open to)/.test(text)) {
-    return "I'm open to new opportunities! The fastest way to reach me is email at markbarbuto@outlook.com, or find me on LinkedIn and GitHub. Head to the Contact section at the bottom to connect.";
-  }
-
-  if (/(who|about|yourself|intro|tell me about you)/.test(text)) {
-    return "Hey! I'm Mark, a software developer who likes turning messy problems into calm, well-crafted products. I care a lot about clean interfaces and fast feedback loops. Ask me about my experience, projects, or tech stack!";
-  }
-
-  return "Great question! I'm a demo version of Mark's assistant, so I know about his experience, projects, tech stack, and interests. Try asking about any of those — or scroll down to explore the site.";
-}
-
-function wait(ms: number) {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
+  if (!EVENT_NAMES.has(name)) return null;
+  return { event: name, data: JSON.parse(data) } as AssistantEvent;
 }

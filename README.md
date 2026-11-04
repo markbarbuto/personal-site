@@ -37,44 +37,22 @@ The components in `src/components` are mostly presentational. This keeps placeho
 
 ## Assistant Module
 
-The chat area is named the Assistant module in code because the user-facing feature is an assistant, even though the future implementation will be backed by a self-hosted open-weights LLM.
+The chat area streams answers from Vitae, Mark's self-hosted assistant backend. The browser never talks to the backend directly. It posts to the Vercel Function `api/chat.ts`, which validates the request, adds the edge secret and the visitor's IP, and pipes the backend's server-sent events back unbuffered.
 
-Current files:
+Files:
 
+- `api/chat.ts` - Vercel Function that proxies `POST /api/chat` to `${VITAE_BACKEND_URL}/chat`
 - `src/components/assistant/AssistantModule.tsx` - chat UI and state
 - `src/components/assistant/PromptChips.tsx` - suggested prompts
-- `src/services/assistantClient.ts` - demo response service and future integration boundary
-- `src/types/assistant.ts` - request/response/message types
+- `src/services/assistantClient.ts` - streaming client and server-sent event parser
+- `src/types/assistant.ts` - request, message, and stream event types
 
-For now, the assistant returns local canned demo responses. No network call is made in this iteration.
+The function needs two server-side environment variables, set in Vercel and never prefixed with `VITE_`:
 
-## Future Lightweight RAG Assistant
+- `VITAE_BACKEND_URL` - base URL of the backend
+- `VITAE_EDGE_SECRET` - shared secret the backend checks in the `X-Edge-Secret` header
 
-Recommended future architecture:
-
-- Keep this frontend as a static GitHub Pages site.
-- Host a small Assistant API on an Oracle Cloud VM.
-- Use a lightweight self-hosted RAG setup instead of a heavy always-on model stack.
-- Start with a small quantized open-weights instruct model through Ollama or `llama.cpp` server.
-- Keep the source corpus small: resume, project notes, interests, and a short bio.
-- Use retrieval so each request sends only relevant snippets to the model.
-- Start with Markdown/JSON documents plus a small vector index such as FAISS, Chroma, or SQLite-backed embeddings.
-- If Oracle free-tier resources are tight, use retrieval plus template answers first and add generation only where it improves the experience.
-- Keep the model server private on the VM. Expose only the Assistant API.
-- Put HTTPS in front of the API with Caddy or Nginx.
-- Add strict CORS for the portfolio domain, rate limiting, request size limits, and conservative logging.
-
-The frontend should eventually call:
-
-```ts
-fetch(`${import.meta.env.VITE_ASSISTANT_API_URL}/chat`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message, history }),
-});
-```
-
-Do not put secret keys or private credentials in Vite environment variables. Any `VITE_*` variable is bundled into public frontend code.
+When either is missing or the backend is unreachable, the function returns 502 and the chat shows an offline message with Mark's email.
 
 ## Deployment
 
@@ -83,8 +61,6 @@ The site is live on Vercel at:
 ```text
 https://markbarbuto.com/
 ```
-
-`index.html` declares `https://markbarbuto.com/` as the canonical URL, so the copy that `.github/workflows/deploy.yml` publishes to GitHub Pages is not indexed separately.
 
 ## SEO and answer engines
 
