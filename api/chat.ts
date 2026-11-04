@@ -3,7 +3,8 @@ import type { AssistantRequest } from "../src/types/assistant";
 const MAX_MESSAGE_CHARS = 500;
 const MAX_HISTORY = 6;
 const MAX_HISTORY_CHARS = 1000;
-const BACKEND_TIMEOUT_MS = 120_000;
+// Covers the whole stream, not just the headers: an answer queued behind three others can take a few minutes.
+const BACKEND_TIMEOUT_MS = 240_000;
 
 function parseRequest(body: unknown): AssistantRequest | null {
   if (typeof body !== "object" || body === null) return null;
