@@ -115,7 +115,7 @@ export function TravelPassportSelector({
             className="nav-link flex h-9 w-9 items-center justify-center rounded-full text-ink transition disabled:cursor-default disabled:opacity-30 dark:text-white"
             onClick={() => scrollTrips(-1)}
             disabled={!canScrollLeft}
-            aria-label="Show earlier trips"
+            aria-label="Show later trips"
           >
             <FaChevronLeft aria-hidden="true" className="h-4 w-4" />
           </button>
@@ -124,7 +124,7 @@ export function TravelPassportSelector({
             className="nav-link flex h-9 w-9 items-center justify-center rounded-full text-ink transition disabled:cursor-default disabled:opacity-30 dark:text-white"
             onClick={() => scrollTrips(1)}
             disabled={!canScrollRight}
-            aria-label="Show later trips"
+            aria-label="Show earlier trips"
           >
             <FaChevronRight aria-hidden="true" className="h-4 w-4" />
           </button>
