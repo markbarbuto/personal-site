@@ -40,7 +40,7 @@ export function TravelContent({ item, layout, onReadMore }: TravelContentProps) 
   } = useImageFocus();
   const { feature } = item;
   const trips = useMemo(
-    () => [...feature.trips].sort((first, second) => first.dateRange.start.localeCompare(second.dateRange.start)),
+    () => [...feature.trips].sort((first, second) => second.dateRange.start.localeCompare(first.dateRange.start)),
     [feature.trips],
   );
   const tripIds = useMemo(() => trips.map((trip) => trip.id), [trips]);
