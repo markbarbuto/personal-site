@@ -24,6 +24,7 @@ export const profile = {
   ],
   mobileExperience:
     "I have professional experience building mobile apps with:",
+  mobileStack: ["React Native", "Expo", "TypeScript", "NativeWind"],
   contactIntro:
     "I'm open to new opportunities and always happy to chat. You can reach me via email or other social media links.",
   copyright: "© 2026 Mark Barbuto",
